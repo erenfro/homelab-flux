@@ -22,6 +22,9 @@ spec:
       name: cilium-values
 
   values:
+    bgpControlPlane:
+      enable: true
+      
     hubble:
       serviceMonitor:
         enabled: true
