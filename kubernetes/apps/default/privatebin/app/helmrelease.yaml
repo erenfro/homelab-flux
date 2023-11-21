@@ -31,8 +31,8 @@ spec:
         statefulset:
           volumeClaimTemplates:
             - name: data
-              accessMode: ReadWriteOnce
-              size: 1Gi
+              accessMode: ReadWriteMany
+              size: 5Gi
               storageClass: cephfs
               globalMounts:
                 - path: /srv/data
@@ -61,7 +61,7 @@ spec:
     ingress:
       main:
         enabled: true
-        className: "internal-nginx"
+        className: "internal"
         hosts:
           - host: &host "{{ .Release.Name }}.deckersheaven.com"
             paths:
