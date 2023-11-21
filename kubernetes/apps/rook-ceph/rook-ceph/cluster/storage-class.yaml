@@ -7,7 +7,7 @@ metadata:
     storageclass.kubernetes.io/is-default-class: "true"
 provisioner: rook-ceph.rbd.csi.ceph.com
 parameters:
-  clusterID: ceph
+  clusterID: rook-ceph
   pool: rook
   imageFormat: "2"
   imageFeatures: layering,fast-diff,object-map,deep-flatten,exclusive-lock
@@ -30,7 +30,7 @@ provisioner: rook-ceph.cephfs.csi.ceph.com # driver:namespace:operator
 parameters:
   # clusterID is the namespace where the rook cluster is running
   # If you change this namespace, also change the namespace below where the secret namespaces are defined
-  clusterID: ceph # namespace:cluster
+  clusterID: rook-ceph # namespace:cluster
   # CephFS filesystem name into which the volume shall be created
   fsName: cephfs
   # Ceph pool into which the volume shall be created
