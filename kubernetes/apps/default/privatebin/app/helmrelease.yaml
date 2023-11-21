@@ -27,6 +27,12 @@ spec:
 
         pod:
           enableServiceLinks: false
+          securityContext:
+            runAsUser: 65534
+            runAsGroup: 82
+            fsgroup: 82
+            fsGroupChangePolicy: OnRootMismatch
+            readOnlyRootFilesystem: true
 
         statefulset:
           volumeClaimTemplates:
