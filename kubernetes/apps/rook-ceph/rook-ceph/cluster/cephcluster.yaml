@@ -1,0 +1,26 @@
+---
+apiVersion: ceph.rook.io/v1
+kind: CephCluster
+metadata:
+  name: ceph-pve-external
+  namespace: rook-ceph
+spec:
+  external:
+    enable: true
+  dataDirHostPath: /var/lib/rook
+  cephVersion:
+    image: quay.io/ceph/ceph:v17.2.7
+  crashCollector:
+    disable: true
+  healthCheck:
+    daemonHealth:
+      mon:
+        disabled: false
+        interval: 45s
+  monitoring:
+    enabled: true
+    externalMgrEndpoints:
+      - ip: "172.17.8.1"
+      - ip: "172.17.8.2"
+      - ip: "172.17.8.3"
+    externalMgrPrometheusPort: 9283
