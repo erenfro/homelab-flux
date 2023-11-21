@@ -15,8 +15,8 @@ bgp:
 bgpControlPlane:
   enabled: true
 
-k8sServiceHost: localhost
-k8sServicePort: 7445
+#k8sServiceHost: localhost
+#k8sServicePort: 7445
 
 rollOutCiliumPods: true
 localRedirectPolicy: true
@@ -24,9 +24,9 @@ localRedirectPolicy: true
 kubeProxyReplacement: strict
 kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
 
-loadBalancer:
-  algorithm: maglev
-  mode: dsr
+#loadBalancer:
+#  algorithm: maglev
+#  mode: dsr
 
 bandwidthManager:
   enabled: true
