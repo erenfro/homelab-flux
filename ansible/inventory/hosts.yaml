@@ -1,0 +1,14 @@
+---
+kubernetes:
+  children:
+    master:
+      hosts:
+        k3s1:
+          ansible_user: k3sadmin
+          ansible_host: 172.17.51.1
+        k3s2:
+          ansible_user: k3sadmin
+          ansible_host: 172.17.51.2
+        k3s3:
+          ansible_user: k3sadmin
+          ansible_host: 172.17.51.3

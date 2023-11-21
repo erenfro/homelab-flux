@@ -1,0 +1,8 @@
+---
+timezone: "America/Toronto"
+github_username: "erenfro"
+coredns_addr: "10.43.0.10"
+kube_vip_addr: "172.17.51.254"
+cluster_cidr: "10.42.0.0/16"
+service_cidr: "10.43.0.0/16"
+node_cidr: "172.17.0.0/16"
