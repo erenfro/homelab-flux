@@ -33,4 +33,4 @@ metadata:
   name: main-pool
 spec:
   cidrs:
-    - cidr: 172.18.254.0/24
+    - cidr: "${IP_LB_CIDR}"

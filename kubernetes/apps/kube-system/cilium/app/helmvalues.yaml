@@ -12,7 +12,7 @@ data:
     bgp:
       enabled: false
     bgpControlPlane:
-      enabled: false
+      enabled: true
     cluster:
       name: home-cluster
       id: 1
