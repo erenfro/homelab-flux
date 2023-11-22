@@ -9,6 +9,12 @@ creation_rules:
     key_groups:
       - age:
           - "age126422qm0mrq0tpmm0rjcacjznz8ggcf2map6yrz3y944e8x4tansxe73l5"
+  # Generic Kubernetes Secrets
+  - path_regex: .*\.secret(\.sops)?\.ya?ml
+    encrypted_regex: "^(data|stringData)$"
+    key_groups:
+      - age:
+          - "age126422qm0mrq0tpmm0rjcacjznz8ggcf2map6yrz3y944e8x4tansxe73l5"
   # https://github.com/ansible-collections/community.sops/issues/153
   - path_regex: /dev/stdin
     key_groups:
