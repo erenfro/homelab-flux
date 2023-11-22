@@ -79,3 +79,8 @@ tasks:
       - task: certificates
       - task: ingresses
       - task: pods
+
+  status:
+    desc: Get Current Kustomization Statuses
+    cmds:
+      - kubectl get kustomization -n flux-system
