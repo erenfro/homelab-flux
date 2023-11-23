@@ -57,8 +57,8 @@ spec:
     externalAccountBinding:
       keyID: "${ZEROSSL_EAB_KEY_ID}"
       keySecretRef:
-        name: zero-ssl-eabsecret
-        key: secret
+        name: cert-manager-secret
+        key: zerossl_eab_hmac_key
       keyAlgorithm: "${ZEROSSL_KEY_ALGO}"
     solvers:
       - dns01:
@@ -72,10 +72,3 @@ spec:
             - "${SECRET_DOMAIN_2}"
             - "${SECRET_DOMAIN_3}"
             - "${SECRET_DOMAIN_4}"
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: zero-ssl-eabsecret
-data:
-  secret: "${ZEROSSL_EAB_HMAC_KEY}"
