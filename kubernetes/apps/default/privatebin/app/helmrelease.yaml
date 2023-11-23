@@ -71,7 +71,25 @@ spec:
         annotations:
           external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
         hosts:
-          - host: &host "{{ .Release.Name }}.deckersheaven.com"
+          - host: &host "paste.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                service:
+                  name: main
+                  port: http
+          - host: &host2 "paste.${SECRET_DOMAIN_2}"
+            paths:
+              - path: /
+                service:
+                  name: main
+                  port: http
+          - host: &host3 "paste.${SECRET_DOMAIN_3}"
+            paths:
+              - path: /
+                service:
+                  name: main
+                  port: http
+          - host: &host4 "paste.${SECRET_DOMAIN_4}"
             paths:
               - path: /
                 service:
@@ -80,3 +98,6 @@ spec:
         tls:
           - hosts:
               - *host
+              - *host2
+              - *host3
+              - *host4
