@@ -6,7 +6,7 @@ NC='\033[0m'
 
 while IFS= read -r path; do
     path=$(echo "$path" | sed 's/\(\.sops\)/ /g')
-    find . -regextype egrep -regex ".*/$path" -type f | while IFS= read -r file; do
+    find . -regextype egrep -regex ".*/$path" -type f -not -path "./.venv/*" | while IFS= read -r file; do
         encrypted_file="${file%.yaml}.sops.yaml"
         
         if [ -f "$encrypted_file" ]; then
