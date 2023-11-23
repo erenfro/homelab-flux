@@ -43,3 +43,39 @@ spec:
             - "${SECRET_DOMAIN_2}"
             - "${SECRET_DOMAIN_3}"
             - "${SECRET_DOMAIN_4}"
+---
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-production
+spec:
+  acme:
+    server: https://acme.zerossl.com/v2/DV90
+    email: "${SECRET_ACME_EMAIL}"
+    privateKeySecretRef:
+      name: zerossl-production
+    externalAccountBinding:
+      keyID: "${ZEROSSL_EAB_KEY_ID}"
+      keySecretRef:
+        name: zero-ssl-eabsecret
+        key: secret
+      keyAlgorithm: "${ZEROSSL_KEY_ALGO}"
+    solvers:
+      - dns01:
+          cloudflare:
+            apiTokenSecretRef:
+              name: cert-manager-secret
+              key: api-token
+        selector:
+          dnsZones:
+            - "${SECRET_DOMAIN}"
+            - "${SECRET_DOMAIN_2}"
+            - "${SECRET_DOMAIN_3}"
+            - "${SECRET_DOMAIN_4}"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: zero-ssl-eabsecret
+data:
+  secret: "${ZEROSSL_EAB_HMAC_KEY}"
