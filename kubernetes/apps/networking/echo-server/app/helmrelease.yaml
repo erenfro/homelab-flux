@@ -71,11 +71,7 @@ spec:
         enabled: true
         className: external
         annotations:
-          external-dns.alpha.kubernetes.io/target: 
-            - "external.${SECRET_DOMAIN}"
-            - "external.${SECRET_DOMAIN_2}"
-            - "external.${SECRET_DOMAIN_3}"
-            - "external.${SECRET_DOMAIN_4}"
+          external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN},external.${SECRET_DOMAIN_2},external.${SECRET_DOMAIN_3},external.${SECRET_DOMAIN_4}"
           hajimari.io/icon: video-input-antenna
         hosts:
           - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
