@@ -19,6 +19,7 @@ spec:
             - "${SECRET_DOMAIN}"
             - "${SECRET_DOMAIN_2}"
             - "${SECRET_DOMAIN_3}"
+            - "${SECRET_DOMAIN_4}"
 ---
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
