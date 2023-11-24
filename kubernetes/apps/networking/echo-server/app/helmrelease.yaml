@@ -99,6 +99,7 @@ spec:
                   name: main
                   port: http
         tls:
+          - secretName: letsencrypt-production
           - hosts:
               - *host
               - *host2
