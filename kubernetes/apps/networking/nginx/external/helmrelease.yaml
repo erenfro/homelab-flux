@@ -76,7 +76,8 @@ spec:
         default-ssl-certificate: "networking/${SECRET_DOMAIN/./-}-production-tls"
       topologySpreadConstraints:
         - maxSkew: 1
-          topologyKey: kubernetes.io/hostname
+          #topologyKey: kubernetes.io/hostname
+          topologyKey: node
           whenUnsatisfiable: DoNotSchedule
           labelSelector:
             matchLabels:
