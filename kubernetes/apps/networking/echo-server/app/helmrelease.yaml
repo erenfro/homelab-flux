@@ -101,13 +101,13 @@ spec:
         tls:
           - hosts:
               - *host
-            secretName: "${SECRET_DOMAIN/./-}-production"
+            secretName: "${SECRET_DOMAIN/./-}-production-tls"
           - hosts:
               - *host2
-            secretName: "${SECRET_DOMAIN_2/./-}-production"
+            secretName: "${SECRET_DOMAIN_2/./-}-production-tls"
           - hosts:
               - *host3
-            secretName: "${SECRET_DOMAIN_3/./-}-production"
+            secretName: "${SECRET_DOMAIN_3/./-}-production-tls"
           - hosts:
               - *host4
-            secretName: mygorean-org-production-tls
+            secretName: "${SECRET_DOMAIN_3/./-}-production-tls"
