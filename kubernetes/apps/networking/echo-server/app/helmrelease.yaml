@@ -99,9 +99,12 @@ spec:
                   name: main
                   port: http
         tls:
-          - secretName: letsencrypt-production
           - hosts:
               - *host
+                secretName: letsencrypt-production
               - *host2
+                secretName: letsencrypt-production
               - *host3
+                secretName: letsencrypt-production
               - *host4
+                secretName: zerossl-production
