@@ -103,7 +103,5 @@ spec:
               - *host
               - *host2
               - *host3
-              secretName: letsencrypt-production
           - hosts:
               - *host4
-              secretName: zerossl-production
