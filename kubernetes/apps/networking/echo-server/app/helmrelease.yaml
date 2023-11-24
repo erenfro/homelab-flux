@@ -101,10 +101,9 @@ spec:
         tls:
           - hosts:
               - *host
-                secretName: letsencrypt-production
               - *host2
-                secretName: letsencrypt-production
               - *host3
-                secretName: letsencrypt-production
+              secretName: letsencrypt-production
+          - hosts:
               - *host4
-                secretName: zerossl-production
+              secretName: zerossl-production
