@@ -101,17 +101,13 @@ spec:
         tls:
           - hosts:
               - *host
-              - external.${SECRET_DOMAIN}
             secretName: "${SECRET_DOMAIN/./-}-production-tls"
           - hosts:
               - *host2
-              - external.${SECRET_DOMAIN_2}
             secretName: "${SECRET_DOMAIN_2/./-}-production-tls"
           - hosts:
               - *host3
-              - external.${SECRET_DOMAIN_3}
             secretName: "${SECRET_DOMAIN_3/./-}-production-tls"
           - hosts:
               - *host4
-              - external.${SECRET_DOMAIN_4}
             secretName: "${SECRET_DOMAIN_4/./-}-production-tls"
