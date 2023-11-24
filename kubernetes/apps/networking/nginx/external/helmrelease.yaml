@@ -89,7 +89,7 @@ spec:
             - key: app
               operator: In
               values:
-              - nginx
+              - nginx-external
           topologyKey: kubernetes.io/hostname
       resources:
         requests:
