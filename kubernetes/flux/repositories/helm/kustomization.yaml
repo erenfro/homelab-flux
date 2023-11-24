@@ -19,3 +19,4 @@ resources:
   - ./stakater.yaml
   - ./weave-gitops.yaml
   - ./rook-ceph.yaml
+  - ./reflector.yaml
