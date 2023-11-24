@@ -69,7 +69,8 @@ spec:
         enabled: true
         className: external
         annotations:
-          external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
+          external-dns.alpha.kubernetes.io/target: |-
+            "external.${SECRET_DOMAIN},external.${SECRET_DOMAIN_2},external.${SECRET_DOMAIN_3},external.${SECRET_DOMAIN_4}"
         hosts:
           - host: &host "paste.${SECRET_DOMAIN}"
             paths:
