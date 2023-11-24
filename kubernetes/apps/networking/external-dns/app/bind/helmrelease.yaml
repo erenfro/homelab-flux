@@ -39,8 +39,6 @@ spec:
         value: "53"
       - name: EXTERNAL_DNS_RFC2136_ZONE
         value: ${SECRET_DOMAIN}
-      - name: EXTERNAL_DNS_RFC2136_ZONE
-        value: ${SECRET_DOMAIN_2}
       - name: EXTERNAL_DNS_RFC2136_TSIG_AXFR
         value: "true"
       - name: EXTERNAL_DNS_RFC2136_TSIG_KEYNAME
@@ -57,7 +55,6 @@ spec:
     txtPrefix: k8s.
     domainFilters: 
       - "${SECRET_DOMAIN}"
-      - "${SECRET_DOMAIN_2}"
     serviceMonitor:
       enabled: true
     podAnnotations:
