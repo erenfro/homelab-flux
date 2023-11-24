@@ -83,15 +83,15 @@ spec:
             matchLabels:
               app.kubernetes.io/name: nginx-external
               app.kubernetes.io/component: controller
-      podAntiAffinity:
-        requiredDuringSchedulingIgnoredDuringExecution:
-        - labelSelector:
-            matchExpressions:
-            - key: app
-              operator: In
-              values:
-              - nginx-external
-          topologyKey: kubernetes.io/hostname
+      #podAntiAffinity:
+      #  requiredDuringSchedulingIgnoredDuringExecution:
+      #  - labelSelector:
+      #      matchExpressions:
+      #      - key: app
+      #        operator: In
+      #        values:
+      #        - nginx-external
+      #    topologyKey: kubernetes.io/hostname
       resources:
         requests:
           cpu: 10m
