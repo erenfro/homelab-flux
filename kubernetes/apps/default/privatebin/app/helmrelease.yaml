@@ -98,6 +98,13 @@ spec:
         tls:
           - hosts:
               - *host
+            secretName: "${SECRET_DOMAIN/./-}-production-tls"
+          - hosts:
               - *host2
+            secretName: "${SECRET_DOMAIN_2/./-}-production-tls"
+          - hosts:
               - *host3
+            secretName: "${SECRET_DOMAIN_3/./-}-production-tls"
+          - hosts:
               - *host4
+            secretName: "${SECRET_DOMAIN_4/./-}-production-tls"
