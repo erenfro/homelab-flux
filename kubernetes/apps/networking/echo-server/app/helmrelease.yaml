@@ -105,4 +105,4 @@ spec:
               - *host3
           - hosts:
               - *host4
-                secretName: zerossl-production
+            secretName: zerossl-production
