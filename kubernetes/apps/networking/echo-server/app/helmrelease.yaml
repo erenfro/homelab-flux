@@ -101,6 +101,7 @@ spec:
         tls:
           - hosts:
               - *host
+            secretName: "${SECRET_DOMAIN/./-}-production"
           - hosts:
               - *host2
             secretName: "${SECRET_DOMAIN_2/./-}-production"
