@@ -110,4 +110,4 @@ spec:
             secretName: "${SECRET_DOMAIN_3/./-}-production-tls"
           - hosts:
               - *host4
-            secretName: "${SECRET_DOMAIN_3/./-}-production-tls"
+            secretName: "${SECRET_DOMAIN_4/./-}-production-tls"
