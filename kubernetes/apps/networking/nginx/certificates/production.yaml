@@ -8,9 +8,9 @@ spec:
   secretTemplate:
     annotations:
       reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
-      reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "default"
+      reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "default,media,monitoring,database"
       reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
-      reflector.v1.k8s.emberstack.com/reflection-auto-namespaces: "default"
+      reflector.v1.k8s.emberstack.com/reflection-auto-namespaces: "default,media,monitoring,database"
   secretName: "${SECRET_DOMAIN/./-}-production-tls"
   issuerRef:
     name: letsencrypt-production
@@ -29,9 +29,9 @@ spec:
   secretTemplate:
     annotations:
       reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
-      reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "default"
+      reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "default,media,monitoring,database"
       reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
-      reflector.v1.k8s.emberstack.com/reflection-auto-namespaces: "default"
+      reflector.v1.k8s.emberstack.com/reflection-auto-namespaces: "default,media,monitoring,database"
   secretName: "${SECRET_DOMAIN_2/./-}-production-tls"
   issuerRef:
     name: letsencrypt-production
@@ -50,9 +50,9 @@ spec:
   secretTemplate:
     annotations:
       reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
-      reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "default"
+      reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "default,media,monitoring,database"
       reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
-      reflector.v1.k8s.emberstack.com/reflection-auto-namespaces: "default"
+      reflector.v1.k8s.emberstack.com/reflection-auto-namespaces: "default,media,monitoring,database"
   secretName: "${SECRET_DOMAIN_3/./-}-production-tls"
   issuerRef:
     name: letsencrypt-production
@@ -71,9 +71,9 @@ spec:
   secretTemplate:
     annotations:
       reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
-      reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "default"
+      reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "default,media,monitoring,database"
       reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
-      reflector.v1.k8s.emberstack.com/reflection-auto-namespaces: "default"
+      reflector.v1.k8s.emberstack.com/reflection-auto-namespaces: "default,media,monitoring,database"
   secretName: "${SECRET_DOMAIN_4/./-}-production-tls"
   issuerRef:
     name: zerossl-production
