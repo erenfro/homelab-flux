@@ -3,13 +3,13 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: nginx-internal
-  namespace: networking
+  namespace: &namespace networking
 spec:
   interval: 30m
   chart:
     spec:
       chart: ingress-nginx
-      version: 4.7.1
+      version: 4.8.3
       sourceRef:
         kind: HelmRepository
         name: ingress-nginx
@@ -44,12 +44,16 @@ spec:
             - key: ingress-class
               operator: In
               values: ["internal"]
+      allowSnippetAnnotations: true
       config:
+        block-user-agents: "GPTBot,~*GPTBot*,ChatGPT-User,~*ChatGPT-User*,Google-Extended,~*Google-Extended*,CCBot,~*CCBot*,Omgilibot,~*Omgilibot*,FacebookBot,~*FacebookBot*" # taken from https://github.com/superseriousbusiness/gotosocial/blob/main/internal/web/robots.go
         client-body-buffer-size: 100M
         client-body-timeout: 120
         client-header-timeout: 120
         enable-brotli: "true"
+        enable-ocsp: "true"
         enable-real-ip: "true"
+        hide-headers: Server,X-Powered-By
         hsts-max-age: 31449600
         keep-alive-requests: 10000
         keep-alive: 120
@@ -63,11 +67,12 @@ spec:
         proxy-body-size: 0
         proxy-buffer-size: 16k
         ssl-protocols: TLSv1.3 TLSv1.2
+        use-forwarded-headers: "true"
       metrics:
         enabled: true
         serviceMonitor:
           enabled: true
-          namespace: networking
+          namespace: *namespace
           namespaceSelector:
             any: true
       extraArgs:
@@ -83,7 +88,7 @@ spec:
               app.kubernetes.io/component: controller
       resources:
         requests:
-          cpu: 10m
+          cpu: 100m
           memory: 250Mi
         limits:
           memory: 500Mi
