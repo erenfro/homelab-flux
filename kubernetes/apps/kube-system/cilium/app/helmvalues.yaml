@@ -15,7 +15,7 @@ data:
         loadbalancerIP: true
         podCIDR: false
     bgpControlPlane:
-      enabled: false
+      enabled: true
     cluster:
       name: home-cluster
       id: 1
