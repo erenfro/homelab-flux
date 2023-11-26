@@ -32,6 +32,6 @@ spec:
       type: LoadBalancer
       port: 53
       annotations:
-        #io.cilium/lb-ipam-ips: "172.17.51.253"
-        io.cilium/lb-ipam-ips: "172.18.254.53"
+        io.cilium/lb-ipam-ips: "172.17.51.253"
+        #io.cilium/lb-ipam-ips: "172.18.254.53"
       externalTrafficPolicy: Cluster
