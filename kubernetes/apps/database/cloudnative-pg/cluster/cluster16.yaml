@@ -40,7 +40,7 @@ spec:
         compression: bzip2
         maxParallel: 8
       destinationPath: s3://pg-backups/
-      endpointURL: http://s3.mega-lh.myds.me:900
+      endpointURL: http://s3.mega-lh.myds.me:9000
       serverName: &currentCluster postgres16-v1
       s3Credentials:
         accessKeyId:
