@@ -71,8 +71,7 @@ spec:
         enabled: true
         className: external
         annotations:
-          #external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN},external.${SECRET_DOMAIN_2},external.${SECRET_DOMAIN_3},external.${SECRET_DOMAIN_4}"
-          external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN},external.${SECRET_DOMAIN_2}"
+          external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
           hajimari.io/icon: video-input-antenna
         hosts:
           - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
@@ -81,34 +80,6 @@ spec:
                 service:
                   name: main
                   port: http
-          - host: &host2 "{{ .Release.Name }}.${SECRET_DOMAIN_2}"
-            paths:
-              - path: /
-                service:
-                  name: main
-                  port: http
-          - host: &host3 "{{ .Release.Name }}.${SECRET_DOMAIN_3}"
-            paths:
-              - path: /
-                service:
-                  name: main
-                  port: http
-          - host: &host4 "{{ .Release.Name }}.${SECRET_DOMAIN_4}"
-            paths:
-              - path: /
-                service:
-                  name: main
-                  port: http
         tls:
           - hosts:
               - *host
-            secretName: "${SECRET_DOMAIN/./-}-production-tls"
-          - hosts:
-              - *host2
-            secretName: "${SECRET_DOMAIN_2/./-}-production-tls"
-          - hosts:
-              - *host3
-            secretName: "${SECRET_DOMAIN_3/./-}-production-tls"
-          - hosts:
-              - *host4
-            secretName: "${SECRET_DOMAIN_4/./-}-production-tls"

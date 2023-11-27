@@ -11,11 +11,6 @@ data:
       masquerade: true
     bgp:
       enabled: false
-      announce:
-        loadbalancerIP: true
-        podCIDR: false
-    bgpControlPlane:
-      enabled: true
     cluster:
       name: home-cluster
       id: 1
@@ -70,25 +65,12 @@ data:
     l2announcements:
       enabled: true
       # https://github.com/cilium/cilium/issues/26586
-      leaseDuration: 300s
+      leaseDuration: 120s
       leaseRenewDeadline: 60s
-      leaseRetryPeriod: 10s
-    k8sClientRateLimit:
-      qps: 10
-      burst: 25
+      leaseRetryPeriod: 1s
     loadBalancer:
       algorithm: maglev
       mode: dsr
-    bandwidthManager:
-      enabled: true
-      bbr: true
-    bpf:
-      masquerade: true
-      tproxy: true
-    l7proxy: true
-    ingressController:
-      enabled: false
-      loadbalancerMode: dedicated
     localRedirectPolicy: true
     operator:
       replicas: 1
