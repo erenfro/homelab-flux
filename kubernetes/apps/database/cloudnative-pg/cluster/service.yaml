@@ -5,8 +5,8 @@ metadata:
   name: postgres-lb
   annotations:
     external-dns.alpha.kubernetes.io/hostname: pgsql.${SECRET_DOMAIN}
-    #io.cilium/lb-ipam-ips: 172.17.51.250
-    io.cilium/lb-ipam-ips: 172.18.254.10
+    io.cilium/lb-ipam-ips: 172.17.51.250
+    #io.cilium/lb-ipam-ips: 172.18.254.10
 spec:
   type: LoadBalancer
   ports:
