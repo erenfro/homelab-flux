@@ -11,6 +11,8 @@ data:
       masquerade: true
     bgp:
       enabled: false
+    bgpControlPlane:
+      enable: true
     cluster:
       name: home-cluster
       id: 1
