@@ -67,12 +67,12 @@ data:
     l2announcements:
       enabled: true
       # https://github.com/cilium/cilium/issues/26586
-      leaseDuration: 300s
+      leaseDuration: 120s
       leaseRenewDeadline: 60s
-      leaseRetryPeriod: 10s
-    k8sClientRateLimit:
-      qps: 10
-      burst: 25
+      leaseRetryPeriod: 1s
+    #k8sClientRateLimit:
+    #  qps: 10
+    #  burst: 25
     loadBalancer:
       algorithm: maglev
       mode: dsr
