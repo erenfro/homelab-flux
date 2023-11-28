@@ -5,10 +5,10 @@ kubernetes:
       hosts:
         k3s1:
           ansible_user: k3sadmin
-          ansible_host: 172.17.51.1
+          ansible_host: 172.17.1.51
         k3s2:
           ansible_user: k3sadmin
-          ansible_host: 172.17.51.2
+          ansible_host: 172.17.1.52
         k3s3:
           ansible_user: k3sadmin
-          ansible_host: 172.17.51.3
+          ansible_host: 172.17.1.53
