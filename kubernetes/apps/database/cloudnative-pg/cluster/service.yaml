@@ -6,7 +6,6 @@ metadata:
   annotations:
     external-dns.alpha.kubernetes.io/hostname: pgsql.${SECRET_DOMAIN}
     io.cilium/lb-ipam-ips: 172.17.1.46
-    ingress.cilium.io/loadbalancer-mode: dedicated
     #io.cilium/lb-ipam-ips: 172.18.254.10
 spec:
   type: LoadBalancer
