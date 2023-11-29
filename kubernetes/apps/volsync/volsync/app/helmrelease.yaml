@@ -24,27 +24,36 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
+  dependsOn:
+    - name: snapshot-controller
+      namespace: kube-system
   values:
     manageCRDs: true
+    image:
+      repository: &image ghcr.io/onedr0p/volsync
+      tag: &tag 0.8.0
+    restic:
+      repository: *image
+      tag: *tag
     metrics:
       disableAuth: true
-  postRenderers:
-    - kustomize:
-        patchesStrategicMerge:
-          - apiVersion: apps/v1
-            kind: Deployment
-            metadata:
-              name: volsync
-            spec:
-              template:
-                spec:
-                  containers:
-                    - name: manager
-                      volumeMounts:
-                        - name: tz-config
-                          mountPath: /etc/localtime
-                  volumes:
-                    - name: tz-config
-                      hostPath:
-                        path: /usr/share/zoneinfo/${TIMEZONE}
-                        type: File
+  #postRenderers:
+  #  - kustomize:
+  #      patchesStrategicMerge:
+  #        - apiVersion: apps/v1
+  #          kind: Deployment
+  #          metadata:
+  #            name: volsync
+  #          spec:
+  #            template:
+  #              spec:
+  #                containers:
+  #                  - name: manager
+  #                    volumeMounts:
+  #                      - name: tz-config
+  #                        mountPath: /etc/localtime
+  #                volumes:
+  #                  - name: tz-config
+  #                    hostPath:
+  #                      path: /usr/share/zoneinfo/${TIMEZONE}
+  #                      type: File
