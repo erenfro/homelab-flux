@@ -2,8 +2,8 @@
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: media
-  namespace: media
+  name: downloads
+  namespace: downloads
 provisioner: nfs
 parameters:
   archiveOnDelete: "false"
@@ -11,10 +11,10 @@ parameters:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: media
-  namespace: media
+  name: downloads
+  namespace: downloads
 spec:
-  storageClassName: media
+  storageClassName: downloads
   capacity:
     storage: 1Mi # Size does not matter ...twss
   accessModes: ["ReadWriteMany"]
@@ -33,11 +33,11 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: media
-  namespace: media # keep
+  name: downloads
+  namespace: downloads # keep
 spec:
   accessModes: ["ReadWriteMany"]
-  storageClassName: media
+  storageClassName: downloads
   resources:
     requests:
       storage: 1Mi # Size does not matter ...twss
