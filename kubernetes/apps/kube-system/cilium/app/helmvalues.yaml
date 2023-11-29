@@ -73,7 +73,9 @@ data:
     #k8sClientRateLimit:
     #  qps: 10
     #  burst: 25
-    #loadBalancer:
+    loadBalancer:
+      algorithm: random
+      mode: snat
     #  algorithm: maglev
     #  mode: dsr
     localRedirectPolicy: true
