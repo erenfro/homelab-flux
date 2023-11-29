@@ -49,87 +49,88 @@ spec:
     toolbox:
       enabled: true
     cephClusterSpec:
-      spec:
-        external:
-          enable: true
-        network:
-          connections:
-            encryption:
-              enabled: false
-            compression:
-              enabled: false
-            requireMsgr2: false
-        dataDirHostPath: /var/lib/rook
-        cephVersion:
-          image: quay.io/ceph/ceph:v17.2.7
-        crashCollector:
-          disable: true
-        healthCheck:
-          daemonHealth:
-            mon:
-              disabled: false
-              interval: 45s
-        #monitoring:
-        #  enabled: true
-        #  externalMgrEndpoints:
-        #    - ip: "172.17.0.11"
-        #    - ip: "172.17.0.12"
-        #    - ip: "172.17.0.13"
-        #  externalMgrPrometheusPort: 9283
-        dashboard:
-          enabled: true
-          urlPrefix: /
-          ssl: false
-    cephBlockPools:
-      - name: ceph-blockpool
-        storageClass:
-          enabled: true
-          name: ceph-block
-          isDefault: true
-          reclaimPolicy: Delete
-          allowVolumeExpansion: true
-          parameters:
-            imageFormat: "2"
-            imageFeatures: layering,fast-diff,object-map,deep-flatten,exclusive-lock
-            csi.storage.k8s.io/provisioner-secret-name: rook-csi-rbd-provisioner
-            csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
-            csi.storage.k8s.io/controller-expand-secret-name: rook-csi-rbd-provisioner
-            csi.storage.k8s.io/controller-expand-secret-namespace: rook-ceph
-            csi.storage.k8s.io/node-stage-secret-name: rook-csi-rbd-node
-            csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
-            csi.storage.k8s.io/fstype: ext4
-    cephBlockPoolsVolumeSnapshotClass:
-      enabled: true
-      name: csi-ceph-blockpool
-      isDefault: false
-      deletionPolicy: Delete
-    cephFileSystems:
-      - name: ceph-filesystem
-        storageClass:
-          enabled: true
-          isDefault: false
-          name: ceph-filesystem
-          pool: cephfs_data
-          reclaimPolicy: Delete
-          allowVolumeExpansion: true
-          parameters:
-            csi.storage.k8s.io/provisioner-secret-name: rook-csi-cephfs-provisioner
-            csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
-            csi.storage.k8s.io/controller-expand-secret-name: rook-csi-cephfs-provisioner
-            csi.storage.k8s.io/controller-expand-secret-namespace: rook-ceph
-            csi.storage.k8s.io/node-stage-secret-name: rook-csi-cephfs-node
-            csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
-            csi.storage.k8s.io/fstype: ext4
-    cephFileSystemVolumeSnapshotClass:
-      enabled: true
-      name: csi-ceph-filesystem
-      isDefault: false
-      deletionPolicy: Delete
-    cephObjectStores:
-      - name: ceph-objectstore
-        storageClass:
-          enabled: true
-          name: ceph-bucket
-          reclaimPolicy: Delete
-          parameters:
-            region: ca-east-1
+      external:
+        enable: true
+      network:
+        connections:
+          encryption:
+            enabled: false
+          compression:
+            enabled: false
+          requireMsgr2: false
+      dataDirHostPath: /var/lib/rook
+      cephVersion:
+        image: quay.io/ceph/ceph:v17.2.7
+      crashCollector:
+        disable: true
+      healthCheck:
+        daemonHealth:
+          mon:
+            disabled: false
+            interval: 45s
+      #monitoring:
+      #  enabled: true
+      #  externalMgrEndpoints:
+      #    - ip: "172.17.0.11"
+      #    - ip: "172.17.0.12"
+      #    - ip: "172.17.0.13"
+      #  externalMgrPrometheusPort: 9283
+      dashboard:
+        enabled: true
+        urlPrefix: /
+        ssl: false
+    cephBlockPools: {}
+    #  - name: ceph-blockpool
+    #    spec:
+    #
+    #    storageClass:
+    #      enabled: true
+    #      name: ceph-block
+    #      isDefault: true
+    #      reclaimPolicy: Delete
+    #      allowVolumeExpansion: true
+    #      parameters:
+    #        imageFormat: "2"
+    #        imageFeatures: layering,fast-diff,object-map,deep-flatten,exclusive-lock
+    #        csi.storage.k8s.io/provisioner-secret-name: rook-csi-rbd-provisioner
+    #        csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
+    #        csi.storage.k8s.io/controller-expand-secret-name: rook-csi-rbd-provisioner
+    #        csi.storage.k8s.io/controller-expand-secret-namespace: rook-ceph
+    #        csi.storage.k8s.io/node-stage-secret-name: rook-csi-rbd-node
+    #        csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
+    #        csi.storage.k8s.io/fstype: ext4
+    #cephBlockPoolsVolumeSnapshotClass: {}
+    #  enabled: true
+    #  name: csi-ceph-blockpool
+    #  isDefault: false
+    #  deletionPolicy: Delete
+    cephFileSystems: {}
+    #  - name: ceph-filesystem
+    #    storageClass:
+    #      enabled: true
+    #      isDefault: false
+    #      name: ceph-filesystem
+    #      pool: cephfs_data
+    #      reclaimPolicy: Delete
+    #      allowVolumeExpansion: true
+    #      parameters:
+    #        csi.storage.k8s.io/provisioner-secret-name: rook-csi-cephfs-provisioner
+    #        csi.storage.k8s.io/provisioner-secret-namespace: rook-ceph
+    #        csi.storage.k8s.io/controller-expand-secret-name: rook-csi-cephfs-provisioner
+    #        csi.storage.k8s.io/controller-expand-secret-namespace: rook-ceph
+    #        csi.storage.k8s.io/node-stage-secret-name: rook-csi-cephfs-node
+    #        csi.storage.k8s.io/node-stage-secret-namespace: rook-ceph
+    #        csi.storage.k8s.io/fstype: ext4
+    #cephFileSystemVolumeSnapshotClass:
+    #  enabled: true
+    #  name: csi-ceph-filesystem
+    #  isDefault: false
+    #  deletionPolicy: Delete
+    cephObjectStores: {}
+    #  - name: ceph-objectstore
+    #    storageClass:
+    #      enabled: true
+    #      name: ceph-bucket
+    #      reclaimPolicy: Delete
+    #      parameters:
+    #        region: ca-east-1
