@@ -42,11 +42,12 @@ spec:
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
-  healthChecks:
-    - apiVersion: ceph.rook.io/v1
-      kind: CephCluster
-      name: ceph-pve-external
-      namespace: rook-ceph
+  #healthChecks:
+  #  - apiVersion: ceph.rook.io/v1
+  #    kind: CephCluster
+  #    name: ceph-pve-external
+  #    namespace: rook-ceph
+  wait: false
   interval: 15m
   retryInterval: 1m
   timeout: 5m
