@@ -11,9 +11,9 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
-    - name: external-secrets-bitwarden
+    - name: bitwarden
       namespace: kube-system
-    - name: rook-ceph
+    - name: rook-ceph-cluster
       namespace: rook-ceph
   path: ./kubernetes/apps/downloads/sabnzbd/app
   prune: true
