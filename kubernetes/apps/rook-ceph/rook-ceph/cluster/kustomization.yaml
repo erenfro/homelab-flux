@@ -6,4 +6,4 @@ resources:
   - ./secret.sops.yaml
   - ./helmrelease.yaml
   #- ./cephcluster.yaml
-  #- ./storage-class.yaml
+  - ./storage-class.yaml
