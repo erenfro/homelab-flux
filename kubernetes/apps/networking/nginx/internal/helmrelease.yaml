@@ -27,13 +27,13 @@ spec:
   values:
     fullnameOverride: nginx-internal
     controller:
-      replicaCount: 1
+      replicaCount: 3
       service:
         annotations:
           external-dns.alpha.kubernetes.io/hostname: "internal.${SECRET_DOMAIN}"
           io.cilium/lb-ipam-ips: "172.17.1.47"
           #io.cilium/lb-ipam-ips: "172.17.8.1"
-          ingress.cilium.io/loadbalancer-mode: shared
+          #ingress.cilium.io/loadbalancer-mode: shared
         externalTrafficPolicy: Cluster
       ingressClassResource:
         name: internal
