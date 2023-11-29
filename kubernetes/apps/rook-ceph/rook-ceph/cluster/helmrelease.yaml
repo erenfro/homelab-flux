@@ -29,9 +29,9 @@ spec:
     - name: snapshot-controller
       namespace: kube-system
   values:
-    monitoring:
-      enabled: true
-      createPrometheusRules: false
+    #monitoring:
+    #  enabled: true
+    #  createPrometheusRules: false
     ingress:
       dashboard:
         ingressClassName: internal
