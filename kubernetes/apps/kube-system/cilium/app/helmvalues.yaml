@@ -65,6 +65,7 @@ data:
     # Not compatible with 1.13.6
     #kubeProxyReplacement: true
     kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
+    routing-mode: native
     l2announcements:
       enabled: true
       # https://github.com/cilium/cilium/issues/26586
