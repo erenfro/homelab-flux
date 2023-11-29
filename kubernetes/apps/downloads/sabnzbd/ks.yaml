@@ -14,7 +14,6 @@ spec:
     #- name: bitwarden
     #  namespace: kube-system
     - name: rook-ceph-cluster
-      namespace: rook-ceph
   path: ./kubernetes/apps/downloads/sabnzbd/app
   prune: true
   sourceRef:
