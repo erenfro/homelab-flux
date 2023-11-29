@@ -20,7 +20,7 @@ spec:
   monitoring:
     enabled: true
     externalMgrEndpoints:
-      - ip: "172.17.8.1"
-      - ip: "172.17.8.2"
-      - ip: "172.17.8.3"
+      - ip: "172.17.0.11"
+      - ip: "172.17.0.12"
+      - ip: "172.17.0.13"
     externalMgrPrometheusPort: 9283
