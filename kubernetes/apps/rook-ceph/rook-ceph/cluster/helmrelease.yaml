@@ -48,41 +48,38 @@ spec:
               - *host
     toolbox:
       enabled: true
-    configOverride: |
-      [global]
-      #bdev_enable_discard = true
-      #bdev_async_discard = true
-      #osd_class_update_on_start = false
     cephClusterSpec:
-      external: true
-      network:
-        connections:
-          encryption:
-            enabled: false
-          compression:
-            enabled: false
-          requireMsgr2: false
-      dataDirHostPath: /var/lib/rook
-      cephVersion:
-        image: quay.io/ceph/ceph:v17.2.7
-      crashCollector:
-        disable: true
-      healthCheck:
-        daemonHealth:
-          mon:
-            disabled: false
-            interval: 45s
-      #monitoring:
-      #  enabled: true
-      #  externalMgrEndpoints:
-      #    - ip: "172.17.0.11"
-      #    - ip: "172.17.0.12"
-      #    - ip: "172.17.0.13"
-      #  externalMgrPrometheusPort: 9283
-      dashboard:
-        enabled: true
-        urlPrefix: /
-        ssl: false
+      spec:
+        external:
+          enable: true
+        network:
+          connections:
+            encryption:
+              enabled: false
+            compression:
+              enabled: false
+            requireMsgr2: false
+        dataDirHostPath: /var/lib/rook
+        cephVersion:
+          image: quay.io/ceph/ceph:v17.2.7
+        crashCollector:
+          disable: true
+        healthCheck:
+          daemonHealth:
+            mon:
+              disabled: false
+              interval: 45s
+        #monitoring:
+        #  enabled: true
+        #  externalMgrEndpoints:
+        #    - ip: "172.17.0.11"
+        #    - ip: "172.17.0.12"
+        #    - ip: "172.17.0.13"
+        #  externalMgrPrometheusPort: 9283
+        dashboard:
+          enabled: true
+          urlPrefix: /
+          ssl: false
     cephBlockPools:
       - name: ceph-blockpool
         storageClass:
