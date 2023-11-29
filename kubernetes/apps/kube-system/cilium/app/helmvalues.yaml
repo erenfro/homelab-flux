@@ -75,7 +75,7 @@ data:
     #  burst: 25
     loadBalancer:
       algorithm: maglev
-      mode: snat
+      mode: dsr
     #  algorithm: maglev
     #  mode: dsr
     localRedirectPolicy: true
