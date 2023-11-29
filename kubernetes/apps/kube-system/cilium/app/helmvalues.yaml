@@ -73,9 +73,9 @@ data:
     #k8sClientRateLimit:
     #  qps: 10
     #  burst: 25
-    loadBalancer:
-      algorithm: maglev
-      mode: dsr
+    #loadBalancer:
+    #  algorithm: maglev
+    #  mode: dsr
     localRedirectPolicy: true
     operator:
       replicas: 1
