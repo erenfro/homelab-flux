@@ -33,6 +33,7 @@ spec:
           external-dns.alpha.kubernetes.io/hostname: "internal.${SECRET_DOMAIN}"
           io.cilium/lb-ipam-ips: "172.17.1.47"
           #io.cilium/lb-ipam-ips: "172.17.8.1"
+          ingress.cilium.io/loadbalancer-mode: shared
         externalTrafficPolicy: Cluster
       ingressClassResource:
         name: internal
