@@ -38,9 +38,9 @@ spec:
           main:
             image:
               repository: ghcr.io/onedr0p/qbittorrent
-              tag: 4.6.1@sha256:796f135bcb572a3fb3138b0c65034535c0a7b1dcb83940fe12e00cad1b47fcbb
+              #tag: 4.6.1@sha256:796f135bcb572a3fb3138b0c65034535c0a7b1dcb83940fe12e00cad1b47fcbb
               # Rollback to this version to set initial password
-              #tag: 4.6.0
+              tag: 4.6.0
             env:
               TZ: ${TIMEZONE}
               QBITTORRENT__PORT: &port 80
