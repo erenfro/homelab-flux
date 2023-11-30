@@ -38,9 +38,9 @@ spec:
           main:
             image:
               repository: ghcr.io/onedr0p/qbittorrent
-              #tag: 4.6.1@sha256:796f135bcb572a3fb3138b0c65034535c0a7b1dcb83940fe12e00cad1b47fcbb
+              tag: 4.6.1@sha256:796f135bcb572a3fb3138b0c65034535c0a7b1dcb83940fe12e00cad1b47fcbb
               # Rollback to this version to set initial password
-              tag: 4.6.0
+              #tag: 4.6.0
             env:
               TZ: ${TIMEZONE}
               QBITTORRENT__PORT: &port 80
@@ -48,7 +48,7 @@ spec:
               QBT_Preferences__WebUI__AlternativeUIEnabled: false
               QBT_Preferences__WebUI__AuthSubnetWhitelistEnabled: false
               QBT_Preferences__WebUI__AuthSubnetWhitelist: |-
-                ${CLUSTER_CIDR}, ${SERVICE_CIDR}, ${NODE_CIDR}, 172.18.0.0/22
+                ${CLUSTER_CIDR}, ${SERVICE_CIDR}, 172.18.0.0/22
               QBT_Preferences__WebUI__LocalHostAuth: false
               QBT_BitTorrent__Session__Interface: eth0
               QBT_BitTorrent__Session__InterfaceAddress:
