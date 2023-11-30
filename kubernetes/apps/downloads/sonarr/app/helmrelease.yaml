@@ -26,8 +26,12 @@ spec:
   uninstall:
     keepHistory: false
   dependsOn:
+    - name: bitwarden
+      namespace: kube-system
     - name: rook-ceph-cluster
       namespace: rook-ceph
+    - name: volsync
+      namespace: volsync
   values:
     controllers:
       main:
