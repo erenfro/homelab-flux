@@ -44,7 +44,7 @@ spec:
               QBITTORRENT__PORT: &port 80
               QBITTORRENT__BT_PORT: &bittorrentPort 50413
               QBT_Preferences__WebUI__AlternativeUIEnabled: false
-              QBT_Preferences__WebUI__AuthSubnetWhitelistEnabled: true
+              QBT_Preferences__WebUI__AuthSubnetWhitelistEnabled: false
               QBT_Preferences__WebUI__AuthSubnetWhitelist: |-
                 ${CLUSTER_CIDR}, ${SERVICE_CIDR}, ${NODE_CIDR}, 172.18.0.0/22
               QBT_Preferences__WebUI__LocalHostAuth: false
