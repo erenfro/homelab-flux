@@ -25,7 +25,7 @@ spec:
   uninstall:
     keepHistory: false
   dependsOn:
-    - name: external-secrets-bitwarden
+    - name: bitwarden
       namespace: kube-system
     - name: volsync
       namespace: volsync

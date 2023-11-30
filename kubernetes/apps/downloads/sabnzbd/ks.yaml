@@ -10,10 +10,10 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  dependsOn:
+  #dependsOn:
     #- name: bitwarden
     #  namespace: kube-system
-    - name: rook-ceph-cluster
+    #- name: rook-ceph-cluster
   path: ./kubernetes/apps/downloads/sabnzbd/app
   prune: true
   sourceRef:
