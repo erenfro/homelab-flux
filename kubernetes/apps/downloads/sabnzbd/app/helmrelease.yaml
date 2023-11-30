@@ -34,16 +34,6 @@ spec:
       main:
         annotations:
           reloader.stakater.com/auto: "true"
-
-        statefulset:
-          volumeClaimTemplates:
-            - name: config
-              accessMode: ReadWriteOnce
-              size: 500Mi
-              storageClass: ceph-block
-              globalMounts:
-                - path:/config
-
         containers:
           main:
             image:
