@@ -132,7 +132,7 @@ spec:
             readOnly: true
       downloads:
         type: nfs
-        server: media.home.ld
+        server: mega.home.ld
         path: /volume1/Media
         globalMounts:
           - path: /media
