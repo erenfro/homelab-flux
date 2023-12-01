@@ -27,6 +27,8 @@ spec:
   dependsOn:
     - name: rook-ceph-cluster
       namespace: rook-ceph
+    - name: volsync
+      namespace: volsync
   values:
     controllers:
       main:
@@ -115,6 +117,7 @@ spec:
         server: mega.home.ld
         path: /volume1/Media
         globalMounts:
-          - path: /media
+          - path: /data
       add-ons:
         type: emptyDir
+          - path: /add-ons
