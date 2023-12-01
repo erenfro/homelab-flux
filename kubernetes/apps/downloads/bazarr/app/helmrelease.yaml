@@ -120,4 +120,3 @@ spec:
           - path: /data
       add-ons:
         type: emptyDir
-          - path: /add-ons
