@@ -12,6 +12,7 @@ resources:
   #- ./autobrr/ks.yaml
   - ./bazarr/ks.yaml
   #- ./cross-seed/ks.yaml
+  - ./flaresolver/ks.yaml
   #- ./frigate/ks.yaml
   #- ./kubernetes-schemas/ks.yaml
   #- ./lldap/ks.yaml
