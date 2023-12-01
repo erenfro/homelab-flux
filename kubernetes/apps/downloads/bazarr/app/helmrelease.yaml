@@ -116,3 +116,5 @@ spec:
         path: /volume1/Media
         globalMounts:
           - path: /media
+      add-ons:
+        type: emptyDir
