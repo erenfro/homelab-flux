@@ -94,6 +94,8 @@ spec:
         type: LoadBalancer
         annotations:
           io.cilium/lb-ipam-ips: 172.17.3.201
+          ingress.cilium.io/loadbalancer-mode: dedicated
+          kubernetes.io/ingress.class: cilium
         ports:
           bittorrent:
             enabled: true
