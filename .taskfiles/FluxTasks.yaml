@@ -1,0 +1,20 @@
+---
+version: "3"
+
+tasks:
+
+  unstuck:
+    desck: Unstick a stuck Kustomization resource
+    summary: |
+      Args:
+        hr: Helm Release to Unstick (required)
+        ns: Namespace of the Flux Kustomization resource (required)
+    desc: Get Current Kustomization Statuses
+    cmds:
+      - flux -n {{.ns}} suspend hr {{.hr}}
+      - flux -n {{.ns}} resume hr {{.hr}}
+      - flux -n {{.ns}} reconcile hr {{.hr}}
+    vars:
+      hr: '{{ or .hr (fail "Argument (hr) is required)" )}}'
+      ns: '{{.ns | default "default"}}'
+
