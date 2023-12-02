@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hedgedoc-ldap-configmap
+  namespace: default
+data:
+  CMD_LDAP_URL: ${LDAP_URL}
+  CMD_LDAP_BINDDN: ${LDAP_QUERY_BIND}
+  CMD_LDAP_BINDCREDENTIALS: ${LDAP_READONLY_PASSWORD}
+  CMD_LDAP_SEARCHBASE: ${LDAP_BASE_DN}
+  CMD_LDAP_SEARCHFILTER: (&(memberOf=cn=hedgedoc,ou=groups,dc=home,dc=ld)(uid={{username}}))
+  CMD_LDAP_USERIDFIELD: uid
