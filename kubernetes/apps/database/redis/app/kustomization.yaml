@@ -7,4 +7,4 @@ resources:
   - ./pvc.yaml
   - ./configmap.yaml
   - ./helmrelease.yaml
-  - ../../../../templates/gatus/guarded
+  - ./gatus.yaml
