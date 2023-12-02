@@ -91,7 +91,7 @@ spec:
         annotations:
           hajimari.io/enable: "true"
           hajimari.io/icon: bytesize:download
-          hajimari.io/url: *customHost
+          hajimari.io/url: &customHost sab.${SECRET_DOMAIN}
         enabled: true
         className: internal
         hosts:
@@ -101,7 +101,7 @@ spec:
                 service:
                   name: main
                   port: http
-          - host: &customHost sab.${SECRET_DOMAIN}
+          - host: *customHost
             paths:
               - path: /
                 service:
