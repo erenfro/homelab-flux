@@ -88,6 +88,11 @@ spec:
               # SMTP_AUTH_STRATEGY: NONE
               # SMTP_FROM_NAME: Recipes
               # SMTP_FROM_EMAIL: "${SMTP_USER}"
+              SMTP_HOST: ${SMTP_HOST}
+              SMTP_PORT: ${SMTP_PORT}
+              SMTP_AUTH_STRATEGY: ${SMTP_AUTH_STRATEGY}
+              SMTP_FROM_NAME: Recipes
+              SMTP_FROM_EMAIL: "noreply@${SECRET_DOMAIN}"
               LDAP_AUTH_ENABLED: true
               LDAP_SERVER_URL: ${LDAP_URL}
               LDAP_TLS_INSECURE: true
