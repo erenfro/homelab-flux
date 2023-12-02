@@ -58,6 +58,10 @@ spec:
               CMD_DOMAIN: md.${SECRET_DOMAIN}
               CMD_PROTOCOL_USESSL: true
               CMD_URL_ADDPORT: false
+              CMD_ENABLE_STATUS_API: true
+              CMD_ALLOW_GRAVATAR: true
+              CMD_IMAGE_UPLOAD_TYPE: filesystem
+              CMD_ALLOW_ANONYMOUS: false
             envFrom:
               - configMapRef:
                   name: hedgedoc-ldap-configmap
@@ -84,3 +88,16 @@ spec:
         tls:
           - hosts:
               - *host
+    persistence:
+      api-data:
+        enabled: true
+        globalMounts:
+          - path: /files/data/
+        existingClaim: hedgedoc
+      config-file:
+        type: configMap
+        name: hedgedoc-configmap
+        globalMounts:
+          - path: /files/config.json
+            subPath: config.json
+            readOnly: true
