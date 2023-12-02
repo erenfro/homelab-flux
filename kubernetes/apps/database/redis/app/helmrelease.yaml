@@ -1,0 +1,74 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: &app redis
+  namespace: database
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 2.3.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  maxHistory: 2
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    controllers:
+      main:
+        type: statefulset
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          main:
+            nameOverride: *app
+            image:
+              repository: redis
+              tag: 7.2.3-alpine
+            env:
+              REDIS_PORT: "6379"
+            envFrom:
+              - secretRef:
+                  name: redis-secret
+            command:
+              - sh
+            args:
+              - -c
+              - >-
+                redis-server --requirepass $REDIS_PASSWORD
+            resources:
+              requests:
+                cpu: 40m
+                memory: 200Mi
+              limits:
+                memory: 1200Mi
+    service:
+      main:
+        ports:
+          http:
+            port: 6379
+    persistence:
+      data:
+        enabled: true
+        existingClaim: redis-data
+        mountPath: /data
+      healthcheck:
+        enabled: true
+        type: custom
+        mountPath: /health
+        volumeSpec:
+          configMap:
+            name: redis-healthcheck
+            defaultMode: 0755
