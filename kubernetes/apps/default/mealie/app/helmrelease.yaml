@@ -97,7 +97,7 @@ spec:
               LDAP_SERVER_URL: ${LDAP_URL}
               LDAP_TLS_INSECURE: true
               LDAP_BASE_DN: ${LDAP_BASE_DN}
-              LDAP_QUERY_BIND: ${LDAP_QUERY_BIND}
+              LDAP_QUERY_BIND: ${LDAP_READONLY_USER_BIND}
               LDAP_QUERY_PASSWORD: ${LDAP_READONLY_USER_PASSWORD}
               LDAP_USER_FILTER: (memberOf=cn=mealie,ou=groups,dc=home,dc=ld)
               LDAP_ADMIN_FILTER: (memberOf=cn=app_admin,ou=groups,dc=home,dc=ld)
