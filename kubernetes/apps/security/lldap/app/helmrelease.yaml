@@ -71,8 +71,18 @@ spec:
         ports:
           http:
             port: *port
+      ldap:
+        controller: main
+        type: LoadBalancer
+        annotations:
+          io.cilium/lb-ipam-ips: 172.17.1.200
+          ingress.cilium.io/loadbalancer-mode: dedicated
+          kubernetes.io/ingress.class: cilium
+        ports:
           ldap:
+            enabled: true
             port: *ldapPort
+            protocol: TCP
     ingress:
       main:
         enabled: true
