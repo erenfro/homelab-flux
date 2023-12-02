@@ -97,7 +97,6 @@ spec:
           hajimari.io/enable: "true"
           hajimari.io/appName: Sonarr
           hajimari.io/icon: mdi:television-box
-          hajimari.io/group: "Downloads"
         enabled: true
         className: internal
         hosts:

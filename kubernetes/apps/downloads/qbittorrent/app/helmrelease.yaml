@@ -103,6 +103,9 @@ spec:
             protocol: TCP
     ingress:
       main:
+        annotations:
+          hajimari.io/enable: "true"
+          hajimari.io/icon: arcticons:qbittorrent-remote
         enabled: true
         className: internal
         hosts:

@@ -88,6 +88,9 @@ spec:
             port: *port
     ingress:
       main:
+        annotations:
+          hajimari.io/enable: "true"
+          hajimari.io/icon: mingcute:download-fill
         enabled: true
         className: internal
         hosts:
