@@ -94,7 +94,7 @@ spec:
         annotations:
           hajimari.io/enable: "true"
           hajimari.io/appName: Radarr
-          hajimari.io/icon: ic:round-movie
+          hajimari.io/icon: material-symbols-light:movie-outline
         enabled: true
         className: internal
         hosts:

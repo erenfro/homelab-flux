@@ -96,7 +96,7 @@ spec:
         annotations:
           hajimari.io/enable: "true"
           hajimari.io/appName: Sonarr
-          hajimari.io/icon: mdi:television-box
+          hajimari.io/icon: material-symbols-light:tv-guide-outline
         enabled: true
         className: internal
         hosts:

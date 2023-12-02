@@ -90,7 +90,8 @@ spec:
       main:
         annotations:
           hajimari.io/enable: "true"
-          hajimari.io/icon: mingcute:download-fill
+          hajimari.io/icon: bytesize:download
+          hajimari.io/url: *customHost
         enabled: true
         className: internal
         hosts:
