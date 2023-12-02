@@ -93,6 +93,9 @@ spec:
             port: *port
     ingress:
       main:
+        annotations:
+          hajimari.io/appName: Sonarr
+          hajimari.io/icon: mdi:television-box
         enabled: true
         className: internal
         hosts:
