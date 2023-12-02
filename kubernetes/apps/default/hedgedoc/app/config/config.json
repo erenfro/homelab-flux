@@ -1,5 +1,6 @@
 {
   "docsPath": "/files/data/docs",
   "viewPath": "/files/data/views",
-  "uploadsPath": "/files/data/uploads"
+  "uploadsPath": "/files/data/uploads",
+  "sessionSecret": "1wVyR6glUYPWNjOUGQmHhZ5GRIkFVbY3t4VmOdyUR2lBEU0KJcQ9hTmROZ3URyvq"
 }
