@@ -65,7 +65,7 @@ spec:
               CMD_ALLOW_ANONYMOUS_EDITS: false
               CMD_ALLOW_FREEURL: true
               CMD_REQUIRE_FREEURL_AUTHENTICATION: true
-              CMD_DEFAULT_PERMISSION: private
+              CMD_DEFAULT_PERMISSION: limited
             envFrom:
               - configMapRef:
                   name: hedgedoc-ldap-configmap
