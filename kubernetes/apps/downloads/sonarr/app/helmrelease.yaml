@@ -94,6 +94,7 @@ spec:
     ingress:
       main:
         annotations:
+          hajimari.io/enable: true
           hajimari.io/appName: Sonarr
           hajimari.io/icon: mdi:television-box
         enabled: true
