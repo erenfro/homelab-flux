@@ -71,6 +71,8 @@ spec:
         ports:
           http:
             port: *port
+          ldap:
+            port: *ldapPort
       ldap:
         controller: main
         type: LoadBalancer
