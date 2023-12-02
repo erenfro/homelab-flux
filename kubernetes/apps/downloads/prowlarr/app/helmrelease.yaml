@@ -85,6 +85,9 @@ spec:
             port: *port
     ingress:
       main:
+        annotations:
+          hajimari.io/enable: "true"
+          hajimari.io/icon: tabler:cloud-search
         enabled: true
         className: internal
         hosts:

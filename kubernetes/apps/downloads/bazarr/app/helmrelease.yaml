@@ -33,6 +33,8 @@ spec:
     controllers:
       main:
         annotations:
+          hajimari.io/enable: "true"
+          hajimari.io/icon: tdesign:subtitle
           reloader.stakater.com/auto: "true"
         initContainers:
           01-init-db:

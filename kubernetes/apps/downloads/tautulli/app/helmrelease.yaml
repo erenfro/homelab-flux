@@ -90,6 +90,9 @@ spec:
             port: *port
     ingress:
       main:
+        annotations:
+          hajimari.io/enable: "true"
+          hajimari.io/icon: arcticons:tautulli-remote
         enabled: true
         className: internal
         hosts:

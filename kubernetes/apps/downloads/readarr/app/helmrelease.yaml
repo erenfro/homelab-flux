@@ -74,6 +74,8 @@ spec:
         enabled: true
         className: internal
         annotations:
+          hajimari.io/enable: "true"
+          hajimari.io/icon: ant-design:read-outlined
           gethomepage.dev/enabled: "true"
           gethomepage.dev/group: Downloads
           gethomepage.dev/name: Readarr
