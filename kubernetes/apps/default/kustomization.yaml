@@ -9,5 +9,5 @@ resources:
   - ./excalidraw/ks.yaml
   - ./hajimari/ks.yaml
   - ./hedgedoc/ks.yaml
-  - ./mealie/ks.yaml
+  #- ./mealie/ks.yaml
   - ./thelounge/ks.yaml
