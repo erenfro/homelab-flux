@@ -91,6 +91,11 @@ spec:
             port: *port
     ingress:
       main:
+        annotations:
+          hajimari.io/enable: "true"
+          hajimari.io/appName: Radarr
+          hajimari.io/icon: ic:round-movie
+          hajimari.io/group: "Downloads"
         enabled: true
         className: internal
         hosts:
