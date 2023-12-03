@@ -105,7 +105,7 @@ spec:
       main:
         annotations:
           hajimari.io/enable: "true"
-          hajimari.io/icon: arcticons:qbittorrent-remote
+          hajimari.io/icon: tabler:cloud-search
         enabled: true
         className: internal
         hosts:
