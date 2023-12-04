@@ -40,6 +40,11 @@ spec:
             envFrom:
               - secretRef:
                   name: &secret hedgedoc-secret
+          init-data:
+            image:
+              repository: busybox
+              tag: 1.28
+              command: ['sh', '-c', 'cp -a /hedgedoc/public/docs /hedgedog/public/uploads /hedgedog/public/uploads /files/data/']
         containers:
           main:
             image:
