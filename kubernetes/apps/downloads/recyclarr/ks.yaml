@@ -25,6 +25,6 @@ spec:
     substitute:
       APP: *app
       VOLSYNC_CAPACITY: 1Gi
-      VOLSYNC_STORAGECLASS: ceph-block
-      VOLSYNC_SNAPSHOTCLASS: csi-ceph-blockpool
+      #VOLSYNC_STORAGECLASS: ceph-block
+      #VOLSYNC_SNAPSHOTCLASS: csi-ceph-blockpool
       VOLSYNC_UID: "1031"
