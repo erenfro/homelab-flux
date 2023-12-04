@@ -30,5 +30,5 @@ resources:
   #- ./slskd/ks.yaml
   #- ./smtp-relay/ks.yaml
   - ./sonarr/ks.yaml
-  #- ./tautulli/ks.yaml
+  - ./tautulli/ks.yaml
   - ./unpackerr/ks.yaml
