@@ -26,3 +26,5 @@ spec:
       VOLSYNC_ACCESSMODES: ReadWriteOnce
       VOLSYNC_STORAGECLASS: longhorn
       VOLSYNC_SNAPSHOTCLASS: longhorn-snapclass
+      VOLSYNC_UID: 568
+      VOLSYNC_GID: 568
