@@ -26,7 +26,7 @@ spec:
       APP: *app
       GATUS_SUBDOMAIN: md
       VOLSYNC_CAPACITY: 2Gi
-      VOLSYNC_ACCESSMODES: ReadWriteMany
+      VOLSYNC_ACCESSMODES: ReadWriteOnce
       VOLSYNC_STORAGECLASS: longhorn
       VOLSYNC_SNAPSHOTCLASS: longhorn-snapclass
       #VOLSYNC_STORAGECLASS: ceph-filesystem
