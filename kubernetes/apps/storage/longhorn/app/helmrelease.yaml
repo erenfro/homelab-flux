@@ -30,6 +30,8 @@ spec:
     monitoring:
       enabled: true
       createPrometheusRules: true
+    persistence:
+      defaultFsType: xfs
     defaultSettings:
       backupTarget: s3://longhorn@us-west-2/
       backupTargetCredentialSecret: longhorn-secret
