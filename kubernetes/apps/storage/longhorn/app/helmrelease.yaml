@@ -31,7 +31,7 @@ spec:
       enabled: true
       createPrometheusRules: true
     persistence:
-      defaultFsType: xfs
+      defaultFsType: ext4
     defaultSettings:
       backupTarget: s3://longhorn@us-west-2/
       backupTargetCredentialSecret: longhorn-secret
