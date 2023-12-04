@@ -24,9 +24,9 @@ spec:
       APP: *app
       GATUS_SUBDOMAIN: qb
       VOLSYNC_CAPACITY: 2Gi
-      VOLSYNC_ACCESSMODES: ReadWriteMany
-      VOLSYNC_STORAGECLASS: ceph-filesystem
-      VOLSYNC_SNAPSHOTCLASS: csi-ceph-filesystem
+      #VOLSYNC_ACCESSMODES: ReadWriteMany
+      #VOLSYNC_STORAGECLASS: ceph-filesystem
+      #VOLSYNC_SNAPSHOTCLASS: csi-ceph-filesystem
       VOLSYNC_UID: "1031"
 #---
 ## yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/kustomize.toolkit.fluxcd.io/kustomization_v1.json
