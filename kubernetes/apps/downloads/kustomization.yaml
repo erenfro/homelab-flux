@@ -22,8 +22,8 @@ resources:
   #- ./plex/ks.yaml
   - ./prowlarr/ks.yaml
   - ./qbittorrent/ks.yaml
-  #- ./radarr/ks.yaml
-  - ./readarr/ks.yaml
+  - ./radarr/ks.yaml
+  #- ./readarr/ks.yaml
   - ./recyclarr/ks.yaml
   - ./sabnzbd/ks.yaml
   #- ./shlink/ks.yaml
@@ -32,4 +32,3 @@ resources:
   - ./sonarr/ks.yaml
   - ./tautulli/ks.yaml
   - ./unpackerr/ks.yaml
-
