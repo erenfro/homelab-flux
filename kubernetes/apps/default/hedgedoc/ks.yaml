@@ -24,8 +24,10 @@ spec:
   postBuild:
     substitute:
       APP: *app
-      GATUS_SUBDOMAIN: recipes
+      GATUS_SUBDOMAIN: md
       VOLSYNC_CAPACITY: 2Gi
       VOLSYNC_ACCESSMODES: ReadWriteMany
-      VOLSYNC_STORAGECLASS: ceph-filesystem
-      VOLSYNC_SNAPSHOTCLASS: csi-ceph-filesystem
+      VOLSYNC_STORAGECLASS: longhorn
+      VOLSYNC_SNAPSHOTCLASS: longhorn-snapclass
+      #VOLSYNC_STORAGECLASS: ceph-filesystem
+      #VOLSYNC_SNAPSHOTCLASS: csi-ceph-filesystem
