@@ -26,3 +26,4 @@ spec:
       APP: *app
       GATUS_SUBDOMAIN: sab
       VOLSYNC_CAPACITY: 2Gi
+      VOLSYNC_UID: "1031"

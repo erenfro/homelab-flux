@@ -25,3 +25,4 @@ spec:
   postBuild:
     substitute:
       APP: *app
+      VOLSYNC_UID: "1031"
