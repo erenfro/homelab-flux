@@ -31,3 +31,5 @@ spec:
       VOLSYNC_SNAPSHOTCLASS: longhorn-snapclass
       #VOLSYNC_STORAGECLASS: ceph-filesystem
       #VOLSYNC_SNAPSHOTCLASS: csi-ceph-filesystem
+      VOLSYNC_UID: "1000"
+      VOLSYNC_GID: "1000"
