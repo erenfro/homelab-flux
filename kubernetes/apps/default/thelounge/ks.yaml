@@ -24,7 +24,7 @@ spec:
       APP: *app
       VOLSYNC_CAPACITY: 1Gi
       VOLSYNC_ACCESSMODES: ReadWriteOnce
-      VOLSYNC_STORAGECLASS: longhorn
-      VOLSYNC_SNAPSHOTCLASS: longhorn-snapclass
-      VOLSYNC_UID: "0"
-      VOLSYNC_GID: "0"
+      #VOLSYNC_STORAGECLASS: longhorn
+      #VOLSYNC_SNAPSHOTCLASS: longhorn-snapclass
+      #VOLSYNC_UID: "0"
+      #VOLSYNC_GID: "0"
