@@ -1,0 +1,151 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: nextcloud
+  namespace: default
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: nextcloud
+      version: 4.5.4
+      sourceRef:
+        kind: HelmRepository
+        name: nextcloud
+        namespace: flux-system
+  maxHistory: 2
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  values:
+    image:
+      repository: docker.io/library/nextcloud
+      tag: 27.1.4
+
+    env:
+      TZ: "${TIMEZONE}"
+
+    ingress:
+      enabled: true
+      className: external
+      annotations:
+        external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
+        nginx.ingress.kubernetes.io/proxy-body-size: 5G
+        nginx.ingress.kubernetes.io/proxy-buffering: "off"
+        nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
+        nginx.ingress.kubernetes.io/server-snippet: |
+          server_tokens off;
+          location ^~ /.well-known {
+            location = /.well-known/carddav { return 301 /remote.php/dav/; }
+            location = /.well-known/caldav { return 301 /remote.php/dav/; }
+            location = /.well-known/acme-challenge { try_files $uri $uri/ =404; }
+            location = /.well-known/pki-validation { try_files $uri $uri/ =404; }
+            return 301 /index.php$request_uri;
+          }
+          location ~ ^/(?:build|tests|config|lib|3rdparty|templates|data)(?:$|/)  { return 404; }
+          location ~ ^/(?:\.|autotest|occ|issue|indie|db_|console)                { return 404; }
+
+      hosts:
+        - host: &host "files.${SECRET_DOMAIN}"
+          paths:
+            - path: /
+              pathType: Prefix
+      tls:
+        - hosts:
+            - *host
+
+    nextcloud:
+      host: *host
+      existingSecret:
+        enabled: true
+        secretName: &secret nextcloud-secret
+        usernameKey: NEXTCLOUD_USERNAME
+        passwordKey: NEXTCLOUD_PASSWORD
+      extraEnv:
+        - name: REDIS_HOST
+          value: redis.database.svc.cluster.local
+        - name: REDIS_HOST_PORT
+          value: "6379"
+        - name: REDIS_HOST_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: *secret
+              key: REDIS_PASSWORD
+      configs:
+        custom.config.php: |-
+          <?php
+          $CONFIG = array(
+            'trusted_proxies' => ['external.${SECRET_DOMAIN}'],
+            'overwriteprotocol' => 'https',
+            'default_phone_region' => 'CH',
+            'trashbin_retention_obligation' => 'auto, 30',
+            'auth.bruteforce.protection.enabled' => true,
+            'default_language' => 'en',
+            'default_locale' => 'en_GB',
+            'filesystem_check_changes' => 1,
+          );
+        smtp-noverify.config.php: |-
+          <?php
+          $CONFIG = array(
+            'mail_smtpstreamoptions' => array(
+              'ssl' => array(
+                'allow_self_signed' => true,
+                'verify_peer' => false,
+                'verify_peer_name' => false
+              )
+            )
+          );
+
+      # mail:
+      #   enabled: false
+      #   fromAddress: admin
+      #   domain: ${SECRET_DOMAIN}
+      #   smtp:
+      #     host: smtp-relay.${SECRET_DOMAIN}
+      #     secure: none
+      #     port: 25
+      #     auth/type: LOGIN
+      #     name: ""
+      #     passsword: ""
+
+      extraInitContainers:
+        - name: init-db
+          image: ghcr.io/onedr0p/postgres-init:15.5
+          envFrom:
+            - secretRef:
+                name: *secret
+
+    internalDatabase:
+      enabled: false
+
+    externalDatabase:
+      enabled: true
+      type: postgresql
+      database: nextcloud
+      existingSecret:
+        enabled: true
+        secretName: *secret
+        hostKey: POSTGRES_HOST
+        databaseKey: POSTGRES_DBNAME
+        usernameKey: POSTGRES_USER
+        passwordKey: POSTGRES_PASS
+
+    persistence:
+      enabled: true
+      existingClaim: nextcloud-config
+      nextcloudData:
+        enabled: true
+        existingClaim: nextcloud-nfs
+
+    livenessProbe:
+      enabled: false
+    readinessProbe:
+      enabled: false
