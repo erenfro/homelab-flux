@@ -10,7 +10,7 @@ resources:
   #- ./atuin/ks.yaml
   #- ./authelia/ks.yaml
   #- ./autobrr/ks.yaml
-  - ./bazarr/ks.yaml
+  #- ./bazarr/ks.yaml
   #- ./cross-seed/ks.yaml
   - ./flaresolverr/ks.yaml
   #- ./frigate/ks.yaml
