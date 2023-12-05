@@ -23,4 +23,5 @@ resources:
   - ./prometheus-community.yaml
   - ./rook-ceph.yaml
   - ./stakater.yaml
+  - ./tyzbit.yaml
   - ./weave-gitops.yaml
