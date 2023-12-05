@@ -25,6 +25,7 @@ spec:
   postBuild:
     substitute:
       APP: *app
+      VOLSYNC_CAPACITY: 2Gi
       #VOLSYNC_STORAGECLASS: ceph-block
       #VOLSYNC_SNAPSHOTCLASS: csi-ceph-blockpool
       VOLSYNC_UID: "1031"

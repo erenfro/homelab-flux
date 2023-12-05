@@ -102,7 +102,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: readarr-config
+        existingClaim: readarr
       media:
         type: nfs
         server: mega.home.ld
