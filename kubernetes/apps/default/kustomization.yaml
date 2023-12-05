@@ -8,6 +8,6 @@ resources:
   - ./discord-template-notifier/ks.yaml
   - ./excalidraw/ks.yaml
   - ./hajimari/ks.yaml
-  - ./hedgedoc/ks.yaml
-  - ./mealie/ks.yaml
-  - ./thelounge/ks.yaml
+  #- ./hedgedoc/ks.yaml
+  #- ./mealie/ks.yaml
+  #- ./thelounge/ks.yaml
