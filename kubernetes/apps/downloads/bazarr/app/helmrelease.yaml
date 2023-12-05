@@ -113,7 +113,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: bazarr-config
+        existingClaim: bazarr
       media:
         type: nfs
         server: mega.home.ld
