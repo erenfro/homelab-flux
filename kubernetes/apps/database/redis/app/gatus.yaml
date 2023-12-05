@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: cnpg-gatus-ep
+  name: redis-gatus-ep
   labels:
     gatus.io/enabled: "true"
 data:
