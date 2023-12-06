@@ -33,9 +33,11 @@ spec:
             env:
               TZ: "${TIMEZONE}"
               AUTHENTIK_HOST: "https://authentik.${SECRET_DOMAIN}"
-            envFrom:
-              - secretRef:
-                  name: authentik-ldap-secrets
+              AUTHENTIK_TOKEN:
+                valueFrom:
+                  secretKeyRef:
+                    name: authentik-ldap-secrets
+                    key: token
             podLabels:
               egress.home.arpa/nginx-external: "allow"
             podSecurityContext:
