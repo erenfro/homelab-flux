@@ -37,11 +37,11 @@ spec:
     podAnnotations:
       secret.reloader.stakater.com/reload: authentik-secrets
 
-    #service:
-    #  annotations:
-    #    io.cilium/lb-ipam-ips: 172.17.1.202
-    #    ingress.cilium.io/loadbalancer-mode: dedicated
-    #    kubernetes.io/ingress.class: cilium
+    service:
+      annotations:
+        io.cilium/lb-ipam-ips: 172.17.1.202
+        ingress.cilium.io/loadbalancer-mode: dedicated
+        kubernetes.io/ingress.class: cilium
 
     ingress:
       enabled: true
@@ -58,6 +58,8 @@ spec:
         gethomepage.dev/widget.url: https://authentik.${SECRET_DOMAIN}
         gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_AUTHENTIK_TOKEN}}"
         external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
+        nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+        nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
       hosts:
         - host: &host authentik.${SECRET_DOMAIN}
           paths:
@@ -67,6 +69,19 @@ spec:
         - hosts:
             - *host
           secretName: *host
+    #envValueFrom:
+    #    AUTHENTIK_POSTGRESQL__NAME:
+    #      secretKeyRef:
+    #        name: &pgsec authentik-secrets
+    #        key: pg_dbname
+    #    AUTHENTIK_POSTGRESQL__USER:
+    #      secretKeyRef:
+    #        name: *pgsec
+    #        key: pg_user
+    #    AUTHENTIK_POSTGRESQL__PASSWORD:
+    #      secretKeyRef:
+    #        name: *pgsec
+    #        key: pg_password
     envFrom:
       - secretRef:
           name: authentik-secrets
@@ -88,4 +103,7 @@ spec:
         port: "25"
         use_ssl: false
       outposts:
-        docker_image_base: ghcr.io/goauthentik/%(type)s:%(version)s
+        container_image_base: ghcr.io/goauthentik/%(type)s:%(version)s
+      error_reporting:
+        enabled: false
+        send_pii: false
