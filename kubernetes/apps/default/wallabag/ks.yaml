@@ -10,16 +10,17 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  interval: 10m
-  path: "./kubernetes/apps/default/wallabag/app"
+  dependsOn:
+    - name: external-secrets-bitwarden
+  path: ./kubernetes/apps/default/wallabag/app
   prune: true
   sourceRef:
     kind: GitRepository
-    name: home-ops-kubernetes
-  wait: false
-  dependsOn:
-    - name: crunchy-postgres-operator
-    - name: external-secrets-cluster-secrets
+    name: home-kubernetes
+  wait: true
+  interval: 30m
+  retryInterval: 1m
+  timeout: 5m
   postBuild:
     substitute:
       APP: *app
