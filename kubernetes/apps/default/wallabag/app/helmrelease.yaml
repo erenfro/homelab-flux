@@ -27,15 +27,15 @@ spec:
         pod:
           enableServiceLinks: false
 
-        initContainers:
-          init-db:
-            image:
-              repository: ghcr.io/onedr0p/postgres-init
-              tag: 15
-              pullPolicy: IfNotPresent
-            envFrom: &envFrom
-              - secretRef:
-                  name: wallabag-secret
+        #initContainers:
+        #  init-db:
+        #    image:
+        #      repository: ghcr.io/onedr0p/postgres-init
+        #      tag: 15
+        #      pullPolicy: IfNotPresent
+        #    envFrom: &envFrom
+        #      - secretRef:
+        #          name: wallabag-secret
 
         containers:
           main:
