@@ -25,8 +25,8 @@ spec:
   uninstall:
     keepHistory: false
   dependsOn:
-    - name: rook-ceph-cluster
-      namespace: rook-ceph
+    - name: longhorn
+      namespace: storage
     - name: volsync
       namespace: volsync
   values:
@@ -43,9 +43,7 @@ spec:
               TZ: ${TIMEZONE}
             envFrom:
               - secretRef:
-                  name: recyclarr-secret
-            resources:
-              requests:
+        rook-ceph      requests:
                 cpu: 10m
                 memory: 64M
               limits:
