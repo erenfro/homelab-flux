@@ -18,22 +18,22 @@ spec:
   #  - name: cloudnative-pg
   #    namespace: database
   values:
-    initContainers:
-      init-db:
-        image:
-          repository: ghcr.io/onedr0p/postgres-init
-          tag: 15
-          pullPolicy: IfNotPresent
-        envFrom: &envFrom
-          - secretRef:
-              name: authentik-secrets
     #initContainers:
     #  init-db:
-    #    image: ghcr.io/onedr0p/postgres-init:15
-    #    imagePullPolicy: IfNotPresent
-    #    envFrom:
+    #    image:
+    #      repository: ghcr.io/onedr0p/postgres-init
+    #      tag: 15
+    #      pullPolicy: IfNotPresent
+    #    envFrom: &envFrom
     #      - secretRef:
     #          name: authentik-secrets
+    initContainers:
+      init-db:
+        image: ghcr.io/onedr0p/postgres-init:15
+        imagePullPolicy: IfNotPresent
+        envFrom:
+          - secretRef:
+              name: authentik-secrets
     podAnnotations:
       secret.reloader.stakater.com/reload: authentik-secrets
     ingress:
