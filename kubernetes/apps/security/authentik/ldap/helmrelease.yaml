@@ -38,8 +38,8 @@ spec:
         type: LoadBalancer
         externalTrafficPolicy: Cluster
         annotations:
-          coredns.io/hostname: "auth.${SECRET_DOMAIN}"
-          io.cilium/lb-ipam-ips: 172.17.1.202
+          coredns.io/hostname: "ldap.${SECRET_DOMAIN}"
+          io.cilium/lb-ipam-ips: 172.17.1.200
         ports:
           http:
             enabled: false
