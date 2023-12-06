@@ -36,6 +36,13 @@ spec:
               name: authentik-secrets
     podAnnotations:
       secret.reloader.stakater.com/reload: authentik-secrets
+
+    service:
+      annotations:
+        io.cilium/lb-ipam-ips: 172.17.1.202
+        ingress.cilium.io/loadbalancer-mode: dedicated
+        kubernetes.io/ingress.class: cilium
+
     ingress:
       enabled: true
       ingressClassName: external
