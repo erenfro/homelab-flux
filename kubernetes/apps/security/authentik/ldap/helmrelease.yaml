@@ -18,20 +18,38 @@ spec:
     global:
       fullnameOverride: *app
     automountServiceAccountToken: false
-    controller:
-      type: deployment
-      replicas: 3
-    image:
-      repository: ghcr.io/goauthentik/ldap
-      tag: "2023.10.4"
-    podLabels:
-      egress.home.arpa/nginx-external: "allow"
-    env:
-      TZ: "${TIMEZONE}"
-      AUTHENTIK_HOST: "https://authentik.${SECRET_DOMAIN}"
-    envFrom:
-      - secretRef:
-          name: authentik-ldap-secrets
+    controllers:
+      main:
+        type: deployment
+        replicas: 2
+        strategy: RollingUpdate
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          main:
+            image:
+              repository: ghcr.io/goauthentik/ldap
+              tag: 2023.10.4
+            env:
+              TZ: "${TIMEZONE}"
+              AUTHENTIK_HOST: "https://authentik.${SECRET_DOMAIN}"
+            envFrom:
+              - secretRef:
+                  name: authentik-ldap-secrets
+            podLabels:
+              egress.home.arpa/nginx-external: "allow"
+            podSecurityContext:
+              runAsUser: &uid 1000
+              runAsGroup: *uid
+              fsGroup: *uid
+              fsGroupChangePolicy: Always
+            resources:
+              requests:
+                cpu: 10m
+                memory: 128Mi
+              limits:
+                memory: 6000Mi
+
     service:
       main:
         enabled: true
@@ -65,17 +83,7 @@ spec:
             port: 636
             targetPort: 6636
             protocol: UDP
-    podSecurityContext:
-      runAsUser: &uid 1000
-      runAsGroup: *uid
-      fsGroup: *uid
-      fsGroupChangePolicy: Always
-    resources:
-      requests:
-        cpu: 10m
-        memory: 128Mi
-      limits:
-        memory: 6000Mi
+
     topologySpreadConstraints:
       - maxSkew: 1
         topologyKey: "kubernetes.io/hostname"
