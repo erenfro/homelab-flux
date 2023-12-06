@@ -11,3 +11,4 @@ resources:
   - ./hedgedoc/ks.yaml
   - ./mealie/ks.yaml
   - ./thelounge/ks.yaml
+  - ./wallabag/ks.yaml
