@@ -94,3 +94,4 @@ spec:
           matchLabels:
             app.kubernetes.io/name: *app
             app.kubernetes.io/instance: *app
+
