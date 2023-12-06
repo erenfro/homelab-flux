@@ -13,7 +13,7 @@ spec:
   dependsOn:
     - name: cloudnative-pg-cluster
     - name: external-secrets-bitwarden
-  path: ./kubernetes/apps/default/authelia/app
+  path: ./kubernetes/apps/security/authelia/app
   prune: true
   sourceRef:
     kind: GitRepository
