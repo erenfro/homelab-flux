@@ -47,7 +47,7 @@ spec:
       enabled: true
       ingressClassName: external
       annotations:
-        io.cilium/lb-ipam-ips: 172.17.1.202
+        io.cilium/lb-ipam-ips: 172.17.1.203
         ingress.cilium.io/loadbalancer-mode: dedicated
         kubernetes.io/ingress.class: cilium
         gethomepage.dev/enabled: "true"
