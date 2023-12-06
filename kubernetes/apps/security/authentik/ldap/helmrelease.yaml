@@ -27,12 +27,10 @@ spec:
       egress.home.arpa/nginx-external: "allow"
     env:
       TZ: "${TIMEZONE}"
-      AUTHENTIK_HOST: "https://${APP_DNS_AUTH}"
-      AUTHENTIK_TOKEN:
-        valueFrom:
-          secretKeyRef:
-            name: authentik-ldap
-            key: token
+      AUTHENTIK_HOST: "https://authentik.${SECRET_DOMAIN}"
+    envFrom:
+      - secretRef:
+          name: authentik-ldap-secrets
     service:
       main:
         enabled: true
@@ -65,7 +63,7 @@ spec:
             targetPort: 6636
             protocol: UDP
     podSecurityContext:
-      runAsUser: &uid ${APP_UID_AUTHENTIK_LDAP}
+      runAsUser: &uid 1000
       runAsGroup: *uid
       fsGroup: *uid
       fsGroupChangePolicy: Always
