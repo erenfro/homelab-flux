@@ -24,4 +24,4 @@ spec:
   postBuild:
     substitute:
       APP: *app
-      GATUS_SUBDOMAIN: wallabag
+      GATUS_SUBDOMAIN: "wallabag.${SECRET_DOMAIN}"
