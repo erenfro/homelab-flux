@@ -12,6 +12,7 @@ spec:
         name: bjw-s
         kind: HelmRepository
         namespace: flux-system
+      interval: 5m
   values:
     global:
       fullnameOverride: *app
