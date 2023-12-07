@@ -8,5 +8,5 @@ data:
   CMD_LDAP_BINDDN: ${LDAP_READONLY_USER_BIND}
   CMD_LDAP_BINDCREDENTIALS: ${LDAP_READONLY_USER_PASSWORD}
   CMD_LDAP_SEARCHBASE: ${LDAP_BASE_DN}
-  CMD_LDAP_SEARCHFILTER: (&(memberOf=cn=hedgedoc,ou=groups,dc=home,dc=ld)(uid={{username}}))
-  CMD_LDAP_USERIDFIELD: uid
+  CMD_LDAP_SEARCHFILTER: (&(objectClass=user)(memberOf=cn=hedgedoc,ou=groups,dc=home,dc=ld)(cn={{username}}))
+  CMD_LDAP_USERIDFIELD: cn
