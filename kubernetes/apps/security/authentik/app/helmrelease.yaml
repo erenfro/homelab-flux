@@ -47,15 +47,12 @@ spec:
       enabled: true
       ingressClassName: external
       annotations:
-        #io.cilium/lb-ipam-ips: 172.17.1.200
-        #ingress.cilium.io/loadbalancer-mode: dedicated
-        #kubernetes.io/ingress.class: cilium
         gethomepage.dev/enabled: "true"
         gethomepage.dev/icon: authentik.png
         gethomepage.dev/name: Authentik
         gethomepage.dev/group: Infrastructure
         gethomepage.dev/widget.type: authentik
-        gethomepage.dev/widget.url: https://authentik.${SECRET_DOMAIN}
+        gethomepage.dev/widget.url: https://auth.${SECRET_DOMAIN}
         gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_AUTHENTIK_TOKEN}}"
         external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
         nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
@@ -65,9 +62,14 @@ spec:
           paths:
             - path: /
               pathType: Prefix
+        - host: &customHost auth.${SECRET_DOMAIN}
+          paths:
+            - path: /
+              pathType: Prefix
       tls:
         - hosts:
             - *host
+            - *customHost
           secretName: *host
     #envValueFrom:
     #    AUTHENTIK_POSTGRESQL__NAME:
