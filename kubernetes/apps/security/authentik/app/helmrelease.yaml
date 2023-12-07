@@ -121,5 +121,5 @@ spec:
             - key: tls.crt
               path: "fullchain.pem"
             - key: tls.key
-              path: "privkey.key"
+              path: "privkey.pem"
 
