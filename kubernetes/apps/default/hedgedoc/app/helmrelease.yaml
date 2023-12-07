@@ -74,7 +74,7 @@ spec:
               # Authentik
               CMD_OAUTH2_PROVIDERNAME: "authentik"
               CMD_OAUTH2_SCOPE: "openid email profile"
-              CMD_OAUTH2_USER_PROFILE_URL: "https:/auth.${SECRET_DOMAIN}/application/o/userinfo/"
+              CMD_OAUTH2_USER_PROFILE_URL: "https://auth.${SECRET_DOMAIN}/application/o/userinfo/"
               CMD_OAUTH2_TOKEN_URL: "https://auth.${SECRET_DOMAIN}/application/o/token/"
               CMD_OAUTH2_AUTHORIZATION_URL: "https://auth.${SECRET_DOMAIN}/application/o/authorize/"
               CMD_OAUTH2_USER_PROFILE_USERNAME_ATTR: "preferred_username"
