@@ -5,6 +5,12 @@ metadata:
   name: "${SECRET_DOMAIN/./-}-production"
   namespace: networking
 spec:
+  secretTemplate:
+    annotations:
+      reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
+      reflector.v1.k8s.emberstack.com/reflection-allowed-namespaces: "default,database,media,monitoring,security,selfhosted"
+      reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true"
+      reflector.v1.k8s.emberstack.com/reflection-auto-namespaces: "default,database,media,monitoring,security,selfhosted"
   secretName: "${SECRET_DOMAIN/./-}-production-tls"
   issuerRef:
     name: letsencrypt-production
