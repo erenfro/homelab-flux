@@ -118,8 +118,8 @@ spec:
         secret:
           secretName: "${SECRET_DOMAIN/./-}-production-tls"
           items:
-            - name: tls.crt
+            - key: tls.crt
               path: "${SECRET_DOMAIN/./-}.pem"
-            - name: tls.key
+            - key: tls.key
               path: "${SECRET_DOMAIN/./-}.key"
 
