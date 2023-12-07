@@ -111,7 +111,7 @@ spec:
         send_pii: false
     volumeMounts:
       - name: certs
-        mountPath: "/certs/${SECRET_DOMAIN/./-}"
+        mountPath: "/certs/${SECRET_DOMAIN}"
         readOnly: true
     volumes:
       - name: certs
@@ -119,7 +119,7 @@ spec:
           secretName: "${SECRET_DOMAIN/./-}-production-tls"
           items:
             - key: tls.crt
-              path: "${SECRET_DOMAIN/./-}.pem"
+              path: "fullchain.pem"
             - key: tls.key
-              path: "${SECRET_DOMAIN/./-}.key"
+              path: "privkey.key"
 
