@@ -8,7 +8,7 @@ resources:
   - ./discord-template-notifier/ks.yaml
   - ./excalidraw/ks.yaml
   - ./hajimari/ks.yaml
-  # ./hedgedoc/ks.yaml
+   ./hedgedoc/ks.yaml
   - ./mealie/ks.yaml
   #- ./paperless/ks.yaml
   - ./thelounge/ks.yaml
