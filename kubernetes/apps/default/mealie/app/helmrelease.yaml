@@ -101,7 +101,7 @@ spec:
               LDAP_QUERY_PASSWORD: ${LDAP_READONLY_USER_PASSWORD}
               LDAP_USER_FILTER: (memberOf=cn=mealie,ou=groups,dc=home,dc=ld)
               LDAP_ADMIN_FILTER: (memberOf=cn=app-admin,ou=groups,dc=home,dc=ld)
-              LDAP_ID_ATTRIBUTE: uid
+              LDAP_ID_ATTRIBUTE: cn
               LDAP_NAME_ATTRIBUTE: displayName
               LDAP_MAIL_ATTRIBUTE: mail
             envFrom:
