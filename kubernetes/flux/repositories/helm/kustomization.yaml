@@ -22,6 +22,7 @@ resources:
   - ./metrics-server.yaml
   - ./piraeus.yaml
   - ./prometheus-community.yaml
+  - ./reflector.yaml
   - ./rook-ceph.yaml
   - ./stakater.yaml
   - ./tyzbit.yaml
