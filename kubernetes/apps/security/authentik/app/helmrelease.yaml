@@ -109,11 +109,11 @@ spec:
       error_reporting:
         enabled: false
         send_pii: false
-  volumeMounts:
-    - name: certs
-      mountPath: "/certs"
-      readOnly: true
-  volumes:
-    - name: certs
-      secret:
-        secretName: "${SECRET_DOMAIN/./-}-production-tls"
+    volumeMounts:
+      - name: certs
+        mountPath: "/certs"
+        readOnly: true
+    volumes:
+      - name: certs
+        secret:
+          secretName: "${SECRET_DOMAIN/./-}-production-tls"
