@@ -5,5 +5,5 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
-  - ./linkding/ks.yaml
+  #- ./linkding/ks.yaml
   - ./wikijs/ks.yaml
