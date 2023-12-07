@@ -9,10 +9,10 @@ resources:
   - ./helmrelease.yaml
   - ../../../../templates/gatus/guarded
   - ../../../../templates/volsync
-configMapGenerator:
-  - name: hedgedoc-configmap
-    files:
-      - config.json=./config/config.json
+#configMapGenerator:
+#  - name: hedgedoc-configmap
+#    files:
+#      - config.json=./config/config.json
 generatorOptions:
   disableNameSuffixHash: true
   annotations:
