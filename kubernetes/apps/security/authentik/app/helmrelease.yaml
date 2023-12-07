@@ -114,7 +114,7 @@ spec:
         mountPath: "/certs/${SECRET_DOMAIN/./-}"
         readOnly: true
     volumes:
-      - name: "certs"
+      - name: certs
         secret:
           secretName: "${SECRET_DOMAIN/./-}-production-tls"
           items:
