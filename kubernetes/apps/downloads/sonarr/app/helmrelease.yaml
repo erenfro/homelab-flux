@@ -97,6 +97,13 @@ spec:
           hajimari.io/enable: "true"
           hajimari.io/appName: Sonarr
           hajimari.io/icon: material-symbols-light:tv-guide-outline
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: Downloads
+          gethomepage.dev/name: Sonarr
+          gethomepage.dev/icon: sonarr.png
+          gethomepage.dev/widget.type: sonarr
+          gethomepage.dev/widget.url: http://sonarr.downloads
+          gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_SONARR_TOKEN}}"
         enabled: true
         className: internal
         hosts:
