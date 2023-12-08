@@ -23,6 +23,3 @@ spec:
   postBuild:
     substitute:
       APP: *appname
-      HOSTNAME: bookmarks.${SECRET_DOMAIN}
-      DB_NAME: linkding
-      DB_USER: linkding
