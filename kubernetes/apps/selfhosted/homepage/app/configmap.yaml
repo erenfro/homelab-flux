@@ -3,6 +3,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: homepage-config
+  namespace: selfhosted
   labels:
     app.kubernetes.io/name: homepage
 data:
@@ -112,7 +113,7 @@ data:
     #     expanded: true
     #     memory: truehttps://github.com/walkxcode/dashboard-icons/blob/main/png/homepage.png?raw=true
     - logo:
-        icon: https://raw.githubusercontent.com/LilDrunkenSmurf/k3s-home-cluster/main/icons/lds-transparent.png
+        icon: https://raw.githubusercontent.com/erenfro/homelab-flux/main/icons/linux-help-logo_128.png
     - search:
         provider: [google]
         focus: false
