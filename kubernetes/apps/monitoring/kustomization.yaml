@@ -8,4 +8,4 @@ resources:
   - ./gatus/ks.yaml
   - ./grafana/ks.yaml
   - ./kube-prometheus-stack/ks.yaml
-  - ./node-exporter/ks.yaml
+  #- ./node-exporter/ks.yaml
