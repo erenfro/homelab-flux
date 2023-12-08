@@ -97,6 +97,13 @@ spec:
           hajimari.io/enable: "true"
           hajimari.io/appName: Radarr
           hajimari.io/icon: material-symbols-light:movie-outline
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: Downloads
+          gethomepage.dev/name: Radarr
+          gethomepage.dev/icon: radarr.png
+          gethomepage.dev/widget.type: radarr
+          gethomepage.dev/widget.url: http://radarr.downloads
+          gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_RADARR_TOKEN}}"
         enabled: true
         className: internal
         hosts:

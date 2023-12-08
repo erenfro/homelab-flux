@@ -121,7 +121,7 @@ data:
         target: _blank
     - greeting:
         text_size: xl
-        text: "Howdy Hey!"
+        text: "Heya, drek!"
     - kubernetes:
         cluster:
           cpu: true
