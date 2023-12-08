@@ -16,7 +16,7 @@ resources:
   #- ./lldap/ks.yaml
   #- ./media-browser/ks.yaml
   #- ./miniflux/ks.yaml
-  - ./organizr/ks.yaml
+  #- ./organizr/ks.yaml
   #- ./overseerr/ks.yaml
   #- ./plex/ks.yaml
   #- ./prowlarr/ks.yaml
