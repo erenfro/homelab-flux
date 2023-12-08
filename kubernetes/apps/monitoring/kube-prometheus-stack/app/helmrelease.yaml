@@ -32,11 +32,6 @@ spec:
       namespace: kube-system
     - name: longhorn
       namespace: storage
-  valuesFrom:
-    - name: kube-prometheus-stack-values
-      kind: ConfigMap
-      valuesKey: values.yaml
-
   values:
     crds:
       enabled: true
