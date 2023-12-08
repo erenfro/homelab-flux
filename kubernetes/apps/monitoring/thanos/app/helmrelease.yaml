@@ -137,3 +137,4 @@ spec:
       name: thanos-secret
       valuesKey: secret-key
       targetPath: objstoreConfig.config.secret_key
+
