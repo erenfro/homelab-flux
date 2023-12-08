@@ -122,4 +122,3 @@ spec:
               path: "${SECRET_DOMAIN}.pem"
             - key: tls.key
               path: "${SECRET_DOMAIN}.key"
-
