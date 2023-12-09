@@ -7,7 +7,7 @@ resources:
   #- ./configmap.yaml
   - ./external-secret.yaml
   - ./helmrelease.yaml
-  - ../../../../templates/gatus/guarded
+  - ../../../../templates/gatus/external
   - ../../../../templates/volsync
 configMapGenerator:
   - name: hedgedoc-configmap

@@ -24,7 +24,7 @@ spec:
   postBuild:
     substitute:
       APP: *app
-      GATUS_SUBDOMAIN: "recipes.${SECRET_DOMAIN}"
+      GATUS_SUBDOMAIN: recipes
       VOLSYNC_CAPACITY: 2Gi
       #VOLSYNC_ACCESSMODES: ReadWriteMany
       #VOLSYNC_STORAGECLASS: ceph-filesystem
