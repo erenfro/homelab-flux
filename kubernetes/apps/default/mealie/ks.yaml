@@ -6,13 +6,13 @@ metadata:
   name: &app mealie
   namespace: flux-system
 spec:
-  targetNamespace: default
+  targetNamespace: selfhosted
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: external-secrets-bitwarden
-  path: ./kubernetes/apps/default/mealie/app
+  path: ./kubernetes/apps/selfhosted/mealie/app
   prune: true
   sourceRef:
     kind: GitRepository
