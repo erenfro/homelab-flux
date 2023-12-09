@@ -22,13 +22,15 @@ spec:
         annotations:
           reloader.stakater.com/auto: "true"
 
-        pod:
-          securityContext:
-            runAsUser: 568
-            runAsGroup: 568
-            fsGroup: 568
-            fsGroupChangePolicy: OnRootMismatch
-            supplementalGroups: [10000]
+        initContainers:
+          init-db:
+            image:
+              repository: ghcr.io/onedr0p/postgres-init
+              tag: 15
+              pullPolicy: IfNotPresent
+            envFrom: &envFrom
+              - secretRef:
+                  name: paperless-secret
 
         containers:
           main:
@@ -37,11 +39,6 @@ spec:
               tag: 2.0.1
             env:
               # Configure application
-              PAPERLESS_SECRET_KEY:
-                valueFrom:
-                  secretKeyRef:
-                    name: paperless-secret
-                    key: PAPERLESS_SECRET_KEY
               PAPERLESS_URL: https://paperless.${SECRET_DOMAIN}
               PAPERLESS_PORT: "8000"
               PAPERLESS_TIME_ZONE: "${TIMEZONE}"
@@ -63,19 +60,25 @@ spec:
               PAPERLESS_OCR_LANGUAGES: eng
               PAPERLESS_OCR_LANGUAGE: eng
               # Configure redis integration
-              PAPERLESS_REDIS: redis://redis.database.svc.cluster.local:6379
+              PAPERLESS_REDIS: redis://paperless-redis.selfhosted.svc.cluster.local:6379
               # Configure user permissions
               USERMAP_UID: "568"
               USERMAP_GID: "568"
-            envFrom:
-              - secretRef:
-                  name: paperless-secret
+            envFrom: *envFrom
             resources:
               requests:
                 cpu: 11m
                 memory: 1812M
               limits:
                 memory: 1812M
+
+        pod:
+          securityContext:
+            runAsUser: 568
+            runAsGroup: 568
+            fsGroup: 568
+            fsGroupChangePolicy: OnRootMismatch
+            supplementalGroups: [10000]
 
     service:
       main:
