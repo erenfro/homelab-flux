@@ -9,7 +9,7 @@ resources:
   - ./excalidraw/ks.yaml
   - ./hajimari/ks.yaml
   - ./hedgedoc/ks.yaml
-  - ./mealie/ks.yaml
+  #- ./mealie/ks.yaml
   #- ./paperless/ks.yaml
   - ./thelounge/ks.yaml
   - ./wallabag/ks.yaml
