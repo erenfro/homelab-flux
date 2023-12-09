@@ -128,9 +128,9 @@ spec:
           - hosts:
               - *host
       thanosService:
-        enabled: false
+        enabled: true
       thanosServiceMonitor:
-        enabled: false
+        enabled: true
       prometheusSpec:
         replicas: 2
         replicaExternalLabelName: __replica__
