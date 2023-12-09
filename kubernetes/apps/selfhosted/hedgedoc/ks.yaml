@@ -24,7 +24,7 @@ spec:
   postBuild:
     substitute:
       APP: *app
-      GATUS_SUBDOMAIN: md
+      GATUS_SUBDOMAIN: "md.${SECRET_DOMAIN}"
       VOLSYNC_CAPACITY: 2Gi
       VOLSYNC_ACCESSMODES: ReadWriteOnce
       VOLSYNC_STORAGECLASS: longhorn
