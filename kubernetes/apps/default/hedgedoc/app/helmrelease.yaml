@@ -88,6 +88,12 @@ spec:
                   name: *secret
             #  - configMapRef:
             #      name: hedgedoc-ldap-configmap
+        pod:
+          securityContext:
+            runAsUser: 1000
+            runAsGroup: 1000
+            fsGroup: 1000
+            fsGroupChangePolicy: OnRootMismatch
     service:
       main:
         ports:

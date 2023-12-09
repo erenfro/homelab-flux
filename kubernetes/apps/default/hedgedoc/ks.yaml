@@ -6,13 +6,13 @@ metadata:
   name: &app hedgedoc
   namespace: flux-system
 spec:
-  targetNamespace: default
+  targetNamespace: selfhosted
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: external-secrets-bitwarden
-  path: ./kubernetes/apps/default/hedgedoc/app
+  path: ./kubernetes/apps/selfhosted/hedgedoc/app
   prune: true
   sourceRef:
     kind: GitRepository

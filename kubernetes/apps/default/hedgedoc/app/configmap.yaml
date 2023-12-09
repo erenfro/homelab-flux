@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: hedgedoc-ldap-configmap
-  namespace: default
+  namespace: selfhosted
 data:
   CMD_LDAP_URL: ${LDAP_URL}
   CMD_LDAP_BINDDN: ${LDAP_READONLY_USER_BIND}
