@@ -72,7 +72,13 @@ spec:
         annotations:
           external-dns.alpha.kubernetes.io/target: external.${SECRET_DOMAIN}
         hosts:
-          - host: "wallabag.${SECRET_DOMAIN}"
+          - host: &host "wallabag.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                service:
+                  name: main
+                  port: http
+          - host: &customHost "wall.${SECRET_DOMAIN}"
             paths:
               - path: /
                 service:
@@ -80,4 +86,5 @@ spec:
                   port: http
         tls:
           - hosts:
-              - "wallabag.${SECRET_DOMAIN}"
+              - *host
+              - *customHost
