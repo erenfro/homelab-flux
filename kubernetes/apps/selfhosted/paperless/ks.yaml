@@ -11,11 +11,11 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   interval: 10m
-  path: "./kubernetes/apps/selfhosted/paperless/redis"
+  path: ./kubernetes/apps/selfhosted/paperless/redis
   prune: true
   sourceRef:
     kind: GitRepository
-    name: home-ops-kubernetes
+    name: home-kubernetes
   wait: true
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/kustomize.toolkit.fluxcd.io/kustomization_v1.json
