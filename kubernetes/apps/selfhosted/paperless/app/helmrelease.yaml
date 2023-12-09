@@ -74,10 +74,10 @@ spec:
 
         pod:
           securityContext:
-            #runAsUser: 568
-            #runAsGroup: 568
-            #fsGroup: 568
-            #fsGroupChangePolicy: OnRootMismatch
+            runAsUser: 1000
+            runAsGroup: 65542
+            fsGroup: 65542
+            fsGroupChangePolicy: OnRootMismatch
             supplementalGroups:
               - 65542
 
