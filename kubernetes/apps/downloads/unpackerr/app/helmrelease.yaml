@@ -36,11 +36,22 @@ spec:
               tag: 0.12.0
             env:
               TZ: ${TIMEZONE}
+              # Web Server Config
               UN_WEBSERVER_METRICS: "true"
+              UN_WEBSERVER_LISTEN_ADDR: "0.0.0.0:80"
+              # Sonarr
               UN_SONARR_0_URL: http://sonarr.downloads.svc.cluster.local
               UN_SONARR_0_PATHS_0: /media/downloads/torrent/complete/tv
+              # Radarr
               UN_RADARR_0_URL: http://radarr.downloads.svc.cluster.local
               UN_RADARR_0_PATHS_0: /media/downloads/torrent/complete/movies
+              # Lidarr
+              UN_LIDARR_0_URL: http://lidarr.downloads.svc.cluster.local
+              UN_LIDARR_0_PATHS_0: /media/downloads/torrent/complete/music
+              # Readarr
+              UN_READARR_0_URL: http://readarr.downloads.svc.cluster.local
+              UN_READARR_0_PATHS_0: /media/downloads/torrent/complete/books
+
             envFrom:
               - secretRef:
                   name: unpackerr-secret
@@ -61,10 +72,38 @@ spec:
       main:
         ports:
           http:
-            port: 5656
+            port: 80
     serviceMonitor:
       main:
         enabled: true
+    ingress:
+      main:
+        enabled: true
+        className: internal
+        annotations:
+          hajimari.io/enable: "true"
+          hajimari.io/icon: ant-design:read-outlined
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/group: Downloads
+          gethomepage.dev/name: Unpackerr
+          gethomepage.dev/icon: unpackerr.png
+          #gethomepage.dev/widget.type: readarr
+          #gethomepage.dev/widget.url: http://unpackerr.downloads
+          #gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_READARR_TOKEN}}"
+          #nginx.ingress.kubernetes.io/configuration-snippet: |-
+          #  proxy_set_header Accept-Encoding "";
+          #  sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_DOMAIN}/css/base/readarr/nord.css"></head>';
+          #  sub_filter_once on;
+        hosts:
+          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                service:
+                  name: main
+                  port: http
+        tls:
+          - hosts:
+              - *host
     persistence:
       media:
         type: nfs
