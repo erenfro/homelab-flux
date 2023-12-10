@@ -76,7 +76,7 @@ spec:
                 memory: 1000M
           gotenburg:
             image:
-              repository: thecodingmachine/gotenburg
+              repository: thecodingmachine/gotenberg
               tag: 7.10.1
             env:
               - { name: DISABLE_GOOGLE_CHROME, value: "1" }
