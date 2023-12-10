@@ -9,6 +9,6 @@ resources:
   - ./homepage/ks.yaml
   - ./linkding/ks.yaml
   - ./mealie/ks.yaml
-  #- ./paperless/ks.yaml
+  - ./paperless/ks.yaml
   - ./shiori/ks.yaml
   - ./wikijs/ks.yaml
