@@ -52,11 +52,11 @@ spec:
             env:
               TZ: ${TIMEZONE}
               SHIORI_DIR: /data
-              HTTP_ROOT_PATH: "/shiori"
+              HTTP_ROOT_PATH: "/"
             envFrom:
               - secretRef:
                   name: *secret
-            command: ["/usr/bin/shiori", "serve", "--webroot", "/shiori"]
+            command: ["/usr/bin/shiori", "serve", "--webroot", "/"]
         pod:
           securityContext:
             runAsUser: 1000
