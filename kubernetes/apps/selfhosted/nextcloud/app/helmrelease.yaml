@@ -46,12 +46,12 @@ spec:
       datadir: /var/www/data
       extraEnv:
         - name: REDIS_HOST
-          value: nextcloud-redis.selfhosted
+          value: redis.database
           #value: redis-headless.database.svc.cluster.local
         - name: REDIS_HOST_PORT
           value: "6379"
-        #- name: REDIS_HOST_PASSWORD
-        #  value: "${REDIS_PASSWORD}"
+        - name: REDIS_HOST_PASSWORD
+          value: "${REDIS_PASSWORD}"
           #valueFrom:
           #  secretKeyRef:
           #    name: *secret
