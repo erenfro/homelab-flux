@@ -35,7 +35,7 @@ spec:
           main:
             image:
               repository: roundcube/roundcubemail
-              tag: 1.5.6-fpm-alpine
+              tag: 1.5.6-apache
             env:
               TZ: "${TIMEZONE}"
               ROUNDCUBEMAIL_DEFAULT_HOST: ssl://${MAIL_PROD_IMAP}
