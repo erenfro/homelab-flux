@@ -5,7 +5,7 @@ metadata:
   name: cluster-apps-nextcloud
   namespace: flux-system
 spec:
-  path: ./kubernetes/apps/default/nextcloud/app
+  path: ./kubernetes/apps/selfhosted/nextcloud/app
   prune: true
   sourceRef:
     kind: GitRepository

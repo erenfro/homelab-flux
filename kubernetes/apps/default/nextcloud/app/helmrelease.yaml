@@ -3,13 +3,13 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: nextcloud
-  namespace: default
+  namespace: selfhosted
 spec:
   interval: 15m
   chart:
     spec:
       chart: nextcloud
-      version: 4.5.4
+      version: 4.5.5
       sourceRef:
         kind: HelmRepository
         name: nextcloud
@@ -54,7 +54,7 @@ spec:
           location ~ ^/(?:\.|autotest|occ|issue|indie|db_|console)                { return 404; }
 
       hosts:
-        - host: &host "files.${SECRET_DOMAIN}"
+        - host: &host "cloud.${SECRET_DOMAIN}"
           paths:
             - path: /
               pathType: Prefix
@@ -75,17 +75,18 @@ spec:
         - name: REDIS_HOST_PORT
           value: "6379"
         - name: REDIS_HOST_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: *secret
-              key: REDIS_PASSWORD
+          value: "${REDIS_PASSWORD}"
+          #valueFrom:
+          #  secretKeyRef:
+          #    name: *secret
+          #    key: REDIS_PASSWORD
       configs:
         custom.config.php: |-
           <?php
           $CONFIG = array(
             'trusted_proxies' => ['external.${SECRET_DOMAIN}'],
             'overwriteprotocol' => 'https',
-            'default_phone_region' => 'CH',
+            'default_phone_region' => 'CA',
             'trashbin_retention_obligation' => 'auto, 30',
             'auth.bruteforce.protection.enabled' => true,
             'default_language' => 'en',
@@ -104,17 +105,17 @@ spec:
             )
           );
 
-      # mail:
-      #   enabled: false
-      #   fromAddress: admin
-      #   domain: ${SECRET_DOMAIN}
-      #   smtp:
-      #     host: smtp-relay.${SECRET_DOMAIN}
-      #     secure: none
-      #     port: 25
-      #     auth/type: LOGIN
-      #     name: ""
-      #     passsword: ""
+        mail:
+          enabled: false
+          fromAddress: admin
+          domain: ${SECRET_DOMAIN}
+          smtp:
+            host: "${MAIL_PROD_SMTP}"
+            secure: none
+            port: 25
+            auth/type: LOGIN
+            name: ""
+            passsword: ""
 
       extraInitContainers:
         - name: init-db
