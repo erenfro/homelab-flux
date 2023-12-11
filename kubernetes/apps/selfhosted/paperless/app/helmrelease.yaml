@@ -61,12 +61,13 @@ spec:
               #PAPERLESS_OCR_LANGUAGES: eng
               #PAPERLESS_OCR_LANGUAGE: eng
               # Configure redis integration
-              PAPERLESS_REDIS: redis://paperless-redis.selfhosted.svc.cluster.local:6379
               PAPERLESS_TIKA_ENABLED: "true"
-              PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://paperless-tika.selfhosted.svc.cluster.local:3000
-              PAPERLESS_TIKA_ENDPOINT: http://paperless-gotenberg.selfhosted.svc.cluster.local:9998
-              #PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://localhost:3000
-              #PAPERLESS_TIKA_ENDPOINT: http://localhost:9998
+              #PAPERLESS_REDIS: redis://paperless-redis.selfhosted.svc.cluster.local:6379
+              #PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://paperless-tika.selfhosted.svc.cluster.local:3000
+              #PAPERLESS_TIKA_ENDPOINT: http://paperless-gotenberg.selfhosted.svc.cluster.local:9998
+              PAPERLESS_REDIS: redis://localhost:6379
+              PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://localhost:3000
+              PAPERLESS_TIKA_ENDPOINT: http://localhost:9998
               PAPERLESS_EMAIL_TASK_CRON: "*/5 * * * *"
               # Configure user permissions
               USERMAP_UID: "1022"
@@ -77,17 +78,21 @@ spec:
                 cpu: 11m
                 memory: 1000M
               limits:
-                memory: 1800M
-          #gotenburg:
-          #  image:
-          #    repository: thecodingmachine/gotenberg
-          #    tag: 7.10.1
-          #  env:
-          #    - { name: DISABLE_GOOGLE_CHROME, value: "1" }
-          #tika:
-          #  image:
-          #    repository: ghcr.io/paperless-ngx/tika
-          #    tag: 2.9.0-full
+                memory: 4000M
+          gotenburg:
+            image:
+              repository: thecodingmachine/gotenberg
+              tag: 7.10.1
+            env:
+              - { name: DISABLE_GOOGLE_CHROME, value: "1" }
+          tika:
+            image:
+              repository: ghcr.io/paperless-ngx/tika
+              tag: 2.9.0-full
+          redis:
+            image:
+              repository: public.ecr.aws/docker/library/redis
+              tag: 7.2.3
         pod:
           securityContext:
             #runAsUser: 1022
