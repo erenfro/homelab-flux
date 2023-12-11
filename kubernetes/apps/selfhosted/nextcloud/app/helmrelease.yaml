@@ -93,7 +93,7 @@ spec:
           host: "${MAIL_PROD_SMTP}"
           #secure: none
           port: 25
-          auth/type: NONE
+          authtype: NONE
           name: ""
           passsword: ""
       securityContext:
