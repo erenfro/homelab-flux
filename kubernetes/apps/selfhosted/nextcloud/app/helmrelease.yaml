@@ -58,8 +58,8 @@ spec:
       existingSecret:
         enabled: true
         secretName: *secret
-        usernameKey: NEXTCLOUD_USERNAME
-        passwordKey: NEXTCLOUD_PASSWORD
+        usernameKey: nextcloud-username
+        passwordKey: nextcloud-password
       host: &host "cloud.${SECRET_DOMAIN}"
       configs:
         custom.config.php: |-
