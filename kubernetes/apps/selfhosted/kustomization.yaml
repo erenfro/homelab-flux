@@ -11,6 +11,6 @@ resources:
   - ./mealie/ks.yaml
   - ./paperless/ks.yaml
   #- ./rainloop/ks.yaml
-  - ./roundcube/ks.yaml
+  #- ./roundcube/ks.yaml
   - ./shiori/ks.yaml
   - ./wikijs/ks.yaml
