@@ -62,6 +62,7 @@ spec:
               #PAPERLESS_OCR_LANGUAGE: eng
               # Configure redis integration
               PAPERLESS_REDIS: redis://paperless-redis.selfhosted.svc.cluster.local:6379
+              PAPERLESS_TIKA_ENABLED: "true"
               PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://paperless-tika.selfhosted.svc.cluster.local:3000
               PAPERLESS_TIKA_ENDPOINT: http://paperless-gotenberg.selfhosted.svc.cluster.local:9998
               #PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://localhost:3000
