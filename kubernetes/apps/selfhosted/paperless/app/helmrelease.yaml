@@ -62,28 +62,28 @@ spec:
               PAPERLESS_OCR_LANGUAGE: eng
               # Configure redis integration
               PAPERLESS_REDIS: redis://paperless-redis.selfhosted.svc.cluster.local:6379
-              PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://localhost:3000
-              PAPERLESS_TIKA_ENDPOINT: http://localhost:9998
+              #PAPERLESS_TIKA_GOTENBERG_ENDPOINT: http://localhost:3000
+              #PAPERLESS_TIKA_ENDPOINT: http://localhost:9998
               # Configure user permissions
               USERMAP_UID: "1022"
               USERMAP_GID: "1022"
             envFrom: *envFrom
             resources:
               requests:
-                cpu: 50m
+                cpu: 11m
                 memory: 1000M
               limits:
-                memory: 1000M
-          gotenburg:
-            image:
-              repository: thecodingmachine/gotenberg
-              tag: 7.10.1
-            env:
-              - { name: DISABLE_GOOGLE_CHROME, value: "1" }
-          tika:
-            image:
-              repository: ghcr.io/paperless-ngx/tika
-              tag: 2.9.0-full
+                memory: 1800M
+          #gotenburg:
+          #  image:
+          #    repository: thecodingmachine/gotenberg
+          #    tag: 7.10.1
+          #  env:
+          #    - { name: DISABLE_GOOGLE_CHROME, value: "1" }
+          #tika:
+          #  image:
+          #    repository: ghcr.io/paperless-ngx/tika
+          #    tag: 2.9.0-full
         pod:
           securityContext:
             #runAsUser: 1022
