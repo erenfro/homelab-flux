@@ -46,7 +46,7 @@ spec:
       datadir: /var/www/data
       extraEnv:
         - name: REDIS_HOST
-          value: redis-lb.database.svc.cluster.local
+          value: redis.database.svc.cluster.local
           #value: redis-headless.database.svc.cluster.local
         - name: REDIS_HOST_PORT
           value: "6379"
@@ -97,10 +97,10 @@ spec:
           authtype: NONE
           name: ""
           passsword: ""
-      securityContext:
-        runAsUser: 1022
-        runAsGroup: 1022
-        runAsNonRoot: true
+      #securityContext:
+      #  runAsUser: 1022
+      #  runAsGroup: 1022
+      #  runAsNonRoot: true
 
     ingress:
       enabled: true
