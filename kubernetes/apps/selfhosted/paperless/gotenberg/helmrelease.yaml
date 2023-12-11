@@ -32,14 +32,14 @@ spec:
             resources:
               requests:
                 cpu: 11m
-                memory: 500M
+                memory: 512Mi
               limits:
                 memory: 1800M
         pod:
           securityContext:
-            runAsUser: 1022
-            runAsGroup: 1022
-            fsGroup: 1022
+            runAsUser: 1001
+            runAsGroup: 1001
+            fsGroup: 1001
             #fsGroup: 65542
             fsGroupChangePolicy: OnRootMismatch
             supplementalGroups:
