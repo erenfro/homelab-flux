@@ -10,5 +10,6 @@ resources:
   - ./linkding/ks.yaml
   - ./mealie/ks.yaml
   - ./paperless/ks.yaml
+  - ./rainloop/ks.yaml
   - ./shiori/ks.yaml
   - ./wikijs/ks.yaml
