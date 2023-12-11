@@ -42,7 +42,7 @@ spec:
           image: ghcr.io/onedr0p/postgres-init:15
           envFrom:
             - secretRef:
-                name: *secret
+                name: &secret nextcloud-secret
       datadir: /var/www/data
       extraEnv:
         - name: REDIS_HOST
@@ -57,7 +57,7 @@ spec:
           #    key: REDIS_PASSWORD
       existingSecret:
         enabled: true
-        secretName: &secret nextcloud-secret
+        secretName: *secret
         usernameKey: NEXTCLOUD_USERNAME
         passwordKey: NEXTCLOUD_PASSWORD
       host: &host "cloud.${SECRET_DOMAIN}"
