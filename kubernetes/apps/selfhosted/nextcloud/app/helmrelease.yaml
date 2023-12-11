@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: nextcloud
-      version: 4.5.4
+      version: 4.5.5
       sourceRef:
         kind: HelmRepository
         name: nextcloud
@@ -30,16 +30,20 @@ spec:
       namespace: storage
   values:
     image:
-      repository: docker.io/library/nextcloud
-      tag: 27.1.4
+      flavor: fpm-alpine
+      #repository: docker.io/library/nextcloud
+      #tag: 27.1.4
+    nginx:
+      enabled: true
 
     nextcloud:
-      host: *host
-      existingSecret:
-        enabled: true
-        secretName: &secret nextcloud-secret
-        usernameKey: NEXTCLOUD_USERNAME
-        passwordKey: NEXTCLOUD_PASSWORD
+      extraInitContainers:
+        - name: init-db
+          image: ghcr.io/onedr0p/postgres-init:15
+          envFrom:
+            - secretRef:
+                name: *secret
+      datadir: /var/www/data
       extraEnv:
         - name: REDIS_HOST
           value: redis.database.svc.cluster.local
@@ -51,6 +55,12 @@ spec:
           #  secretKeyRef:
           #    name: *secret
           #    key: REDIS_PASSWORD
+      existingSecret:
+        enabled: true
+        secretName: &secret nextcloud-secret
+        usernameKey: NEXTCLOUD_USERNAME
+        passwordKey: NEXTCLOUD_PASSWORD
+      host: &host "cloud.${SECRET_DOMAIN}"
       configs:
         custom.config.php: |-
           <?php
@@ -75,30 +85,21 @@ spec:
               )
             )
           );
-
-        mail:
-          enabled: true
-          fromAddress: admin
-          domain: "${SECRET_DOMAIN}"
-          smtp:
-            host: "${MAIL_PROD_SMTP}"
-            #secure: none
-            port: 25
-            auth/type: NONE
-            name: ""
-            passsword: ""
-
-        securityContext:
-          runAsUser: 1022
-          runAsGroup: 1022
-          runAsNonRoot: true
-
-      extraInitContainers:
-        - name: init-db
-          image: ghcr.io/onedr0p/postgres-init:15
-          envFrom:
-            - secretRef:
-                name: *secret
+      mail:
+        enabled: true
+        fromAddress: admin
+        domain: "${SECRET_DOMAIN}"
+        smtp:
+          host: "${MAIL_PROD_SMTP}"
+          #secure: none
+          port: 25
+          auth/type: NONE
+          name: ""
+          passsword: ""
+      securityContext:
+        runAsUser: 1022
+        runAsGroup: 1022
+        runAsNonRoot: true
 
     ingress:
       enabled: true
@@ -129,7 +130,6 @@ spec:
           }
           location ~ ^/(?:build|tests|config|lib|3rdparty|templates|data)(?:$|/)  { return 404; }
           location ~ ^/(?:\.|autotest|occ|issue|indie|db_|console)                { return 404; }
-      host: &host "cloud.${SECRET_DOMAIN}"
       path: /
       pathType: Prefix
       tls:
@@ -143,7 +143,6 @@ spec:
       #tls:
       #  - hosts:
       #      - *host
-
 
     internalDatabase:
       enabled: false
@@ -167,7 +166,14 @@ spec:
         enabled: true
         existingClaim: nextcloud-nfs
 
-    livenessProbe:
-      enabled: false
-    readinessProbe:
-      enabled: false
+    #livenessProbe:
+    #  enabled: false
+    #readinessProbe:
+    #  enabled: false
+    startupProbe:
+      enabled: true
+      initialDelaySeconds: 10
+      periodSeconds: 10
+      timeoutSeconds: 5
+      failureThreshold: 30
+      successThreshold: 1
