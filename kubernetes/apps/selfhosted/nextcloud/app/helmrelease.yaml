@@ -29,12 +29,18 @@ spec:
     - name: longhorn
       namespace: storage
   values:
-    image:
-      flavor: fpm-alpine
+    #image:
+    #  flavor: fpm-alpine
       #repository: docker.io/library/nextcloud
       #tag: 27.1.4
-    nginx:
+    #nginx:
+    #  enabled: true
+
+    redis:
       enabled: true
+      auth:
+        enabled: true
+        password: "${REDIS_PASSWORD}"
 
     nextcloud:
       extraInitContainers:
@@ -44,18 +50,18 @@ spec:
             - secretRef:
                 name: &secret nextcloud-secret
       datadir: /var/www/data
-      extraEnv:
-        - name: REDIS_HOST
-          value: redis.database.svc.cluster.local
-          #value: redis-headless.database.svc.cluster.local
-        - name: REDIS_HOST_PORT
-          value: "6379"
-        #- name: REDIS_HOST_PASSWORD
-        #  value: "${REDIS_PASSWORD}"
-          #valueFrom:
-          #  secretKeyRef:
-          #    name: *secret
-          #    key: REDIS_PASSWORD
+      #extraEnv:
+      #  - name: REDIS_HOST
+      #    value: redis.database.svc.cluster.local
+      #    #value: redis-headless.database.svc.cluster.local
+      #  - name: REDIS_HOST_PORT
+      #    value: "6379"
+      #  #- name: REDIS_HOST_PASSWORD
+      #  #  value: "${REDIS_PASSWORD}"
+      #    #valueFrom:
+      #    #  secretKeyRef:
+      #    #    name: *secret
+      #    #    key: REDIS_PASSWORD
       existingSecret:
         enabled: true
         secretName: *secret
@@ -172,7 +178,7 @@ spec:
     readinessProbe:
       enabled: false
     startupProbe:
-      enabled: true
+      enabled: false
       initialDelaySeconds: 10
       periodSeconds: 10
       timeoutSeconds: 5
