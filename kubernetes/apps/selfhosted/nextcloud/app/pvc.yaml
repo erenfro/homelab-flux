@@ -1,3 +1,33 @@
+#---
+#apiVersion: v1
+#kind: PersistentVolumeClaim
+#metadata:
+#  name: nextcloud-config
+#  namespace: selfhosted
+#spec:
+#  accessModes:
+#    - ReadWriteOnce
+#  resources:
+#    requests:
+#      storage: 5Gi
+#  storageClassName: longhorn
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nextcloud-nfs
+  namespace: selfhosted
+spec:
+  storageClassName: nextcloud-nfs
+  capacity:
+    storage: 1Mi # Size does not matter
+  accessModes: ["ReadWriteMany"]
+  persistentVolumeReclaimPolicy: Retain
+  nfs:
+    server: mega.home.ld
+    path: /volume1/Media/nextcloud
+  # Note: The first two options are strictly for NFSv4.2
+  mountOptions: ["nfsvers=4.0", "nconnect=8", "hard", "noatime"]
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -5,23 +35,8 @@ metadata:
   name: nextcloud-nfs
   namespace: selfhosted
 spec:
-  accessModes:
-    - ReadWriteMany
+  accessModes: ["ReadWriteMany"]
+  storageClassName: nextcloud-nfs
   resources:
     requests:
-      storage: 20Gi
-  storageClassName: nfs-client
-
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: nextcloud-config
-  namespace: selfhosted
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 5Gi
-  storageClassName: longhorn
+      storage: 1Mi # Size does not matter

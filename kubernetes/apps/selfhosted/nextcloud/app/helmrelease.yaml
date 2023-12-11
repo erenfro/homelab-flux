@@ -141,7 +141,7 @@ spec:
 
     persistence:
       enabled: true
-      existingClaim: nextcloud-config
+      existingClaim: nextcloud
       nextcloudData:
         enabled: true
         existingClaim: nextcloud-nfs
