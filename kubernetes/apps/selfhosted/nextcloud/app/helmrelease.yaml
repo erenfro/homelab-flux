@@ -25,6 +25,9 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
+  dependsOn:
+    - name: longhorn
+      namespace: storage
   values:
     image:
       repository: docker.io/library/nextcloud
@@ -109,16 +112,21 @@ spec:
           );
 
         mail:
-          enabled: false
+          enabled: true
           fromAddress: admin
-          domain: ${SECRET_DOMAIN}
+          domain: "${SECRET_DOMAIN}"
           smtp:
             host: "${MAIL_PROD_SMTP}"
-            secure: none
+            #secure: none
             port: 25
-            auth/type: LOGIN
+            auth/type: NONE
             name: ""
             passsword: ""
+
+        securityContext:
+          runAsUser: 1022
+          runAsGroup: 1022
+          runAsNonRoot: true
 
       extraInitContainers:
         - name: init-db
