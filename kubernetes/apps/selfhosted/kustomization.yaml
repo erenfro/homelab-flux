@@ -10,7 +10,7 @@ resources:
   - ./linkding/ks.yaml
   - ./mealie/ks.yaml
   - ./nextcloud/ks.yaml
-  #- ./paperless/ks.yaml
+  - ./paperless/ks.yaml
   #- ./rainloop/ks.yaml
   - ./roundcube/ks.yaml
   - ./shiori/ks.yaml
