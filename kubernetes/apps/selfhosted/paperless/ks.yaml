@@ -18,6 +18,44 @@ spec:
     name: home-kubernetes
   wait: true
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/kustomization-kustomize-v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: &app paperless-gotenburg
+  namespace: flux-system
+spec:
+  targetNamespace: selfhosted
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
+  interval: 10m
+  path: ./kubernetes/apps/selfhosted/paperless/gotenberg
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: home-kubernetes
+  wait: true
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/kustomization-kustomize-v1.json
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: &app paperless-tika
+  namespace: flux-system
+spec:
+  targetNamespace: selfhosted
+  commonMetadata:
+    labels:
+      app.kubernetes.io/name: *app
+  interval: 10m
+  path: ./kubernetes/apps/selfhosted/paperless/tika
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: home-kubernetes
+  wait: true
+---
 # yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/kustomize.toolkit.fluxcd.io/kustomization_v1.json
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
@@ -31,6 +69,8 @@ spec:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: paperless-redis
+    - name: paperless-gotenberg
+    - name: paperless-tika
     - name: external-secrets-bitwarden
   path: ./kubernetes/apps/selfhosted/paperless/app
   prune: true
