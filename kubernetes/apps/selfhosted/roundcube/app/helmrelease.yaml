@@ -42,7 +42,7 @@ spec:
               ROUNDCUBEMAIL_DEFAULT_PORT: 993
               ROUNDCUBEMAIL_SMTP_SERVER: tls://${MAIL_PROD_SMTP}
               ROUNDCUBEMAIL_SMTP_PORT: 587
-              ROUNDCUBEMAIL_PLUGINS: "archive,managasieve,zipdownload"
+              ROUNDCUBEMAIL_PLUGINS: "archive,managesieve,zipdownload"
               ROUNDCUBEMAIL_SKIN: "elastic"
               ROUNDCUBEMAIL_UPLOAD_MAX_FILESIZE: "128m"
             envFrom: *envFrom
