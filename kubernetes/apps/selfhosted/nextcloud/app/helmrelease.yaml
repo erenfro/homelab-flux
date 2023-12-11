@@ -41,8 +41,11 @@ spec:
         nginx.ingress.kubernetes.io/proxy-body-size: 5G
         nginx.ingress.kubernetes.io/proxy-buffering: "off"
         nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
-        nginx.ingress.kubernetes.io/server-snippet: |
+        nginx.ingress.kubernetes.io/server-snippet: |-
           server_tokens off;
+          rewrite ^/.well-known/webfinger /public.php?service=webfinger last;
+          rewrite ^/.well-known/host-meta /public.php?service=host-meta last;
+          rewrite ^/.well-known/host-meta.json /public.php?service=host-meta-json;
           location ^~ /.well-known {
             location = /.well-known/carddav { return 301 /remote.php/dav/; }
             location = /.well-known/caldav { return 301 /remote.php/dav/; }
