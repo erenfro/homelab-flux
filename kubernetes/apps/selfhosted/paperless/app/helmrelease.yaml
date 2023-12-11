@@ -34,7 +34,7 @@ spec:
 
         containers:
           main:
-            type: statefulset
+            #type: statefulset
             image:
               repository: ghcr.io/paperless-ngx/paperless-ngx
               tag: 2.1.1
