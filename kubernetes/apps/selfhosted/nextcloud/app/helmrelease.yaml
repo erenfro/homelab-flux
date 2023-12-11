@@ -89,6 +89,7 @@ spec:
         custom.config.php: |-
           <?php
           $CONFIG = array(
+            'allow_local_remote_servers' => true,
             'overwriteprotocol' => 'https',
             'default_phone_region' => 'CA',
             'trashbin_retention_obligation' => 'auto, 30',
