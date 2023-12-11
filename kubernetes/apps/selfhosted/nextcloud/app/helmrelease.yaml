@@ -41,6 +41,13 @@ spec:
       auth:
         enabled: true
         password: "${REDIS_PASSWORD}"
+      master:
+        persistence:
+          enabled: false
+          #accessModes: ["ReadWriteMany"]
+      replicas:
+        persistence:
+          enabled: false
 
     nextcloud:
       extraInitContainers:
@@ -69,10 +76,19 @@ spec:
         passwordKey: nextcloud-password
       host: &host "cloud.${SECRET_DOMAIN}"
       configs:
+        proxy.config.php: |-
+          <?php
+          $CONFIG = array(
+            'trusted_proxies' => array(
+              0 => 'external.${SECRET_DOMAIN}',
+              1 => '127.0.0.1',
+              2 => '10.0.0.0/8',
+            ),
+            'forwarded_for_headers' => array('HTTP_X_FORWARDED_FOR'),
+          );
         custom.config.php: |-
           <?php
           $CONFIG = array(
-            'trusted_proxies' => ['external.${SECRET_DOMAIN}'],
             'overwriteprotocol' => 'https',
             'default_phone_region' => 'CA',
             'trashbin_retention_obligation' => 'auto, 30',
@@ -81,17 +97,17 @@ spec:
             'default_locale' => 'en_GB',
             'filesystem_check_changes' => 1,
           );
-        smtp-noverify.config.php: |-
-          <?php
-          $CONFIG = array(
-            'mail_smtpstreamoptions' => array(
-              'ssl' => array(
-                'allow_self_signed' => true,
-                'verify_peer' => false,
-                'verify_peer_name' => false
-              )
-            )
-          );
+        #smtp-noverify.config.php: |-
+        #  <?php
+        #  $CONFIG = array(
+        #    'mail_smtpstreamoptions' => array(
+        #      'ssl' => array(
+        #        'allow_self_signed' => true,
+        #        'verify_peer' => false,
+        #        'verify_peer_name' => false
+        #      )
+        #    )
+        #  );
       mail:
         enabled: true
         fromAddress: admin
@@ -169,6 +185,7 @@ spec:
     persistence:
       enabled: true
       existingClaim: nextcloud
+      accessMode: "ReadWriteMany"
       nextcloudData:
         enabled: true
         existingClaim: nextcloud-nfs
