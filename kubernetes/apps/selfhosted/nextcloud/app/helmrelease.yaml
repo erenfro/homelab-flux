@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: nextcloud
-      version: 4.5.5
+      version: 4.5.4
       sourceRef:
         kind: HelmRepository
         name: nextcloud
@@ -32,46 +32,6 @@ spec:
     image:
       repository: docker.io/library/nextcloud
       tag: 27.1.4
-
-    env:
-      TZ: "${TIMEZONE}"
-
-    ingress:
-      enabled: true
-      className: external
-      annotations:
-        external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
-        nginx.ingress.kubernetes.io/proxy-body-size: 5G
-        nginx.ingress.kubernetes.io/proxy-buffering: "off"
-        nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
-        #nginx.ingress.kubernetes.io/server-snippet: |-
-        #  server_tokens off;
-        #  rewrite ^/.well-known/webfinger /public.php?service=webfinger last;
-        #  rewrite ^/.well-known/host-meta /public.php?service=host-meta last;
-        #  rewrite ^/.well-known/host-meta.json /public.php?service=host-meta-json;
-        #  location ^~ /.well-known {
-        #    location = /.well-known/carddav { return 301 /remote.php/dav/; }
-        #    location = /.well-known/caldav { return 301 /remote.php/dav/; }
-        #    location = /.well-known/acme-challenge { try_files $uri $uri/ =404; }
-        #    location = /.well-known/pki-validation { try_files $uri $uri/ =404; }
-        #    return 301 /index.php$request_uri;
-        #  }
-        #  location ~ ^/(?:build|tests|config|lib|3rdparty|templates|data)(?:$|/)  { return 404; }
-        #  location ~ ^/(?:\.|autotest|occ|issue|indie|db_|console)                { return 404; }
-      host: &host "cloud.${SECRET_DOMAIN}"
-      path: /
-      pathType: Prefix
-      tls:
-        - hosts:
-            - *host
-      #hosts:
-      #  - host: &host "cloud.${SECRET_DOMAIN}"
-      #    paths:
-      #      - path: /
-      #        pathType: Prefix
-      #tls:
-      #  - hosts:
-      #      - *host
 
     nextcloud:
       host: *host
@@ -139,6 +99,51 @@ spec:
           envFrom:
             - secretRef:
                 name: *secret
+
+    ingress:
+      enabled: true
+      className: external
+      annotations:
+        external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
+        nginx.ingress.kubernetes.io/proxy-body-size: 4G
+        nginx.ingress.kubernetes.io/proxy-buffering: "off"
+        nginx.ingress.kubernetes.io/proxy-request-buffering: "off"
+        nginx.ingress.kubernetes.io/server-snippet: |-
+          server_tokens off;
+          proxy_hide_header X-Powered-By;
+          rewrite ^/.well-known/webfinger /public.php?service=webfinger last;
+          rewrite ^/.well-known/nodeinfo /index.php/.well-known/nodeinfo last;
+          rewrite ^/.well-known/host-meta /public.php?service=host-meta last;
+          rewrite ^/.well-known/host-meta.json /public.php?service=host-meta-json;
+          location ^~ /.well-known {
+            location = /.well-known/carddav { return 301 /remote.php/dav/; }
+            location = /.well-known/caldav { return 301 /remote.php/dav/; }
+            location = /.well-known/acme-challenge { try_files $uri $uri/ =404; }
+            location = /.well-known/pki-validation { try_files $uri $uri/ =404; }
+            return 301 /index.php$request_uri;
+          }
+          location = /robots.txt {
+            allow all;
+            log_not_found off;
+            access_log off;
+          }
+          location ~ ^/(?:build|tests|config|lib|3rdparty|templates|data)(?:$|/)  { return 404; }
+          location ~ ^/(?:\.|autotest|occ|issue|indie|db_|console)                { return 404; }
+      host: &host "cloud.${SECRET_DOMAIN}"
+      path: /
+      pathType: Prefix
+      tls:
+        - hosts:
+            - *host
+      #hosts:
+      #  - host: &host "cloud.${SECRET_DOMAIN}"
+      #    paths:
+      #      - path: /
+      #        pathType: Prefix
+      #tls:
+      #  - hosts:
+      #      - *host
+
 
     internalDatabase:
       enabled: false
