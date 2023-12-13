@@ -7,8 +7,6 @@ resources:
   - ./namespace.yaml
   #- ./downloads-pvc.yaml
   # Flux-Kustomizations
-  ##- ./atuin/ks.yaml
-  ##- ./authelia/ks.yaml
   ##- ./autobrr/ks.yaml
   - ./bazarr/ks.yaml
   ##- ./cross-seed/ks.yaml
@@ -17,18 +15,13 @@ resources:
   ##- ./kubernetes-schemas/ks.yaml
   - ./lidarr/ks.yaml
   ##- ./media-browser/ks.yaml
-  ##- ./miniflux/ks.yaml
   - ./overseerr/ks.yaml
-  ##- ./plex/ks.yaml
   - ./prowlarr/ks.yaml
   - ./qbittorrent/ks.yaml
-  #- ./radarr/ks.yaml
-  #- ./readarr/ks.yaml
-  #- ./recyclarr/ks.yaml
-  #- ./sabnzbd/ks.yaml
-  ##- ./shlink/ks.yaml
+  - ./radarr/ks.yaml
+  - ./readarr/ks.yaml
+  - ./recyclarr/ks.yaml
+  - ./sabnzbd/ks.yaml
   ##- ./slskd/ks.yaml
-  ##- ./smtp-relay/ks.yaml
-  #- ./sonarr/ks.yaml
-  #- ./tautulli/ks.yaml
+  - ./sonarr/ks.yaml
   - ./unpackerr/ks.yaml

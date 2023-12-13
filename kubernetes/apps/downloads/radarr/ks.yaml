@@ -25,7 +25,8 @@ spec:
   postBuild:
     substitute:
       APP: *app
+      VOLSYNC_ACCESSMODES: ReadWriteMany
+      VOLSYNC_STORAGECLASS: longhorn-snapshot
+      VOLSYNC_SNAPSHOTCLASS: longhorn-snapclass
       VOLSYNC_CAPACITY: 2Gi
-      #VOLSYNC_STORAGECLASS: ceph-block
-      #VOLSYNC_SNAPSHOTCLASS: csi-ceph-blockpool
       VOLSYNC_UID: "1031"
