@@ -49,9 +49,9 @@ spec:
           storageClass: "longhorn-snapshot"
       replica:
         persistence:
-          enabled: true
-          accessModes: ["ReadWriteOnce"]
-          storageClass: "local-path"
+          enabled: false
+          #accessModes: ["ReadWriteOnce"]
+          #storageClass: "local-path"
 
     nextcloud:
       extraInitContainers:
