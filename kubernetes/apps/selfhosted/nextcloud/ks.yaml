@@ -48,5 +48,5 @@ spec:
       GATUS_SUBDOMAIN: cloud
       VOLSYNC_CAPACITY: 2Gi
       VOLSYNC_ACCESSMODES: ReadWriteMany
-      VOLSYNC_UID: "1022"
-      VOLSYNC_GID: "1022"
+      VOLSYNC_UID: "0"
+      VOLSYNC_GID: "0"
