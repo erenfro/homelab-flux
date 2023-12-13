@@ -43,11 +43,15 @@ spec:
         password: "${REDIS_PASSWORD}"
       master:
         persistence:
-          enabled: false
-          #accessModes: ["ReadWriteMany"]
+          enabled: true
+          size: "1Gi"
+          accessModes: ["ReadWriteMany"]
+          storageClass: "longhorn-snapshot"
       replicas:
         persistence:
-          enabled: false
+          enabled: true
+          accessModes: ["ReadWriteOnce"]
+          storageClass: "local-path"
 
     nextcloud:
       extraInitContainers:
