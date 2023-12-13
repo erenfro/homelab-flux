@@ -11,5 +11,5 @@ resources:
   #- ./hedgedoc/ks.yaml
   #- ./mealie/ks.yaml
   #- ./paperless/ks.yaml
-  - ./thelounge/ks.yaml
+  #- ./thelounge/ks.yaml
   - ./wallabag/ks.yaml
