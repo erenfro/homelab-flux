@@ -5,13 +5,13 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
-  #- ./hedgedoc/ks.yaml
+  - ./hedgedoc/ks.yaml
   - ./homepage/ks.yaml
   - ./linkding/ks.yaml
-  #- ./mealie/ks.yaml
+  - ./mealie/ks.yaml
   - ./nextcloud/ks.yaml
   - ./paperless/ks.yaml
-  - ./rainloop/ks.yaml
+  #- ./rainloop/ks.yaml
   #- ./roundcube/ks.yaml
-  #- ./shiori/ks.yaml
+  - ./shiori/ks.yaml
   - ./wikijs/ks.yaml

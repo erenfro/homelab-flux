@@ -25,9 +25,9 @@ spec:
     substitute:
       APP: *app
       GATUS_SUBDOMAIN: recipes
+      VOLSYNC_ACCESSMODES: ReadWriteMany
+      VOLSYNC_STORAGECLASS: longhorn-snapshot
+      VOLSYNC_SNAPSHOTCLASS: longhorn-snapclass
       VOLSYNC_CAPACITY: 2Gi
-      #VOLSYNC_ACCESSMODES: ReadWriteMany
-      #VOLSYNC_STORAGECLASS: ceph-filesystem
-      #VOLSYNC_SNAPSHOTCLASS: csi-ceph-filesystem
       VOLSYNC_UID: "911"
       VOLSYNC_GID: "911"
