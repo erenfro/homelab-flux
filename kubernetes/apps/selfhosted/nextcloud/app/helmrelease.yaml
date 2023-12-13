@@ -43,13 +43,13 @@ spec:
         password: "${REDIS_PASSWORD}"
       master:
         persistence:
-          enabled: true
+          enabled: false
           size: "1Gi"
           accessModes: ["ReadWriteMany"]
           storageClass: "longhorn-snapshot"
       replicas:
         persistence:
-          enabled: true
+          enabled: false
           accessModes: ["ReadWriteOnce"]
           storageClass: "local-path"
 
