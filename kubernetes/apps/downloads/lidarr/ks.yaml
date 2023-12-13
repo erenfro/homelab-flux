@@ -18,7 +18,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: home-kubernetes
-  wait: false
+  wait: true
   interval: 30m
   retryInterval: 1m
   timeout: 5m
@@ -26,7 +26,7 @@ spec:
     substitute:
       APP: *app
       VOLSYNC_ACCESSMODES: ReadWriteMany
-      VOLSYNC_CAPACITY: 2Gi
       VOLSYNC_STORAGECLASS: longhorn-snapshot
       VOLSYNC_SNAPSHOTCLASS: longhorn-snapclass
+      VOLSYNC_CAPACITY: 2Gi
       VOLSYNC_UID: "1031"
