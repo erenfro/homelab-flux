@@ -15,7 +15,7 @@ resources:
   - ./flaresolverr/ks.yaml
   ##- ./frigate/ks.yaml
   ##- ./kubernetes-schemas/ks.yaml
-  #- ./lidarr/ks.yaml
+  - ./lidarr/ks.yaml
   ##- ./media-browser/ks.yaml
   ##- ./miniflux/ks.yaml
   - ./overseerr/ks.yaml
