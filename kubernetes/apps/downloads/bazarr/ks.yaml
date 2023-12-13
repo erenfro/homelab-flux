@@ -25,6 +25,7 @@ spec:
     substitute:
       APP: *app
       VOLSYNC_ACCESSMODES: ReadWriteMany
+      VOLSYNC_CACHE_ACCESSMODES: ReadWriteMany
       VOLSYNC_CAPACITY: 2Gi
       VOLSYNC_CACHE_CAPACITY: 2Gi
       VOLSYNC_UID: "1031"
