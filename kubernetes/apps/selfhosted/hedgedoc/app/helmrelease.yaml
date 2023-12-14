@@ -120,16 +120,16 @@ spec:
         tls:
           - hosts:
               - *host
-    persistence:
+    #persistence:
       #api-data:
       #  enabled: true
       #  globalMounts:
       #    - path: /files/data/
       #  existingClaim: hedgedoc
-      config-file:
-        type: configMap
-        name: hedgedoc-configmap
-        globalMounts:
-          - path: /files/config.json
-            subPath: config.json
-            readOnly: true
+      #config-file:
+      #  type: configMap
+      #  name: hedgedoc-configmap
+      #  globalMounts:
+      #    - path: /files/config.json
+      #      subPath: config.json
+      #      readOnly: true
