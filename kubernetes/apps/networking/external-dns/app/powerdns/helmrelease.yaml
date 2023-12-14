@@ -38,7 +38,7 @@ spec:
           secretKeyRef:
             name: external-dns-powerdns-secret
             key: pdns-api-key
-      - name: EXTERNAL_DNS_PDNS_API_URL
+      - name: EXTERNAL_DNS_PDNS_SERVER
         valueFrom:
           secretKeyRef:
             name: external-dns-powerdns-secret
