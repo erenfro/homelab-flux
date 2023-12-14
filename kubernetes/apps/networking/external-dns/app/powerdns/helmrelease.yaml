@@ -33,12 +33,12 @@ spec:
       - ingress
 
     env:
-      - name: PDNS_API_KEY
+      - name: EXTERNAL_DNS_PDNS_API_KEY
         valueFrom:
           secretKeyRef:
             name: external-dns-powerdns-secret
             key: pdns-api-key
-      - name: PDNS_API_URL
+      - name: EXTERNAL_DNS_PDNS_API_URL
         valueFrom:
           secretKeyRef:
             name: external-dns-powerdns-secret
