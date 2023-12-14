@@ -25,9 +25,9 @@ spec:
     substitute:
       APP: *app
       GATUS_SUBDOMAIN: md
-      VOLSYNC_ACCESSMODES: ReadWriteMany
-      VOLSYNC_STORAGECLASS: longhorn-snapshot
-      VOLSYNC_SNAPSHOTCLASS: longhorn-snapclass
-      VOLSYNC_CAPACITY: 2Gi
-      VOLSYNC_UID: "1000"
-      VOLSYNC_GID: "1000"
+      #VOLSYNC_ACCESSMODES: ReadWriteMany
+      #VOLSYNC_STORAGECLASS: longhorn-snapshot
+      #VOLSYNC_SNAPSHOTCLASS: longhorn-snapclass
+      #VOLSYNC_CAPACITY: 2Gi
+      #VOLSYNC_UID: "1000"
+      #VOLSYNC_GID: "1000"
