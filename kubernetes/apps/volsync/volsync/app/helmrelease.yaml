@@ -37,6 +37,13 @@ spec:
       tag: *tag
     metrics:
       disableAuth: true
+    resources:
+      requests:
+        cpu: 100m
+        memory: 32Mi
+      limits:
+        cpu: 100m
+        memory: 600Mi
   #postRenderers:
   #  - kustomize:
   #      patchesStrategicMerge:
