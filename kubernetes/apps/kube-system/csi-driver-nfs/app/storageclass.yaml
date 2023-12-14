@@ -9,4 +9,8 @@ parameters:
   share: /volume1/k3s
 reclaimPolicy: Delete
 volumeBindingMode: Immediate
-mountOptions: ["hard", "noatime"]
+mountOptions:
+  - nfsvers=4.0
+  - nconnect=8
+  - hard
+  - noatime
