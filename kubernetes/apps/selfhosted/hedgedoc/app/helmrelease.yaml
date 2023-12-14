@@ -40,11 +40,11 @@ spec:
             envFrom:
               - secretRef:
                   name: &secret hedgedoc-secret
-          init-data:
-            image:
-              repository: busybox
-              tag: 1.28
-              command: ['sh', '-c', 'cp -a /hedgedoc/public/docs /hedgedog/public/uploads /hedgedog/public/uploads /files/data/']
+          #init-data:
+          #  image:
+          #    repository: busybox
+          #    tag: 1.28
+          #    command: ['sh', '-c', 'cp -a /hedgedoc/public/docs /hedgedog/public/uploads /hedgedog/public/uploads /files/data/']
         containers:
           main:
             image:
@@ -65,7 +65,8 @@ spec:
               CMD_URL_ADDPORT: false
               CMD_ENABLE_STATUS_API: true
               CMD_ALLOW_GRAVATAR: true
-              CMD_IMAGE_UPLOAD_TYPE: filesystem
+              #CMD_IMAGE_UPLOAD_TYPE: filesystem
+              CMD_IMAGE_UPLOAD_TYPE: minio
               CMD_ALLOW_ANONYMOUS: true
               CMD_ALLOW_ANONYMOUS_EDITS: false
               CMD_ALLOW_FREEURL: true
@@ -120,11 +121,11 @@ spec:
           - hosts:
               - *host
     persistence:
-      api-data:
-        enabled: true
-        globalMounts:
-          - path: /files/data/
-        existingClaim: hedgedoc
+      #api-data:
+      #  enabled: true
+      #  globalMounts:
+      #    - path: /files/data/
+      #  existingClaim: hedgedoc
       config-file:
         type: configMap
         name: hedgedoc-configmap
