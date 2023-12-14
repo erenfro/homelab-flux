@@ -5,6 +5,6 @@ namespace: networking
 resources:
   - ./dnsendpoint-crd.yaml
   - ./cloudflare
-  #- ./powerdns
+  - ./powerdns
   #- ./secret.sops.yaml
   #- ./helmrelease.yaml
