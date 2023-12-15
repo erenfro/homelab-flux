@@ -34,30 +34,30 @@ spec:
       numberOfReplicas: "3"
       staleReplicaTimeout: "30"
     groups:
-      "Database":
-        snapshot:
-          - interval: 10m
-            retain: 6
-        backup:
-          - interval: 12h
-            retain: 2
-        filesystem-trim:
-          - interval: 20m
+      #"Database":
+      #  snapshot:
+      #    - interval: 10m
+      #      retain: 6
+      #  backup:
+      #    - interval: 12h
+      #      retain: 2
+      #  filesystem-trim:
+      #    - interval: 20m
 
-      "Gameserver":
-        options:
-          parameters:
-            numberOfReplicas: "2"
-        snapshot:
-          - interval: 10m
-            retain: 6
-          - interval: 1h
-            retain: 6
-        backup:
-          - interval: 12h
-            retain: 4
-        filesystem-trim:
-          - interval: 20m
+      #"Gameserver":
+      #  options:
+      #    parameters:
+      #      numberOfReplicas: "2"
+      #  snapshot:
+      #    - interval: 10m
+      #      retain: 6
+      #    - interval: 1h
+      #      retain: 6
+      #  backup:
+      #    - interval: 12h
+      #      retain: 4
+      #  filesystem-trim:
+      #    - interval: 20m
 
       #"Plex":
       #  snapshot:
@@ -71,11 +71,11 @@ spec:
 
       "Config":
         snapshot:
-          - interval: 10m
+          - interval: 2h
             retain: 6
         backup:
           - interval: 24h
-            retain: 7
+            retain: 3
         filesystem-trim:
           - interval: 20m
 
