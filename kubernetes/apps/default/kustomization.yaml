@@ -9,5 +9,5 @@ resources:
   - ./excalidraw/ks.yaml
   - ./hajimari/ks.yaml
   - ./thelounge/ks.yaml
-  #- ./theme-park/ks.yaml
+  - ./theme-park/ks.yaml
   - ./wallabag/ks.yaml
