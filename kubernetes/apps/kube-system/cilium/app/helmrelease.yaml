@@ -33,10 +33,10 @@ spec:
     bpf:
       masquerade: true
       # new
-      tproxy: true
+      #tproxy: true
     # new
-    externalIPs:
-      enabled: true
+    #externalIPs:
+    #  enabled: true
     bgp:
       enabled: false
     bgpControlPlane:
