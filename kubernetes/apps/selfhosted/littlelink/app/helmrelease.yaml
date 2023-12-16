@@ -80,18 +80,23 @@ spec:
       main:
         ports:
           http:
-            enabled: true
-            port: 80
-            targetPort: 3000
+            port: 3000
     ingress:
       main:
         enabled: true
         ingressClassName: external
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
+          hajimari.io/enable: "true"
+          hajimari.io/icon: ant-design:read-outlined
+          gethomepage.dev/enabled: "false"
         hosts:
           - host: &host "profile.${SECRET_DOMAIN}"
             paths:
               - path: /
-                pathType: Prefix
+                service:
+                  name: main
+                  port: http
         tls:
           - hosts:
               - *host
