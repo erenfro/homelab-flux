@@ -45,20 +45,10 @@ spec:
             env:
               TZ: ${TIMEZONE}
               # Core config
-              #CORE_SECRET:
-              #  valueFrom:
-              #    secretKeyRef:
-              #      name: zipline-secret
-              #      key: CORE_SECRET
-              #CORE_DATABASE_URL:
-              #  valueFrom:
-              #    secretKeyRef:
-              #      name: zipline-secret
-              #      key: CORE_DATABASE_URL
               CORE_LOGGER: "true"
               CORE_RETURN_HTTPS: "true"
-              CORE_COMPRESSION_ENABLED: "true"
-              CORE_COMPRESSION_THRESHOLD: "200mb"
+              #CORE_COMPRESSION_ENABLED: "true"
+              #CORE_COMPRESSION_THRESHOLD: "200mb"
               CORE_COMPRESSION_ON_DASHBOARD: "true"
               CORE_HTTPS: "true"
               CORE_HOST: "0.0.0.0"
