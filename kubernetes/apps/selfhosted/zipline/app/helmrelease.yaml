@@ -55,6 +55,7 @@ spec:
               #    secretKeyRef:
               #      name: zipline-secret
               #      key: CORE_DATABASE_URL
+              CORE_LOGGER: "true"
               CORE_RETURN_HTTPS: "true"
               CORE_COMPRESSION_ENABLED: "true"
               CORE_COMPRESSION_THRESHOLD: "200mb"
