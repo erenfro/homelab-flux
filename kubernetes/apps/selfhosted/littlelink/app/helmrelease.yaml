@@ -51,7 +51,7 @@ spec:
               AVATAR_ALT: Eric Renfro
               NAME: Eric Renfro
               BIO: "Linux Systems Engineer | 30+ Years of Linux"
-              BUTTON_ORDER: Website,GITHUB,GITLAB,GITEA,LINKED_IN,MATRIX,DISCORD
+              BUTTON_ORDER: Website,GITHUB,GITLAB,GITEA,FACEBOOK,LINKED_IN,MATRIX,DISCORD
               GITHUB: https://github.com/erenfro
               GITLAB: https://gitlab.com/psi-jack
               GITEA: https://git.linux-help.org/psi-jack/
@@ -63,6 +63,7 @@ spec:
               CUSTOM_BUTTON_TEXT_COLOR: "#ED2756,#00000"
               CUSTOM_BUTTON_URL: https://linux-help.org/donate,https://linux-help.org/
               BUTTON_TARGET: _blank
+              FACEBOOK: https://www.facebook.com/eric.renfro
               LINKED_IN: https://linkedin.com/in/ericrenfro
               DISCORD: https://discord.com/users/331909633759379466
               MATRIX: https://matrix.to/#/@psi-jack:matrix.org
