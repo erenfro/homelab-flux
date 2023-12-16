@@ -11,7 +11,7 @@ resources:
   - ./littlelink/ks.yaml
   - ./mealie/ks.yaml
   - ./nextcloud/ks.yaml
-  - ./outline/ks.yaml
+  #- ./outline/ks.yaml
   - ./paperless/ks.yaml
   #- ./rainloop/ks.yaml
   #- ./roundcube/ks.yaml
