@@ -1,6 +1,6 @@
 ---
 # yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: organizr
@@ -77,11 +77,11 @@ spec:
                 memory: 512Gi
         pod:
           securityContext:
-            runAsUser: 568
-            runAsGroup: 568
+            #runAsUser: 568
+            #runAsGroup: 568
             fsGroup: 568
             fsGroupChangePolicy: OnRootMismatch
-            supplementalGroups: [10000]
+            #supplementalGroups: [10000]
     service:
       main:
         ports:
