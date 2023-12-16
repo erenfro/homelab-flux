@@ -32,7 +32,7 @@ spec:
     image:
       flavor: apache
       repository: nextcloud
-      tag: 27.1.4
+      tag: 27.1.5
       pullPolicy: IfNotPresent
     #image:
     #  flavor: fpm-alpine
