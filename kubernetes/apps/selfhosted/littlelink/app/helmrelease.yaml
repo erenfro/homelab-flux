@@ -1,11 +1,12 @@
 ---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2beta2.json
 apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
-  name: littlelink
+  name: &app littlelink
   namespace: selfhosted
 spec:
-  interval: 5m
+  interval: 30m
   releaseName: littlelink
   chart:
     spec:
@@ -16,44 +17,65 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-      interval: 5m
+  maxHistory: 2
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+
   values:
-    image:
-      repository: ghcr.io/techno-tim/littlelink-server
-      tag: latest@sha256:8fb66f7ce8b85c5c23151decd38204660c52f1d1002ec748e7297550a83ae1c8
-      pullPolicy: Always
-    env:
-      TZ: "${TIMEZONE}"
-      META_TITLE: Eric Renfro
-      META_DESCRIPTION: Eric's Link Page
-      META_AUTHOR: Eric Renfro
-      THEME: Dark
-      FAVICON_URL: https://gravatar.com/userimage/101641116/caba77839f86b245b5c51d19023d06db.jpeg?size=16
-      AVATAR_URL: https://gravatar.com/userimage/101641116/caba77839f86b245b5c51d19023d06db.jpeg?size=128
-      AVATAR_2X_URL: https://gravatar.com/userimage/101641116/caba77839f86b245b5c51d19023d06db.jpeg?size=256
-      AVATAR_ALT: Eric Renfro
-      NAME: Eric Renfro
-      BIO: "Linux Systems Engineer | 30+ Years of Linux"
-      BUTTON_ORDER: Website,GITHUB,GITLAB,GITEA,LINKED_IN,MATRIX,DISCORD
-      GITHUB: https://github.com/erenfro
-      GITLAB: https://gitlab.com/psi-jack
-      GITEA: https://git.linux-help.org/psi-jack/
-      CUSTOM_BUTTON_ALT_TEXT: Donation link,Website link
-      CUSTOM_BUTTON_ICON: fas fa-donate,fa-solid fa-globe
-      CUSTOM_BUTTON_NAME: Donate,Website
-      CUSTOM_BUTTON_COLOR: "#ffffff,#ffffff"
-      CUSTOM_BUTTON_TEXT: Buy me a coffee,Main website
-      CUSTOM_BUTTON_TEXT_COLOR: "#ED2756,#00000"
-      CUSTOM_BUTTON_URL: https://linux-help.org/donate,https://linux-help.org/
-      BUTTON_TARGET: _blank
-      LINKED_IN: https://linkedin.com/in/ericrenfro
-      DISCORD: https://discord.com/users/331909633759379466
-      MATRIX: https://matrix.to/#/@psi-jack:matrix.org
-      TRAKT: https://trakt.tv/users/psi-jack
-      STEAM: https://steamcommunity.com/id/psi-jack
-      EMAIL: psi-jack@linux-help.org
-      EMAIL_TEXT: Email me!
-      FOOTER: Eric Renfro © 1995-2023
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+        containers:
+          main:
+            image:
+              repository: ghcr.io/techno-tim/littlelink-server
+              tag: latest@sha256:8fb66f7ce8b85c5c23151decd38204660c52f1d1002ec748e7297550a83ae1c8
+              pullPolicy: Always
+            env:
+              TZ: "${TIMEZONE}"
+              META_TITLE: Eric Renfro
+              META_DESCRIPTION: Eric's Link Page
+              META_AUTHOR: Eric Renfro
+              THEME: Dark
+              FAVICON_URL: https://gravatar.com/userimage/101641116/caba77839f86b245b5c51d19023d06db.jpeg?size=16
+              AVATAR_URL: https://gravatar.com/userimage/101641116/caba77839f86b245b5c51d19023d06db.jpeg?size=128
+              AVATAR_2X_URL: https://gravatar.com/userimage/101641116/caba77839f86b245b5c51d19023d06db.jpeg?size=256
+              AVATAR_ALT: Eric Renfro
+              NAME: Eric Renfro
+              BIO: "Linux Systems Engineer | 30+ Years of Linux"
+              BUTTON_ORDER: Website,GITHUB,GITLAB,GITEA,LINKED_IN,MATRIX,DISCORD
+              GITHUB: https://github.com/erenfro
+              GITLAB: https://gitlab.com/psi-jack
+              GITEA: https://git.linux-help.org/psi-jack/
+              CUSTOM_BUTTON_ALT_TEXT: Donation link,Website link
+              CUSTOM_BUTTON_ICON: fas fa-donate,fa-solid fa-globe
+              CUSTOM_BUTTON_NAME: Donate,Website
+              CUSTOM_BUTTON_COLOR: "#ffffff,#ffffff"
+              CUSTOM_BUTTON_TEXT: Buy me a coffee,Main website
+              CUSTOM_BUTTON_TEXT_COLOR: "#ED2756,#00000"
+              CUSTOM_BUTTON_URL: https://linux-help.org/donate,https://linux-help.org/
+              BUTTON_TARGET: _blank
+              LINKED_IN: https://linkedin.com/in/ericrenfro
+              DISCORD: https://discord.com/users/331909633759379466
+              MATRIX: https://matrix.to/#/@psi-jack:matrix.org
+              TRAKT: https://trakt.tv/users/psi-jack
+              STEAM: https://steamcommunity.com/id/psi-jack
+              EMAIL: psi-jack@linux-help.org
+              EMAIL_TEXT: Email me!
+              FOOTER: Eric Renfro © 1995-2023
+            resources:
+              requests:
+                memory: 64M
+              limits:
+                memory: 95M
     service:
       main:
         ports:
@@ -73,8 +95,3 @@ spec:
         tls:
           - hosts:
               - *host
-    resources:
-      requests:
-        memory: 64M
-      limits:
-        memory: 95M
