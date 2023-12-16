@@ -103,7 +103,7 @@ spec:
     #k8sClientRateLimit:
     #  qps: 10
     #  burst: 25
-    # new?
+    # new - 1.15
     #tunnelProtocol: "native"
     loadBalancer:
       algorithm: maglev
