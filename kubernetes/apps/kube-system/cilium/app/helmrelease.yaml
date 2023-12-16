@@ -103,7 +103,8 @@ spec:
     #k8sClientRateLimit:
     #  qps: 10
     #  burst: 25
-    tunnelProtocol: "native"
+    # new?
+    #tunnelProtocol: "native"
     loadBalancer:
       algorithm: maglev
       mode: snat
