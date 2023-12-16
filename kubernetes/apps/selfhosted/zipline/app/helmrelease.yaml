@@ -53,24 +53,45 @@ spec:
               #CORE_HTTPS: "true"
               CORE_HOST: "0.0.0.0"
               CORE_PORT: "3000"
+              CORE_DATABASE_URL:
+                valueFrom:
+                  secretKeyRef:
+                    name: zipline-secret
+                    key: CORE_DATABASE_URL
+              CORE_SECRET:
+                valueFrom:
+                  secretKeyRef:
+                    name: zipline-secret
+                    key: CORE_SECRET
 
               # Datasources
-              DATASOURCE_TYPE: local
-              DATASOURCE_LOCAL_DIRECTORY: ./uploads
-              #DATASOURCE_TYPE: s3
-              #DATASOURCE_S3_ACCESS_KEY_ID:
-              #  valueFrom:
-              #    secretKeyRef:
-              #      name: zipline-secret
-              #      key: AWS_ACCESS_KEY_ID
-              #DATASOURCE_S3_SECRET_ACCESS_KEY:
-              #  valueFrom:
-              #    secretKeyRef:
-              #      name: zipline-secret
-              #      key: AWS_SECRET_ACCESS_KEY
+              #DATASOURCE_TYPE: local
+              #DATASOURCE_LOCAL_DIRECTORY: ./uploads
+              DATASOURCE_TYPE: s3
+              DATASOURCE_S3_ACCESS_KEY_ID:
+                valueFrom:
+                  secretKeyRef:
+                    name: zipline-secret
+                    key: DATASOURCE_S3_ACCESS_KEY_ID
+              DATASOURCE_S3_SECRET_ACCESS_KEY:
+                valueFrom:
+                  secretKeyRef:
+                    name: zipline-secret
+                    key: DATASOURCE_S3_SECRET_ACCESS_KEY
+              DATASOURCE_S3_ENDPOINT:
+                valueFrom:
+                  secretKeyRef:
+                    name: zipline-secret
+                    key: DATASOURCE_S3_ENDPOINT
+              DATASOURCE_S3_PORT:
+                valueFrom:
+                  secretKeyRef:
+                    name: zipline-secret
+                    key: DATASOURCE_S3_PORT
               DATASOURCE_S3_BUCKET: zipline
-              #DATASOURCE_S3_REGION: ca-east-1
+              DATASOURCE_S3_REGION: ca-east-1
               DATASOURCE_S3_USE_SSL: "false"
+
               #OAUTH_DISCORD_CLIENT_ID:
               #  valueFrom:
               #    secretKeyRef:
@@ -118,7 +139,7 @@ spec:
               #WEBSITE_EXTERNAL_LINKS: '[{label:Admin: Aumer,link:https://${SECRET_DOMAIN}},{label:Powered by Zipline,link:https://github.com/diced/zipline}]'
               #WEBSITE_SHOW_VERSION: "false"
               #WEBSITE_DISABLE_MEDIA_PREVIEW: "false"
-            envFrom: *envFrom
+            #envFrom: *envFrom
             resources:
               requests:
                 cpu: 5m
