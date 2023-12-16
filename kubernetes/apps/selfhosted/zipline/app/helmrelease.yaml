@@ -81,7 +81,7 @@ spec:
               #      key: OAUTH_DISCORD_CLIENT_SECRET
 
               # Exif
-              EXIF_ENABLED: "true"
+              EXIF_ENABLED: "false"
               EXIF_REMOVE_GPS: "true"
 
               # Features
