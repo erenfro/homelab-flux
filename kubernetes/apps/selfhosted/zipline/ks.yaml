@@ -11,8 +11,8 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
-    - name: cluster-apps-external-secrets-bitwarden
-    - name: cluster-apps-cloudnative-pg-cluster
+    - name: cloudnative-pg-cluster
+    - name: external-secrets-bitwarden
   path: ./kubernetes/apps/selfhosted/zipline/app
   prune: true
   sourceRef:
