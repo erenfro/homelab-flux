@@ -75,7 +75,7 @@ spec:
               OIDC_SCOPES: "openid profile email"
               OIDC_TOKEN_URI: "https://auth.${SECRET_DOMAIN}/application/o/token/"
               OIDC_USERINFO_URI: "https://auth.${SECRET_DOMAIN}/application/o/userinfo/"
-              OIDC_USERNAME_CLAIM: "preferred_username"
+              OIDC_USERNAME_CLAIM: "email"
 
               # Database
               PGSSLMODE: disable
