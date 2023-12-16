@@ -4,13 +4,13 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: &app outline
-  namespace: default
+  namespace: selfhosted
 spec:
   interval: 30m
   chart:
     spec:
       chart: app-template
-      version: 1.2.1
+      version: 2.4.0
       sourceRef:
         kind: HelmRepository
         name: bjw-s
@@ -23,28 +23,83 @@ spec:
     cleanupOnFail: true
     remediation:
       retries: 3
+  dependsOn:
+    - name: redis
+      namespace: database
   uninstall:
     keepHistory: false
   values:
-    initContainers:
-      init-db:
-        image: ghcr.io/onedr0p/postgres-initdb:14.6
-        imagePullPolicy: IfNotPresent
-        envFrom:
-          - secretRef:
-              name: outline-secret
-    controller:
-      replicas: 3
-      strategy: RollingUpdate
-      annotations:
-        reloader.stakater.com/auto: "true"
-    image:
-      repository: docker.io/outlinewiki/outline
-      tag: 0.67.2
-    envFrom:
-      - secretRef:
-          name: outline-secret
-    command: ["/bin/sh", "-c", "yarn db:migrate --env=production-ssl-disabled && yarn start --env=production-ssl-disabled"]
+    controllers:
+      main:
+        replicas: 1
+        strategy: RollingUpdate
+        annotations:
+          reloader.stakater.com/auto: "true"
+
+        initContainers:
+          init-db:
+            image: ghcr.io/onedr0p/postgres-initdb
+            tag: 16
+            imagePullPolicy: IfNotPresent
+            envFrom: &endFrom
+              - secretRef:
+                  name: outline-secret
+        containers:
+          main:
+            image:
+              repository: docker.io/outlinewiki/outline
+              tag: 0.74.0
+            env:
+              # Core
+              ENABLE_UPDATES: "false"
+              PORT: 80
+              URL: "https://docs.${CLUSTER_DOMAIN}"
+              WEB_CONCURRENCY: 10
+
+              # S3
+              AWS_REGION: ca-east-1
+              AWS_S3_ACL: private
+              AWS_S3_FORCE_PATH_STYLE: "true"
+              AWS_S3_UPLOAD_BUCKET_NAME: outline
+              AWS_S3_UPLOAD_BUCKET_URL: "http://${NAS_HOST}:9000"
+              AWS_S3_UPLOAD_MAX_SIZE: "26214400"
+
+              # Authentication
+              OIDC_AUTH_URI: "https://auth.${SECRET_DOMAIN}/application/o/authorize/"
+              OIDC_DISPLAY_NAME: Authentik
+              OIDC_SCOPES: "openid profile email"
+              OIDC_TOKEN_URI: "https://auth.${SECRET_DOMAIN}/application/o/token/"
+              OIDC_USERINFO_URI: "https://auth.${SECRET_DOMAIN}/application/o/userinfo/"
+              OIDC_USERNAME_CLAIM: "preferred_username"
+
+              # Database
+              PGSSLMODE: disable
+
+              # Redis
+              REDIS_URL: ioredis://eyJkYiI6MTUsInNlbnRpbmVscyI6W3siaG9zdCI6InJlZGlzLW5vZGUtMC5yZWRpcy1oZWFkbGVzcy5kYm1zLnN2Yy5jbHVzdGVyLmxvY2FsIiwicG9ydCI6MjYzNzl9LHsiaG9zdCI6InJlZGlzLW5vZGUtMS5yZWRpcy1oZWFkbGVzcy5kYm1zLnN2Yy5jbHVzdGVyLmxvY2FsIiwicG9ydCI6MjYzNzl9LHsiaG9zdCI6InJlZGlzLW5vZGUtMi5yZWRpcy1oZWFkbGVzcy5kYm1zLnN2Yy5jbHVzdGVyLmxvY2FsIiwicG9ydCI6MjYzNzl9XSwibmFtZSI6InJlZGlzLW1hc3RlciJ9
+
+              # Mail
+              SMTP_HOST: "${MAIL_PROD_SMTP}"
+              SMTP_PORT: "${SMTP_PORT}"
+              SMTP_FROM_EMAIL: "outline@${SECRET_DOMAIN}"
+              SMTP_SECURE: "true"
+
+            envFrom: *envFrom
+            command: ["/bin/sh", "-c", "yarn db:migrate --env=production-ssl-disabled && yarn start --env=production-ssl-disabled"]
+            resources:
+              requests:
+                cpu: 10m
+                memory: 250Mi
+              limits:
+                memory: 750Mi
+        pod:
+          topologySpreadConstraints:
+            - maxSkew: 1
+              topologyKey: kubernetes.io/hostname
+              whenUnsatisfiable: DoNotSchedule
+              labelSelector:
+                matchLabels:
+                  app.kubernetes.io/name: *app
     service:
       main:
         ports:
@@ -53,27 +108,17 @@ spec:
     ingress:
       main:
         enabled: true
-        ingressClassName: nginx
+        className: internal
         annotations:
-          external-dns.alpha.kubernetes.io/target: ingress.devbu.io
+          hajimari.io/icon: mdi:notebook-edit-outline
+          external-dns.alpha.kubernetes.io/target: ingress.${SECRET_DOMAIN}
         hosts:
-          - host: &host docs.devbu.io
+          - host: &host "docs.${SECRET_DOMAIN}"
             paths:
               - path: /
-                pathType: Prefix
+                service:
+                  name: main
+                  port: http
         tls:
           - hosts:
               - *host
-    topologySpreadConstraints:
-      - maxSkew: 1
-        topologyKey: kubernetes.io/hostname
-        whenUnsatisfiable: DoNotSchedule
-        labelSelector:
-          matchLabels:
-            app.kubernetes.io/name: *app
-    resources:
-      requests:
-        cpu: 10m
-        memory: 50Mi
-      limits:
-        memory: 500Mi
