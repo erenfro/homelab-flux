@@ -56,7 +56,7 @@ spec:
 
               # Datasources
               DATASOURCE_TYPE: local
-              DATASOURCE_LOCAL_DIRECTORY=./uploads
+              DATASOURCE_LOCAL_DIRECTORY: ./uploads
               #DATASOURCE_TYPE: s3
               #DATASOURCE_S3_ACCESS_KEY_ID:
               #  valueFrom:
