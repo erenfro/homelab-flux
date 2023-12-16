@@ -13,7 +13,7 @@
 
 This repository is for my homelab which combineds Proxmox VE with Kubernetes using K3s. It's based on the k8s-at-home [flux template](https://github.com/onedr0p/flux-cluster-template). It's supported by [k3s](https://k3s.io) cluster with [Ansible](https://www.ansible.com) backed by [Flux](https://toolkit.fluxcd.io/), [SOPS](https://toolkit.fluxcd.io/guides/mozilla-sops/), bitwarden-cli for external-secrets, Longhorn storage as well as GlusterFS for democratic-csi and additional NFS cluster storage options.
 
-## 🔧 Hardware
+## 🛠️ Hardware
 
 | Name   | Device              | CPU            | OS Disk         | Data Disk   | RAM  | OS     | Purpose                                         |
 |--------|---------------------|----------------|-----------------|-------------|------|--------|-------------------------------------------------|
@@ -27,13 +27,13 @@ Total CPU: 50 threads
 
 Total RAM: 120 GB
 
-### Supporting Hardware
+### 🗜️ Supporting Hardware
 
 | Name   | Device         | CPU        | OS Disk   | Data Disk | RAM   | OS       | Purpose               |
 |--------|----------------|------------|-----------|-----------|-------|----------|-----------------------|
 | NAS    | Synology DS416 | 2x AL212   | 11TiB HDD | ZFS 56TB  | 1GB   | DSM 7.x  | NAS/NFS/Backup        |
 
-### Networking/UPS Hardware
+### 🧰 Networking/UPS Hardware
 
 | Device         | Purpose                |
 |----------------|------------------------|
