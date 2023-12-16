@@ -67,7 +67,7 @@ spec:
               #      name: zipline-secret
               #      key: AWS_SECRET_ACCESS_KEY
               DATASOURCE_S3_BUCKET: zipline
-              DATASOURCE_S3_REGION: ca-east-1
+              #DATASOURCE_S3_REGION: ca-east-1
               DATASOURCE_S3_USE_SSL: "false"
               #OAUTH_DISCORD_CLIENT_ID:
               #  valueFrom:
