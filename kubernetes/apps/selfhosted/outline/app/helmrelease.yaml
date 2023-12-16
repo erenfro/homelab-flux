@@ -41,7 +41,7 @@ spec:
             image: ghcr.io/onedr0p/postgres-initdb
             tag: 16
             imagePullPolicy: IfNotPresent
-            envFrom: &endFrom
+            envFrom: &envFrom
               - secretRef:
                   name: outline-secret
         containers:
