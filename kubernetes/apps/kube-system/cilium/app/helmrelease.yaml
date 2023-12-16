@@ -1,5 +1,5 @@
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: cilium
@@ -10,6 +10,7 @@ spec:
     spec:
       chart: cilium
       version: 1.14.4
+      #version: '1.15.0-pre.3'
       sourceRef:
         kind: HelmRepository
         name: cilium
@@ -24,7 +25,117 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
-  valuesFrom:
-    - name: cilium-values
-      kind: ConfigMap
-      valuesKey: values.yaml
+  values:
+    autoDirectNodeRoutes: true
+    bandwidthManager:
+      enabled: true
+      bbr: true
+    bpf:
+      masquerade: true
+      # new
+      tproxy: true
+    # new
+    externalIPs:
+      enabled: true
+    bgp:
+      enabled: false
+    bgpControlPlane:
+      enabled: false
+    cluster:
+      name: home-cluster
+      id: 1
+    containerRuntime:
+      integration: containerd
+      socketPath: /var/run/k3s/containerd/containerd.sock
+    endpointRoutes:
+      enabled: true
+    hubble:
+      enabled: true
+      metrics:
+        enabled:
+          - dns:query
+          - drop
+          - tcp
+          - flow
+          - port-distribution
+          - icmp
+          - http
+        serviceMonitor:
+          enabled: true
+        dashboards:
+          enabled: true
+          annotations:
+            grafana_folder: Cilium
+      relay:
+        enabled: true
+        rollOutPods: true
+        prometheus:
+          serviceMonitor:
+            enabled: true
+      ui:
+        enabled: true
+        rollOutPods: true
+        ingress:
+          enabled: true
+          className: internal
+          annotations:
+            hajimari.io/icon: simple-icons:cilium
+          hosts:
+            - "hubble.${SECRET_DOMAIN}"
+          tls:
+            - hosts:
+                - "hubble.${SECRET_DOMAIN}"
+    ipam:
+      mode: kubernetes
+    ipv4NativeRoutingCIDR: "${CLUSTER_CIDR}"
+    k8sServiceHost: "${KUBE_VIP_ADDR}"
+    k8sServicePort: 6443
+    # Not compatible with 1.13.6?
+    kubeProxyReplacement: true
+    kubeProxyReplacementHealthzBindAddr: 0.0.0.0:10256
+    routing-mode: native
+    l2announcements:
+      enabled: true
+      # https://github.com/cilium/cilium/issues/26586
+      leaseDuration: 120s
+      leaseRenewDeadline: 60s
+      leaseRetryPeriod: 1s
+    #k8sClientRateLimit:
+    #  qps: 10
+    #  burst: 25
+    tunnelProtocol: "native"
+    loadBalancer:
+      algorithm: maglev
+      mode: snat
+    #  algorithm: maglev
+    #  mode: dsr
+    localRedirectPolicy: true
+    operator:
+      replicas: 1
+      rollOutPods: true
+      prometheus:
+        enabled: true
+        serviceMonitor:
+          enabled: true
+      dashboards:
+        enabled: true
+        annotations:
+          grafana_folder: Cilium
+    prometheus:
+      enabled: true
+      serviceMonitor:
+        enabled: true
+        trustCRDsExist: true
+    dashboards:
+      enabled: true
+      annotations:
+        grafana_folder: Cilium
+    rollOutCiliumPods: true
+    securityContext:
+      privileged: true
+    tunnel: disabled
+
+  #valuesFrom:
+  #  - name: cilium-values
+  #    kind: ConfigMap
+  #    valuesKey: values.yaml
