@@ -16,4 +16,4 @@ resources:
   #- ./roundcube/ks.yaml
   - ./shiori/ks.yaml
   - ./wikijs/ks.yaml
-  - ./zipline/ks.yaml
+  #- ./zipline/ks.yaml
