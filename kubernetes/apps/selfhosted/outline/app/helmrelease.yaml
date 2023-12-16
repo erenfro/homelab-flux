@@ -116,7 +116,7 @@ spec:
         className: internal
         annotations:
           hajimari.io/icon: mdi:notebook-edit-outline
-          external-dns.alpha.kubernetes.io/target: ingress.${SECRET_DOMAIN}
+          external-dns.alpha.kubernetes.io/target: internal.${SECRET_DOMAIN}
         hosts:
           - host: &host "docs.${SECRET_DOMAIN}"
             paths:
