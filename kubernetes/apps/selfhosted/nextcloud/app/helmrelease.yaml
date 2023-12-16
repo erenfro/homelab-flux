@@ -29,6 +29,11 @@ spec:
     - name: longhorn
       namespace: storage
   values:
+    image:
+      flavor: apache
+      repository: nextcloud
+      tag: 27.1.4
+      pullPolicy: IfNotPresent
     #image:
     #  flavor: fpm-alpine
       #repository: docker.io/library/nextcloud
