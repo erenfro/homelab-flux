@@ -49,10 +49,11 @@ spec:
               CORE_RETURN_HTTPS: "true"
               #CORE_COMPRESSION_ENABLED: "true"
               #CORE_COMPRESSION_THRESHOLD: "200mb"
-              CORE_COMPRESSION_ON_DASHBOARD: "true"
+              #CORE_COMPRESSION_ON_DASHBOARD: "true"
               CORE_HTTPS: "true"
               CORE_HOST: "0.0.0.0"
               CORE_PORT: "3000"
+
               # Datasources
               DATASOURCE_TYPE: s3
               #DATASOURCE_S3_ACCESS_KEY_ID:
@@ -78,16 +79,19 @@ spec:
               #    secretKeyRef:
               #      name: zipline-secret
               #      key: OAUTH_DISCORD_CLIENT_SECRET
+
               # Exif
               EXIF_ENABLED: "true"
               EXIF_REMOVE_GPS: "true"
+
               # Features
               FEATURES_INVITES: "false"
               FEATURES_INVITES_LENGTH: "16"
               FEATURES_ROBOTS_TXT: "true"
-              FEATURES_OAUTH_REGISTRATION: "false"
-              FEATURES_USER_REGISTRATION: "false"
-              FEATURES_HEADLESS: "false"
+              #FEATURES_OAUTH_REGISTRATION: "false"
+              #FEATURES_USER_REGISTRATION: "false"
+              #FEATURES_HEADLESS: "false"
+
               # Uploader
               UPLOADER_DEFAULT_FORMAT: DATE
               UPLOADER_ROUTE: /file
@@ -95,10 +99,10 @@ spec:
               UPLOADER_USER_LIMIT: 500mb
               UPLOADER_DISABLED_EXTENSIONS: ps1,pdf,bat,exe,sh,fish
               UPLOADER_FORMAT_DATE: "YYYY-MM-DD_HH-mm-ss"
-              UPLOADER_DEFAULT_EXPIRATION: "1"
+              UPLOADER_DEFAULT_EXPIRATION: ""
               # Ratelimit
-              RATELIMIT_USER: "5"
-              RATELIMIT_ADMIN: "1"
+              #RATELIMIT_USER: "5"
+              #RATELIMIT_ADMIN: "1"
               # URLs
               URLS_ROUTE: /go
               URLS_LENGTH: "6"
@@ -121,11 +125,11 @@ spec:
             #    memory: 128Mi
             #  limits:
             #    memory: 4000Mi
-            podSecurityContext:
-              runAsUser: 568
-              runAsGroup: 568
-              fsGroup: 568
-              fsGroupChangePolicy: OnRootMismatch
+            #podSecurityContext:
+            #  runAsUser: 568
+            #  runAsGroup: 568
+            #  fsGroup: 568
+            #  fsGroupChangePolicy: OnRootMismatch
     service:
       main:
         ports:
