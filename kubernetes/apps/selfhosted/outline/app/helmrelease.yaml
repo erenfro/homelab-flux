@@ -38,9 +38,10 @@ spec:
 
         initContainers:
           init-db:
-            image: ghcr.io/onedr0p/postgres-initdb
-            tag: 16
-            imagePullPolicy: IfNotPresent
+            image:
+              repository: ghcr.io/onedr0p/postgres-initdb
+              tag: 16
+              pullPolicy: IfNotPresent
             envFrom: &envFrom
               - secretRef:
                   name: outline-secret
@@ -49,6 +50,7 @@ spec:
             image:
               repository: docker.io/outlinewiki/outline
               tag: 0.74.0
+              pullPolicy: IfNotPresent
             env:
               # Core
               ENABLE_UPDATES: "false"
