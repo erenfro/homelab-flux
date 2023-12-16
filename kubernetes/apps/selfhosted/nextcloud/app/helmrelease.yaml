@@ -30,6 +30,7 @@ spec:
       namespace: storage
   values:
     image:
+      # TODO: For upgrades, be sure to disable the probes below or it could break upgrades!
       flavor: apache
       repository: nextcloud
       tag: 27.1.5
@@ -200,6 +201,9 @@ spec:
         enabled: true
         existingClaim: nextcloud-nfs
 
+    # TODO: DISABLE FOR UPGRADES
+    #       DISABLE FOR UPGRADES
+    # !     DISABLE FOR UPGRADES
     livenessProbe:
       enabled: false
     readinessProbe:
