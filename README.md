@@ -1,4 +1,4 @@
-# Psi-Jack's HomeLab Kubernetes cluster backed by Flux, GitOps and BGP
+# Psi-Jack's HomeLab Kubernetes cluster backed by Flux, GitOps and (not BGP)
 
 <div align="center">
 
@@ -11,19 +11,21 @@
 
 ## 👋 Introduction
 
-This repository is for my homelab which combineds Proxmox VE with Kubernetes using K3s. It's based on the k8s-at-home [flux template](https://github.com/onedr0p/flux-cluster-template). It's supported by [k3s](https://k3s.io) cluster with [Ansible](https://www.ansible.com) backed by [Flux](https://toolkit.fluxcd.io/) and [SOPS](https://toolkit.fluxcd.io/guides/mozilla-sops/).
+This repository is for my homelab which combineds Proxmox VE with Kubernetes using K3s. It's based on the k8s-at-home [flux template](https://github.com/onedr0p/flux-cluster-template). It's supported by [k3s](https://k3s.io) cluster with [Ansible](https://www.ansible.com) backed by [Flux](https://toolkit.fluxcd.io/), [SOPS](https://toolkit.fluxcd.io/guides/mozilla-sops/), bitwarden-cli for external-secrets, Longhorn storage as well as GlusterFS for democratic-csi and additional NFS cluster storage options.
 
 ## 🔧 Hardware
 
-| Name   | Device         | CPU            | OS Disk   | Data Disk   | RAM  | OS     | Purpose                    |
-|--------|----------------|----------------|-----------|-------------|------|--------|----------------------------|
-| hv1    | Custom         | Ryzen 7 5700G  | 240GB SSD | 3TiB, 4TiB  | 32GB | Debian | PVE, control-plane, worker |
-| hv2    | Custom         | Ryzen 5 5600G  | 240GB SSD | 3TiB, 4TiB  | 32GB | Debian | PVE, control-plane, worker |
-| hv3    | Custom         | Ryzen 5 5600G  | 240GB SSD | 3TiB, 4TiB  | 32GB | Debian | PVE, control-plane, worker |
+| Name   | Device              | CPU            | OS Disk         | Data Disk   | RAM  | OS     | Purpose                                         |
+|--------|---------------------|----------------|-----------------|-------------|------|--------|-------------------------------------------------|
+| hv1    | Custom              | Ryzen 7 5700G  | 240GB SSD       | 3TiB, 4TiB  | 32GB | Debian | PVE, GlusterFS, control-plane, worker, Longhorn |
+| hv2    | Custom              | Ryzen 5 5600G  | 240GB SSD       | 3TiB, 4TiB  | 32GB | Debian | PVE, GlusterFS, control-plane, worker, Longhorn |
+| hv3    | Custom              | Ryzen 5 5600G  | 240GB SSD       | 3TiB, 4TiB  | 32GB | Debian | PVE, GlusterFS, control-plane, worker, Longhorn |
+| k3s4   | Intel NUC DN2820FYK | Intel N2820    | 112GB NVMe SSD  | None        | 8GB  | Debian | worker, Longhorn                                |
+| k3s5   | BESSTAR UM700       | Ryzen 7 3750H  | 256GB NVMe PCIe | None        | 16GB | Debian | worker, Longhorn                                |
 
-Total CPU: 40 threads
+Total CPU: 50 threads
 
-Total RAM: 96 GB
+Total RAM: 120 GB
 
 ### Supporting Hardware
 
@@ -35,7 +37,7 @@ Total RAM: 96 GB
 
 | Device         | Purpose                |
 |----------------|------------------------|
-| EdgeRouter PoE | Router/BGP             |
+| EdgeRouter PoE | Router/(BGP not used)  |
 | 2xHP ProCurve  | 24-port Switches       |
 | APC Back-UPS   | UPS hv1                |
 | APC Back-UPS   | UPS hv2                |
