@@ -15,12 +15,13 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
+
   values:
     defaultPodOptions:
       automountServiceAccountToken: false
       enableServiceLinks: false
 
-    controller:
+    controllers:
       main:
         strategy: RollingUpdate
         annotations:
