@@ -6,15 +6,15 @@ namespace: selfhosted
 resources:
   #- ./configmap.yaml
   - ./external-secret.yaml
-  - ./pvc.yaml
+  #- ./pvc.yaml
   - ./helmrelease.yaml
   - ../../../../templates/gatus/external
-  #- ../../../../templates/volsync
-configMapGenerator:
-  - name: hedgedoc-configmap
-    files:
-      - config.json=./config/config.json
-generatorOptions:
-  disableNameSuffixHash: true
-  annotations:
-    kustomize.toolkit.fluxcd.io/substitute: disabled
+  - ../../../../templates/volsync
+#configMapGenerator:
+#  - name: hedgedoc-configmap
+#    files:
+#      - config.json=./config/config.json
+#generatorOptions:
+#  disableNameSuffixHash: true
+#  annotations:
+#    kustomize.toolkit.fluxcd.io/substitute: disabled
