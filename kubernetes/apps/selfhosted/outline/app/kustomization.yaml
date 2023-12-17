@@ -6,5 +6,7 @@ namespace: default
 resources:
   - ./external-secret.yaml
   - ./helmrelease.yaml
+  - ../../../../templates/gatus/external
+  - ../../../../templates/volsync
 #patchesStrategicMerge:
 #  - ./patches/env.yaml

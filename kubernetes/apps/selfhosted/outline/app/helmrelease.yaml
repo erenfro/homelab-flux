@@ -60,7 +60,7 @@ spec:
               FORCE_HTTPS: "false"
 
               # Uploads
-              FILE_STORAGE: s3
+              FILE_STORAGE: local
               FILE_STORAGE_UPLOAD_MAX_SIZE: "26214400"
 
               # S3
@@ -99,6 +99,11 @@ spec:
               limits:
                 memory: 750Mi
         pod:
+          securityContext:
+            runAsUser: 1001
+            runAsGroup: 1001
+            fsGroup: 1001
+            fsGroupChangePolicy: OnRootMismatch
           topologySpreadConstraints:
             - maxSkew: 1
               topologyKey: kubernetes.io/hostname
@@ -128,3 +133,10 @@ spec:
         tls:
           - hosts:
               - *host
+
+    persistence:
+      config:
+        enabled: true
+        existingClaim: outline
+        globalMounts:
+          - path: /var/lib/outline/data
