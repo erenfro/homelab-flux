@@ -29,6 +29,7 @@ spec:
       replicas: 1
       runOnControlPlane: true
       defaultOnDeletePolicy: delete
+      tolerations: {}
 
     externalSnapshotter:
       enabled: true
