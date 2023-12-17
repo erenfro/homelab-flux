@@ -5,7 +5,7 @@ resources:
   # Pre Flux-Kustomizations
   - ./namespace.yaml
   # Flux-Kustomizations
-  #- ./hedgedoc/ks.yaml
+  - ./hedgedoc/ks.yaml
   - ./homepage/ks.yaml
   #- ./linkding/ks.yaml
   - ./littlelink/ks.yaml
