@@ -65,8 +65,8 @@ spec:
               CMD_URL_ADDPORT: false
               CMD_ENABLE_STATUS_API: true
               CMD_ALLOW_GRAVATAR: true
-              #CMD_IMAGE_UPLOAD_TYPE: filesystem
-              CMD_IMAGE_UPLOAD_TYPE: minio
+              CMD_IMAGE_UPLOAD_TYPE: filesystem
+              #CMD_IMAGE_UPLOAD_TYPE: minio
               CMD_ALLOW_ANONYMOUS: true
               CMD_ALLOW_ANONYMOUS_EDITS: false
               CMD_ALLOW_FREEURL: true
@@ -120,6 +120,12 @@ spec:
         tls:
           - hosts:
               - *host
+    persistence:
+      uploads:
+        enabled: true
+        existingClaim: hedgedoc-uploads
+        globalMounts:
+          - path: /hedgedoc/public/uploads
     #persistence:
       #api-data:
       #  enabled: true
