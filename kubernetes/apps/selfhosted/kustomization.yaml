@@ -6,7 +6,7 @@ resources:
   - ./namespace.yaml
   # Flux-Kustomizations
   - ./atuin/ks.yaml
-  - ./hedgedoc/ks.yaml
+  #- ./hedgedoc/ks.yaml
   - ./homepage/ks.yaml
   #- ./linkding/ks.yaml
   - ./littlelink/ks.yaml
