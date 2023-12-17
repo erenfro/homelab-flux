@@ -26,6 +26,7 @@ spec:
   postBuild:
     substitute:
       APP: *app
+      GATUS_SUBDOMAIN: docs
       VOLSYNC_ACCESSMODES: ReadWriteMany
       VOLSYNC_STORAGECLASS: longhorn-snapshot
       VOLSYNC_SNAPSHOTCLASS: longhorn-snapclass
