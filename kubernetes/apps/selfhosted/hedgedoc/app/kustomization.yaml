@@ -10,11 +10,11 @@ resources:
   - ./helmrelease.yaml
   - ../../../../templates/gatus/external
   - ../../../../templates/volsync
-configMapGenerator:
-  - name: hedgedoc-configmap
-    files:
-      - config.json=./config/config.json
-generatorOptions:
-  disableNameSuffixHash: true
-  annotations:
-    kustomize.toolkit.fluxcd.io/substitute: disabled
+#configMapGenerator:
+#  - name: hedgedoc-configmap
+#    files:
+#      - config.json=./config/config.json
+#generatorOptions:
+#  disableNameSuffixHash: true
+#  annotations:
+#    kustomize.toolkit.fluxcd.io/substitute: disabled

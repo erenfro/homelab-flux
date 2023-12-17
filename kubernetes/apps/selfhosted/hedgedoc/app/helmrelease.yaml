@@ -125,8 +125,7 @@ spec:
         enabled: true
         existingClaim: hedgedoc
         globalMounts:
-          - path: /files/data/uploads
-          #- path: /hedgedoc/public/uploads
+          - path: /hedgedoc/public/uploads
     #persistence:
       #api-data:
       #  enabled: true
