@@ -123,7 +123,7 @@ spec:
     persistence:
       uploads:
         enabled: true
-        existingClaim: hedgedoc-uploads
+        existingClaim: hedgedoc
         globalMounts:
           - path: /hedgedoc/public/uploads
     #persistence:
