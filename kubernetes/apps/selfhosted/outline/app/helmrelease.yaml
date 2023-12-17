@@ -57,6 +57,7 @@ spec:
               PORT: 80
               URL: "https://docs.${SECRET_DOMAIN}"
               WEB_CONCURRENCY: 10
+              FORCE_HTTPS: "false"
 
               # Uploads
               FILE_STORAGE: s3
@@ -65,10 +66,9 @@ spec:
               # S3
               AWS_REGION: ca-east-1
               AWS_S3_ACL: private
-              AWS_S3_FORCE_PATH_STYLE: "false"
+              AWS_S3_FORCE_PATH_STYLE: "true"
               AWS_S3_UPLOAD_BUCKET_NAME: outline
               AWS_S3_UPLOAD_BUCKET_URL: "http://outline.s3.ca-east-1.home.ld:9000"
-              #AWS_S3_UPLOAD_MAX_SIZE: "26214400"
 
               # Authentication
               OIDC_AUTH_URI: "https://auth.${SECRET_DOMAIN}/application/o/authorize/"
