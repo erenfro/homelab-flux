@@ -137,6 +137,6 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: outline
+        existingClaim: outline-data
         globalMounts:
           - path: /var/lib/outline/data
