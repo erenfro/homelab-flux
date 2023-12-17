@@ -25,5 +25,15 @@ spec:
   uninstall:
     keepHistory: false
   values:
+    controller:
+      replicas: 1
+      runOnControlPlane: true
+      defaultOnDeletePolicy: delete
+
     externalSnapshotter:
-      enabled: false
+      enabled: true
+      name: snapshot-controller-nfs
+      controller:
+        replicas: 1
+      customResourceDefinitions:
+        enabled: false
