@@ -26,15 +26,15 @@ spec:
     keepHistory: false
   values:
     controller:
-      replicas: 1
+      replicas: 2
       runOnControlPlane: true
       defaultOnDeletePolicy: delete
-      tolerations: {}
+      #tolerations: {}
 
     externalSnapshotter:
       enabled: true
       name: snapshot-controller-nfs
       controller:
-        replicas: 1
+        replicas: 2
       customResourceDefinitions:
         enabled: false
