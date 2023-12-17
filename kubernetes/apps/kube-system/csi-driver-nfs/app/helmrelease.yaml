@@ -27,6 +27,7 @@ spec:
   values:
     controller:
       replicas: 2
+      runOnMaster: true
       runOnControlPlane: true
       defaultOnDeletePolicy: delete
       #tolerations: {}
