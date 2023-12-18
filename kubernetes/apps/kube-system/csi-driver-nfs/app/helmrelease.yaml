@@ -32,7 +32,7 @@ spec:
 
     rbac:
       create: false
-      name: nfs
+      name: nfs-external-provisioner-role
 
     controller:
       replicas: 2
