@@ -34,7 +34,8 @@ spec:
 
     externalSnapshotter:
       enabled: false
-      name: csi-snapshotter
+      #name: csi-snapshotter
+      name: snapshot-controller
       #name: snapshot-controller-nfs
       controller:
         replicas: 2
