@@ -42,11 +42,11 @@ spec:
       #tolerations: {}
 
     externalSnapshotter:
-      enabled: true
+      enabled: false
       #name: csi-snapshotter
       #name: snapshot-controller
-      name: snapshot-controller-nfs
-      controller:
-        replicas: 2
-      customResourceDefinitions:
-        enabled: false
+      #name: snapshot-controller-nfs
+      #controller:
+      #  replicas: 2
+      #customResourceDefinitions:
+      #  enabled: false
