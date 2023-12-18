@@ -43,6 +43,12 @@ spec:
               MINIO_PROMETHEUS_AUTH_TYPE: public
               MINIO_SERVER_URL: https://s3.${SECRET_DOMAIN}
               MINIO_UPDATE: "off"
+              # OIDC
+              MINIO_IDENTITY_OPENID_CONFIG_URL: "https://auth.${SECRET_DOMAIN}/application/o/minio/.well-known/openid-configuration"
+              #MINIO_IDENTITY_OPENID_CLIENT_ID: minio
+              #MINIO_IDENTITY_OPENID_CLIENT_SECRET: "${SECRET_MINIO_OAUTH_CLIENT_SECRET}"
+              MINIO_IDENTITY_OPENID_SCOPES: "openid,profile,email,minio"
+              MINIO_IDENTITY_OPENID_REDIRECT_URI: "https://minio.${SECRET_DOMAIN}/oauth_callback"
             envFrom:
               - secretRef:
                   name: minio-secret
