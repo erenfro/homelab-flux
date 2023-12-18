@@ -62,12 +62,13 @@ spec:
     replicaCount: 2
 
     nextcloud:
-      extraInitContainers:
-        - name: init-db
-          image: ghcr.io/onedr0p/postgres-init:15
-          envFrom:
-            - secretRef:
-                name: &secret nextcloud-secret
+      # TODO: When installing from scratch:
+      #extraInitContainers:
+      #  - name: init-db
+      #    image: ghcr.io/onedr0p/postgres-init:15
+      #    envFrom:
+      #      - secretRef:
+      #          name: &secret nextcloud-secret
       datadir: /var/www/data
       #extraEnv:
       #  - name: REDIS_HOST
@@ -83,7 +84,7 @@ spec:
       #    #    key: REDIS_PASSWORD
       existingSecret:
         enabled: true
-        secretName: *secret
+        secretName: &secret nextcloud-secret
         usernameKey: nextcloud-username
         passwordKey: nextcloud-password
       host: &host "cloud.${SECRET_DOMAIN}"
