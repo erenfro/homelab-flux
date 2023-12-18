@@ -60,6 +60,7 @@ spec:
           #storageClass: "local-path"
 
     nextcloud:
+      replicaCount: 2
       extraInitContainers:
         - name: init-db
           image: ghcr.io/onedr0p/postgres-init:15
