@@ -6,7 +6,7 @@ metadata:
 provisioner: nfs.csi.k8s.io
 parameters:
   server: mega.home.ld
-  share: /volume1/k3s
+  share: /volume1/kubes
 reclaimPolicy: Delete
 volumeBindingMode: Immediate
 mountOptions:
