@@ -62,7 +62,7 @@ spec:
     replicaCount: 2
 
     nextcloud:
-      strategy: Rolling
+      #strategy: Rolling
       # TODO: When installing from scratch:
       #extraInitContainers:
       #  - name: init-db
