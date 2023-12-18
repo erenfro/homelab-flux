@@ -139,6 +139,9 @@ spec:
       #  runAsGroup: 1022
       #  runAsNonRoot: true
 
+    cronjob:
+      enabled: true
+
     ingress:
       enabled: true
       className: external
