@@ -50,7 +50,7 @@ spec:
       GATUS_SUBDOMAIN: cloud
       VOLSYNC_CAPACITY: 2Gi
       VOLSYNC_ACCESSMODES: ReadWriteMany
-      VOLSYNC_STORAGECLASS: gluster-nfs
+      VOLSYNC_STORAGECLASS: synology-nfs
       VOLSYNC_SNAPSHOTCLASS: csi-nfs-snapclass
       VOLSYNC_RECLAIM_POLICY: "Retain"
       #VOLSYNC_STORAGECLASS: longhorn-snapshot
