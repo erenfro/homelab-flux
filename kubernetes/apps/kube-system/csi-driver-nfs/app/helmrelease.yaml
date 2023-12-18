@@ -33,9 +33,9 @@ spec:
       #tolerations: {}
 
     externalSnapshotter:
-      enabled: false
-    #  name: snapshot-controller-nfs
-    #  controller:
-    #    replicas: 2
-    #  customResourceDefinitions:
-    #    enabled: false
+      enabled: true
+      name: snapshot-controller-nfs
+      controller:
+        replicas: 2
+      customResourceDefinitions:
+        enabled: false
