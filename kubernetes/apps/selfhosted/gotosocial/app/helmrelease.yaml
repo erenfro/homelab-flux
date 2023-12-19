@@ -53,7 +53,7 @@ spec:
               GTS_LETSENCRYPT_EMAIL_ADDRESS: ""
               #GTS_TRUSTED_PROXIES: ""
               # OAuth
-              GTS_OIDC_ENABLED: "true"
+              GTS_OIDC_ENABLED: "false"
               GTS_OIDC_IDP_NAME: "Authentik"
               GTS_OIDC_ISSUER: "https://auth.${SECRET_DOMAIN}/application/o/gotosocial/.well-known/openid-configuration"
               GTS_OIDC_SCOPES: "openid,email,profile,groups"
