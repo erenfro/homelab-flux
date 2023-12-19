@@ -49,8 +49,6 @@ spec:
             env:
               TZ: ${TIMEZONE}
               GTS_HOST: "social.${SECRET_DOMAIN}"
-              GTS_DB_TYPE: postgres
-              GTS_DB_ADDRESS:
               GTS_LETSENCRYPT_ENABLED: "false"
               GTS_LETSENCRYPT_EMAIL_ADDRESS: ""
               #GTS_TRUSTED_PROXIES: ""
