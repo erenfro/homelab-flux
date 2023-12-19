@@ -17,7 +17,7 @@ spec:
       value: ${TIMEZONE}
 
   volumeClaimTemplate:
-    storageClassName: longhorn-database
+    storageClassName: longhorn
     resources:
       requests:
         storage: 2Gi
