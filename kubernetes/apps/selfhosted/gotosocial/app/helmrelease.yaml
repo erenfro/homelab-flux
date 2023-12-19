@@ -57,9 +57,9 @@ spec:
               GTS_SMTP_PORT: "${SMTP_PORT}"
               GTS_SMTP_FROM: "social@${SECRET_DOMAIN}"
               # OAuth
-              GTS_OIDC_ENABLED: "false"
-              #GTS_OIDC_IDP_NAME: "Authentik"
-              #GTS_OIDC_ISSUER: "https://auth.${SECRET_DOMAIN}/application/o/gotosocial/.well-known/openid-configuration"
+              GTS_OIDC_ENABLED: "true"
+              GTS_OIDC_IDP_NAME: "Authentik"
+              GTS_OIDC_ISSUER: "https://auth.${SECRET_DOMAIN}/application/o/gotosocial/"
               #GTS_OIDC_SCOPES: "openid,email,profile,groups"
               #GTS_OIDC_ADMIN_GROUPS: "GTS-Admins"
             envFrom: *envFrom
