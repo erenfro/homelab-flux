@@ -2,10 +2,10 @@ module.exports = {
   delay: 20,
   qbittorrentUrl: "http://qbittorrent.downloads.svc.cluster.local",
   torznab: [
-    `http://prowlarr.default.svc.cluster.local/5/api?apikey=${process.env.PROWLARR_API_KEY}`, // ipt
-    `http://prowlarr.default.svc.cluster.local/39/api?apikey=${process.env.PROWLARR_API_KEY}`,  // fl
-    `http://prowlarr.default.svc.cluster.local/40/api?apikey=${process.env.PROWLARR_API_KEY}`, // ant
-    `http://prowlarr.default.svc.cluster.local/41/api?apikey=${process.env.PROWLARR_API_KEY}`, // ar
+    `http://prowlarr.downloads.svc.cluster.local/5/api?apikey=${process.env.PROWLARR_API_KEY}`, // ipt
+    `http://prowlarr.downloads.svc.cluster.local/39/api?apikey=${process.env.PROWLARR_API_KEY}`,  // fl
+    `http://prowlarr.downloads.svc.cluster.local/40/api?apikey=${process.env.PROWLARR_API_KEY}`, // ant
+    `http://prowlarr.downloads.svc.cluster.local/41/api?apikey=${process.env.PROWLARR_API_KEY}`, // ar
   ],
   port: process.env.CROSSSEED_PORT || 80,
   apiAuth: false,
