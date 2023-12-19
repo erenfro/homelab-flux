@@ -9,7 +9,7 @@ resources:
   - ./fider/ks.yaml
   - ./hedgedoc/ks.yaml
   - ./homepage/ks.yaml
-  #- ./linkding/ks.yaml
+  - ./linkding/ks.yaml
   - ./littlelink/ks.yaml
   - ./mealie/ks.yaml
   - ./nextcloud/ks.yaml
