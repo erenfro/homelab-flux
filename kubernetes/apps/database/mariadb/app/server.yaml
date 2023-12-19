@@ -20,7 +20,7 @@ spec:
     storageClassName: longhorn-database
     resources:
       requests:
-        storage: 10Gi
+        storage: 2Gi
     accessModes:
       - ReadWriteOnce
 
