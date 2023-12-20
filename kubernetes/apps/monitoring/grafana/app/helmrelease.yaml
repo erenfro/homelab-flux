@@ -173,6 +173,7 @@ spec:
         apiVersion: 1
         deleteDatasources:
           - { name: Alertmanager, orgId: 1 }
+          - { name: Loki, ordId: 1 }
           - { name: prom_direct, orgId: 1 }
           - { name: Prometheus, orgId: 1 }
         datasources:
@@ -184,6 +185,13 @@ spec:
             url: http://thanos-query-frontend.monitoring.svc.cluster.local:9090
             jsonData:
               prometheusType: Thanos
+          - name: Loki
+            type: loki
+            uid: loki
+            access: proxy
+            url: http://loki-gateway.monitoring.svc.cluster.local
+            jsonData:
+              maxLines: 250
           - name: prom_direct
             type: prometheus
             access: proxy
