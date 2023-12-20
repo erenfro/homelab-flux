@@ -54,22 +54,21 @@ spec:
               PGID: "568"
               branch: 'v2-master'
               PORT: &port 80
-            #envFrom: *envFrom
-            #probes:
-            #  liveness: &probes
-            #    enabled: true
-            #    custom: true
-            #    spec:
-            #      httpGet:
-            #        path: /ping
-            #        port: *port
-            #      initialDelaySeconds: 0
-            #      periodSeconds: 10
-            #      timeoutSeconds: 1
-            #      failureThreshold: 3
-            #  readiness: *probes
-            #  startup:
-            #    enabled: false
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet:
+                    path: /api/v2/ping
+                    port: *port
+                  initialDelaySeconds: 0
+                  periodSeconds: 10
+                  timeoutSeconds: 1
+                  failureThreshold: 3
+              readiness: *probes
+              startup:
+                enabled: false
             resources:
               requests:
                 cpu: 10m
@@ -90,12 +89,13 @@ spec:
             port: *port
     ingress:
       main:
+        enabled: true
+        className: external
         annotations:
           hajimari.io/enable: "true"
           hajimari.io/appName: Organizr
           hajimari.io/icon: material-symbols-light:tv-guide-outline
-        enabled: true
-        className: external
+          external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
         hosts:
           - host: &host "media.${SECRET_DOMAIN}"
             paths:
