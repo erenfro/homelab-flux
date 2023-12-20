@@ -7,4 +7,4 @@ resources:
   - ./namespace.yaml
   # Flux-Kustomizations
   - ./actual/ks.yaml
-  - ./ghostfolio/ks.yaml
+  #- ./ghostfolio/ks.yaml
