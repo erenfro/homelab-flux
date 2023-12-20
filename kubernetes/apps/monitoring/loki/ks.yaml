@@ -6,13 +6,13 @@ metadata:
   name: &app loki
   namespace: flux-system
 spec:
-  targetNamespace: monitroing
+  targetNamespace: monitoring
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
     - name: external-secrets-bitwarden
-  path: ./kubernetes/apps/monitroing/loki/app
+  path: ./kubernetes/apps/monitoring/loki/app
   prune: true
   sourceRef:
     kind: GitRepository
