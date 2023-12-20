@@ -1,0 +1,89 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: &app ghostfolio
+  namespace: finance
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: app-template
+      version: 2.4.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  maxHistory: 3
+  install:
+    createNamespace: true
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  dependsOn:
+    - name: ghostfolio-redis
+      namespace: database
+  values:
+    controllers:
+      main:
+        type: statefulset
+        annotations:
+          reloader.stakater.com/auto: "true"
+
+        initContainers:
+          init-db:
+            image:
+              repository: ghcr.io/onedr0p/postgres-init
+              tag: 16
+              pullPolicy: IfNotPresent
+            envFrom: &envFrom
+              - secretRef:
+                  name: ghostfolio-secret
+
+        containers:
+          main:
+            image:
+              repository: docker.io/ghostfolio/ghostfolio
+              tag: 2.31.0
+            env:
+              NODE_ENV: production
+              REDIS_HOST: ghostfolio-redis.finance.svc.cluster.local
+              REDIS_PORT: 6379
+            envFrom: *envFrom
+            resources:
+              requests:
+                cpu: 100m
+                memory: 256Mi
+
+    service:
+      main:
+        ports:
+          http:
+            port: 3333
+
+    ingress:
+      main:
+        enabled: true
+        className: internal
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "internal.${SECRET_DOMAIN}"
+          hajimari.io/enable: "true"
+          hajimari.io/icon: mdi:cash-multiple
+          gethomepage.dev/enabled: "false"
+        hosts:
+          - host: "${HOSTNAME}"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  name: main
+                  port: http
+        tls:
+          - hosts:
+              - "${HOSTNAME}"
