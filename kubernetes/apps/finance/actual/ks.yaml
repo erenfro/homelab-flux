@@ -26,6 +26,7 @@ spec:
       APP: *appname
       GATUS_SUBDOMAIN: budget
       HOSTNAME: budget.${SECRET_DOMAIN}
+      VOLSYNC_CAPACITY: 1Gi
       VOLSYNC_UID: "568"
       VOLSYNC_GID: "568"
       APP_UID: "568"
