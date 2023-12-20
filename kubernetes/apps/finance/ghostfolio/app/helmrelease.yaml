@@ -28,7 +28,7 @@ spec:
     keepHistory: false
   dependsOn:
     - name: ghostfolio-redis
-      namespace: database
+      namespace: finance
   values:
     controllers:
       main:
