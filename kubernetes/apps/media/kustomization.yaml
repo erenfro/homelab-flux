@@ -8,6 +8,6 @@ resources:
   #- ./media-pvc.yaml
   # Flux-Kustomizations
   #- ./media-browser/ks.yaml
-  #- ./organizr/ks.yaml
+  - ./organizr/ks.yaml
   #- ./plex/ks.yaml
   - ./tautulli/ks.yaml
