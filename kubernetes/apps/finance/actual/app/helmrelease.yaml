@@ -51,7 +51,12 @@ spec:
     ingress:
       main:
         enabled: true
-        className: internal
+        className: external
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
+          hajimari.io/enable: "true"
+          hajimari.io/icon: mdi:cash-multiple
+          gethomepage.dev/enabled: "false"
         hosts:
           - host: "${HOSTNAME}"
             paths:
