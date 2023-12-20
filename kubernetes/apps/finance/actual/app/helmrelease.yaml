@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: app-template
-      version: 2.3.0
+      version: 2.4.0
       interval: 30m
       sourceRef:
         kind: HelmRepository
@@ -25,16 +25,16 @@ spec:
         pod:
           enableServiceLinks: false
           securityContext:
-            runAsUser: ${APP_UID}
-            runAsGroup: ${APP_GID}
-            fsGroup: ${APP_GID}
+            runAsUser: ${VOLSYNC_UID}
+            runAsGroup: ${VOLSYNC_GID}
+            fsGroup: ${VOLSYNC_GID}
             fsGroupChangePolicy: "OnRootMismatch"
 
         containers:
           main:
             image:
               repository: ghcr.io/actualbudget/actual-server
-              tag: 23.12.0
+              tag: 23.12.1
             resources:
               requests:
                 cpu: 12m
@@ -51,7 +51,7 @@ spec:
     ingress:
       main:
         enabled: true
-        className: "internal-nginx"
+        className: internal
         hosts:
           - host: "${HOSTNAME}"
             paths:

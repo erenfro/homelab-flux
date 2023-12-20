@@ -49,3 +49,9 @@ resources:
 
 - `VOLSYNC_UID`: The value for runAsUser in the mover
 - `VOLSYNC_GID`: The value for runAsGroup and fsGroup in the mover
+- `VOLSYNC_CLAIM`: The PVC claim name to use instead of the default APP name
+- `VOLSYNC_ACCESSMODES`: Access mode for PVC ReadWriteOnce/ReadWriteMany
+- `VOLSYNC_STORAGECLASS`: StorageClass for PVC (longhorn-snapshot)
+- `VOLSYNC_SNAPSHOTCLASS`: SnapshotClass for PVC (longhorn-snapclass)
+- `VOLSYNC_RECLAIM_POLICY`: Reclaim policy for PVC (Retain)
+- `VOLSYNC_CACHE_CAPACITY`: Backup Cache capacity. (8Gi)
