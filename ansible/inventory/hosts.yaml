@@ -1,22 +1,20 @@
 ---
 kubernetes:
+  vars:
+    ansible_user: k3sadmin
+    admins_ssh_port: 22
   children:
     master:
       hosts:
         k3s1:
-          ansible_user: k3sadmin
           ansible_host: 172.17.1.51
         k3s2:
-          ansible_user: k3sadmin
           ansible_host: 172.17.1.52
         k3s3:
-          ansible_user: k3sadmin
           ansible_host: 172.17.1.53
     worker:
       hosts:
         k3s4:
-          ansible_user: k3sadmin
           ansible_host: 172.17.0.18
         k3s5:
-          ansible_user: k3sadmin
           ansible_host: 172.17.0.19
