@@ -37,7 +37,7 @@ spec:
             #type: statefulset
             image:
               repository: ghcr.io/paperless-ngx/paperless-ngx
-              tag: 2.1.1
+              tag: 2.1.3
             env:
               # Configure application
               PAPERLESS_URL: https://{{ .Release.Name }}.${SECRET_DOMAIN}
