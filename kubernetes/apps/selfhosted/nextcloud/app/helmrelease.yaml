@@ -213,11 +213,11 @@ spec:
     #       DISABLE FOR UPGRADES
     # !     DISABLE FOR UPGRADES
     livenessProbe:
-      enabled: true
+      enabled: false
     readinessProbe:
-      enabled: true
+      enabled: false
     startupProbe:
-      enabled: true
+      enabled: false
       initialDelaySeconds: 20
       periodSeconds: 30
       timeoutSeconds: 10
