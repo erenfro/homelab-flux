@@ -40,7 +40,7 @@ spec:
           main:
             image:
               repository: sissbruecker/linkding
-              tag: 1.23.0
+              tag: 1.23.1
             env:
               LD_SUPERUSER_NAME: psi-jack
               LD_ENABLE_AUTH_PROXY: "True"
