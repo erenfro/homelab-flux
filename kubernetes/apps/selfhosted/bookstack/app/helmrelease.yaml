@@ -37,7 +37,7 @@ spec:
         containers:
           main:
             image:
-              repository: hub.docker.com/solidnerd/bookstack
+              repository: solidnerd/bookstack
               tag: 23.10.4
             env:
               TZ: ${TIMEZONE}
