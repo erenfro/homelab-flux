@@ -5,11 +5,14 @@ metadata:
 spec:
   port: 3306
 
+  username: mariadb
+  database: mariadb
+
   rootPasswordSecretKeyRef:
     name: mariadb-secret
     key: password
 
-  image: "mariadb:11.1.2"
+  image: "mariadb:11.2.2"
   imagePullPolicy: IfNotPresent
 
   env:
@@ -54,18 +57,30 @@ spec:
     annotations:
       external-dns.alpha.kubernetes.io/hostname: "mysql-lb.${SECRET_DOMAIN}"
       io.cilium/lb-ipam-ips: "${IPAM_MARIADB_LB}"
+    connection:
+      secretName: mariadb-galera-conn
+      secretTemplate:
+        key: dsn
 
   primaryService:
     type: LoadBalancer
     annotations:
       external-dns.alpha.kubernetes.io/hostname: "mysql.${SECRET_DOMAIN}"
       io.cilium/lb-ipam-ips: "${IPAM_MARIADB_RW}"
+    primaryConnection:
+      secretName: mariadb-galera-conn-primary
+      secretTemplate:
+        key: dsn
 
   secondaryService:
     type: LoadBalancer
     annotations:
       external-dns.alpha.kubernetes.io/hostname: "mysql-ro.${SECRET_DOMAIN}"
       io.cilium/lb-ipam-ips: "${IPAM_MARIADB_RO}"
+    primaryConnection:
+      secretName: mariadb-galera-conn-secondary
+      secretTemplate:
+        key: dsn
 
   volumeClaimTemplate:
     storageClassName: local-path
@@ -136,6 +151,7 @@ spec:
     max_allowed_packet=256M
 
   metrics:
+    enabled: true
     exporter:
       image: "prom/mysqld-exporter:v0.15.1"
       imagePullPolicy: IfNotPresent
