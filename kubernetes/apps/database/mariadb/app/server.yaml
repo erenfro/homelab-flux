@@ -27,20 +27,20 @@ spec:
     replicaThreads: 1
     agent:
       image: ghcr.io/mariadb-operator/agent:v0.0.3
-      pullPolicy: IfNotPresent
+      #pullPolicy: IfNotPresent
       port: 5555
       kubernetesAuth:
         enabled: true
       gracefulShutdownTimeout: 5s
     recovery:
       enabled: true
-      clusterHealthTimeout: 3m
+      #clusterHealthTimeout: 3m
       clusterBootstrapTimeout: 10m
       podRecoveryTimeout: 5m
       podSyncTimeout: 5m
     initContainer:
       image: ghcr.io/mariadb-operator/init:v0.0.6
-      pullPolicy: IfNotPresent
+      #pullPolicy: IfNotPresent
     volumeClaimTemplate:
       storageClassName: local-path
       resources:
