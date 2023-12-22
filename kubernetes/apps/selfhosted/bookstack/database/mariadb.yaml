@@ -41,6 +41,7 @@ spec:
     - "CREATE"
     - "INDEX"
     - "ALTER"
+    - "DELETE"
     - "DROP"
     - "TRIGGER"
   database: "bookstack"
