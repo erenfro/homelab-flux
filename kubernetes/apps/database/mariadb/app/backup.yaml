@@ -13,11 +13,11 @@ spec:
       nfs:
         server: "${NAS_HOST}"
         path: /volume1/Media/mariadb
-      mountOptions:
-        - nfsvers=4.0
-        - nconnect=3
-        - hard
-        - noatime
+      #mountOptions:
+      #  - nfsvers=4.0
+      #  - nconnect=3
+      #  - hard
+      #  - noatime
     #storageClassName: mariabackup-nfs
     #persistentVolumeClaim:
     #  resources:
