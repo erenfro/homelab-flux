@@ -1,0 +1,82 @@
+---
+# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/helm.toolkit.fluxcd.io/helmrelease_v2beta1.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: bloghugo
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 2.4.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  maxHistory: 2
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  dependsOn:
+    - name: longhorn
+      namespace: storage
+    - name: volsync
+      namespace: volsync
+  values:
+    controllers:
+      main:
+        containers:
+          main:
+            image:
+              repository: ghcr.io/erenfro/bloghugo
+              tag: latest
+            env:
+              TZ: ${TIMEZONE}
+            resources:
+              requests:
+                cpu: 5m
+                memory: 100M
+              limits:
+                memory: 200M
+        pod:
+          securityContext:
+            runAsUser: 568
+            runAsGroup: 568
+            fsGroup: 568
+            fsGroupChangePolicy: OnRootMismatch
+    service:
+      main:
+        ports:
+          http:
+            port: &port 80
+    ingress:
+      main:
+        enabled: true
+        className: external
+        annotations:
+          hajimari.io/enable: "true"
+          hajimari.io/appName: BlogHugo
+          hajimari.io/icon: material-symbols-light:movie-outline
+          external-dns.alpha.kubernetes.io/target: external.${SECRET_DOMAIN}
+          gethomepage.dev/enabled: "true"
+          gethomepage.dev/name: "Blog"
+          gethomepage.dev/group: "Personal"
+          gethomepage.dev/icon: "hugo"
+          gethomepage.dev/description: "Self-Hosted Blog"
+        hosts:
+          - host: &host "blog.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                service:
+                  name: main
+                  port: http
+        tls:
+          - hosts:
+              - *host
