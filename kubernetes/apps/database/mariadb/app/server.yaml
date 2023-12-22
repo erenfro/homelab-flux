@@ -101,7 +101,7 @@ spec:
   #    io.cilium/lb-ipam-ips: "${IPAM_MARIADB}"
 
   nodeSelector:
-    database.mysql: yes
+    database/mysql: yes
 
   affinity:
     #nodeAffinity:
