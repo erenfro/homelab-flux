@@ -3,17 +3,21 @@ kind: MariaDB
 metadata:
   name: mariadb-galera
 spec:
-  port: 3306
-
-  username: mariadb
-  database: mariadb
-
   rootPasswordSecretKeyRef:
+    name: mariadb-secret
+    key: password
+  database: mariadb
+  username: mariadb
+  passwordSecretKeyRef:
     name: mariadb-secret
     key: password
 
   image: "mariadb:11.2.2"
   imagePullPolicy: IfNotPresent
+  port: 3306
+
+  nodeSelector:
+    database/mysql: yes
 
   env:
     - name: TZ
@@ -37,7 +41,7 @@ spec:
       gracefulShutdownTimeout: 5s
     recovery:
       enabled: true
-      #clusterHealthTimeout: 3m
+      clusterHealthyTimeout: 3m
       clusterBootstrapTimeout: 10m
       podRecoveryTimeout: 5m
       podSyncTimeout: 5m
@@ -95,7 +99,7 @@ spec:
       cpu: 300m
       memory: 256Mi
     limits:
-      memory: 1Mi
+      memory: 1Gi
 
   # For Galera, Specifically
   podSecurityContext:
@@ -131,10 +135,10 @@ spec:
       requiredDuringSchedulingIgnoredDuringExecution:
         - topologyKey: "kubernetes.io/hostname"
 
-  #tolerations:
-  #  - key: "mariadb.mmontes.io/ha"
-  #    operator: "Exists"
-  #    effect: "NoSchedule"
+  tolerations:
+    - key: "mariadb.mmontes.io/ha"
+      operator: "Exists"
+      effect: "NoSchedule"
 
   podDisruptionBudget:
     maxUnavailable: 66%
