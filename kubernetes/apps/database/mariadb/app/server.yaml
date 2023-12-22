@@ -100,10 +100,10 @@ spec:
   #  annotations:
   #    io.cilium/lb-ipam-ips: "${IPAM_MARIADB}"
 
-  #nodeSelector:
-  #  database/mysql: yes
+  nodeSelector:
+    database/mysql: yes
 
-  affinity:
+  #affinity:
     #nodeAffinity:
     #  requiredDuringSchedulingIgnoredDuringExecution:
     #    nodeSelectorTerms:
@@ -112,9 +112,9 @@ spec:
     #          operator: In
     #          values:
     #            - "yes"
-    podAntiAffinity:
-      requiredDuringSchedulingIgnoredDuringExecution:
-        - topologyKey: "kubernetes.io/hostname"
+    #podAntiAffinity:
+    #  requiredDuringSchedulingIgnoredDuringExecution:
+    #    - topologyKey: "kubernetes.io/hostname"
 
   #tolerations:
   #  - key: "mariadb.mmontes.io/ha"
