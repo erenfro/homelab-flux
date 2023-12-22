@@ -131,10 +131,10 @@ spec:
       requiredDuringSchedulingIgnoredDuringExecution:
         - topologyKey: "kubernetes.io/hostname"
 
-  tolerations:
-    - key: "mariadb.mmontes.io/ha"
-      operator: "Exists"
-      effect: "NoSchedule"
+  #tolerations:
+  #  - key: "mariadb.mmontes.io/ha"
+  #    operator: "Exists"
+  #    effect: "NoSchedule"
 
   podDisruptionBudget:
     maxUnavailable: 66%
