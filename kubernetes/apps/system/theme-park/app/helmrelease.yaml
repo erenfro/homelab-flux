@@ -40,33 +40,33 @@ spec:
                 memory: 20M
               limits:
                 memory: 64M
-        service:
-          main:
-            ports:
-              http:
-                port: 8080
-        ingress:
-          main:
-            enabled: true
-            ingressClassName: external
-            annotations:
-              hajimari.io/enable: "false"
-              external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
-            hosts:
-              - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
-                paths:
-                  - path: /
-                    pathType: Prefix
-                    service:
-                      name: main
-                      port: http
-            tls:
-              - hosts:
-                  - *host
-        topologySpreadConstraints:
-          - maxSkew: 1
-            topologyKey: kubernetes.io/hostname
-            whenUnsatisfiable: DoNotSchedule
-            labelSelector:
-              matchLabels:
-                app.kubernetes.io/name: *app
+    service:
+      main:
+        ports:
+          http:
+            port: 8080
+    ingress:
+      main:
+        enabled: true
+        ingressClassName: external
+        annotations:
+          hajimari.io/enable: "false"
+          external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
+        hosts:
+          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                pathType: Prefix
+                service:
+                  name: main
+                  port: http
+        tls:
+          - hosts:
+              - *host
+    topologySpreadConstraints:
+      - maxSkew: 1
+        topologyKey: kubernetes.io/hostname
+        whenUnsatisfiable: DoNotSchedule
+        labelSelector:
+          matchLabels:
+            app.kubernetes.io/name: *app
