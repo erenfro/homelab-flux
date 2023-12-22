@@ -40,6 +40,9 @@ spec:
     - "UPDATE"
     - "CREATE"
     - "INDEX"
+    - "ALTER"
+    - "DROP"
+    - "TRIGGER"
   database: "bookstack"
   table: "*"
   username: bookstack
