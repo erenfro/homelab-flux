@@ -41,7 +41,7 @@ spec:
               tag: 23.10.4
             env:
               TZ: ${TIMEZONE}
-              APP_URL: "http://bookstack.${SECRET_DOMAIN}"
+              APP_URL: "https://bookstack.${SECRET_DOMAIN}"
             envFrom:
               - secretRef:
                   name: bookstack-secret
