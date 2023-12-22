@@ -105,10 +105,10 @@ spec:
       requiredDuringSchedulingIgnoredDuringExecution:
         nodeSelectorTerms:
           - matchExpressions:
-            - key: node-role.kubernetes.io/control-plane
+            - key: database.mysql
               operator: In
               values:
-                - "true"
+                - "yes"
     podAntiAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
         - topologyKey: "kubernetes.io/hostname"
