@@ -103,7 +103,7 @@ spec:
   #nodeSelector:
   #  database/mysql: yes
 
-  #affinity:
+  affinity:
     #nodeAffinity:
     #  requiredDuringSchedulingIgnoredDuringExecution:
     #    nodeSelectorTerms:
@@ -112,14 +112,14 @@ spec:
     #          operator: In
     #          values:
     #            - "yes"
-    #podAntiAffinity:
-    #  requiredDuringSchedulingIgnoredDuringExecution:
-    #    - topologyKey: "kubernetes.io/hostname"
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - topologyKey: "kubernetes.io/hostname"
 
-  #tolerations:
-  #  - key: "mariadb.mmontes.io/ha"
-  #    operator: "Exists"
-  #    effect: "NoSchedule"
+  tolerations:
+    - key: "mariadb.mmontes.io/ha"
+      operator: "Exists"
+      effect: "NoSchedule"
 
   podDisruptionBudget:
     maxUnavailable: 66%
