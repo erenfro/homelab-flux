@@ -73,12 +73,12 @@ spec:
                 memory: 256M
               limits:
                 memory: 2Gi
-        #pod:
-        #  securityContext:
-        #    runAsUser: 33
-        #    runAsGroup: 33
-        #    fsGroup: 33
-        #    fsGroupChangePolicy: OnRootMismatch
+        pod:
+          securityContext:
+            runAsUser: 33
+            runAsGroup: 33
+            fsGroup: 33
+            fsGroupChangePolicy: OnRootMismatch
     service:
       main:
         ports:
