@@ -60,6 +60,13 @@ spec:
             #  readiness: *probes
             #  startup:
             #    enabled: false
+            probes:
+              liveness:
+                enabled: false
+              readiness:
+                enabled: false
+              startup:
+                enabled: false
             resources:
               requests:
                 cpu: 10m
