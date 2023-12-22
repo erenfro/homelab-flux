@@ -9,7 +9,16 @@ spec:
     cron: "0 0 * * *"
   maxRetentionDays: 14
   storage:
-    storageClassName: mariabackup-nfs
+    volume:
+      nfs:
+        server: "${NAS_HOST}"
+        path: /volume1/Media/mariadb
+      mountOptions:
+        - nfsvers=4.0
+        - nconnect=3
+        - hard
+        - noatime
+    #storageClassName: mariabackup-nfs
     #persistentVolumeClaim:
     #  resources:
     #    requests:
