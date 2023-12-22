@@ -11,7 +11,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
-    - name: mariadb-galera
+    - name: mariadb
     - name: external-secrets-bitwarden
   path: ./kubernetes/apps/selfhosted/bookstack/database
   prune: true
@@ -35,7 +35,7 @@ spec:
     labels:
       app.kubernetes.io/name: *app
   dependsOn:
-    - name: mariadb-galera
+    - name: mariadb
     - name: external-secrets-bitwarden
     - name: bookstack-db
   path: ./kubernetes/apps/selfhosted/bookstack/app
