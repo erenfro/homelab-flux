@@ -9,7 +9,7 @@ spec:
     cron: "0 0 * * *"
   maxRetentionDays: 14
   storage:
-    existingClaim: mariabackup
+    storageClassName: mariabackup-nfs
     #persistentVolumeClaim:
     #  resources:
     #    requests:
