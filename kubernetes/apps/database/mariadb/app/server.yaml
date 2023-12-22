@@ -16,8 +16,59 @@ spec:
     - name: TZ
       value: ${TIMEZONE}
 
+  replicas: 3
+
+  galera:
+    enabled: true
+    primary:
+      podIndex: 0
+      automaticFailover: true
+    sst: mariabackup
+    replicaThreads: 1
+    agent:
+      image: ghcr.io/mariadb-operator/agent:v0.0.3
+      pullPolicy: IfNotPresent
+      port: 5555
+      kubernetesAuth:
+        enabled: true
+      gracefulShutdownTimeout: 5s
+    recovery:
+      enabled: true
+      clusterHealthTimeout: 3m
+      clusterBootstrapTimeout: 10m
+      podRecoveryTimeout: 5m
+      podSyncTimeout: 5m
+    initContainer:
+      image: ghcr.io/mariadb-operator/init:v0.0.6
+      pullPolicy: IfNotPresent
+    volumeClaimTemplate:
+      storageClassName: local-path
+      resources:
+        requests:
+          storage: 300Mi
+      accessModes:
+        - ReadWriteOnce
+
+  service:
+    type: LoadBalancer
+    annotations:
+      external-dns.alpha.kubernetes.io/hostname: "mysql-lb.${SECRET_DOMAIN}"
+      io.cilium/lb-ipam-ips: "${IPAM_MARIADB_LB}"
+
+  primaryService:
+    type: LoadBalancer
+    annotations:
+      external-dns.alpha.kubernetes.io/hostname: "mysql.${SECRET_DOMAIN}"
+      io.cilium/lb-ipam-ips: "${IPAM_MARIADB_RW}"
+
+  secondaryService:
+    type: LoadBalancer
+    annotations:
+      external-dns.alpha.kubernetes.io/hostname: "mysql-ro.${SECRET_DOMAIN}"
+      io.cilium/lb-ipam-ips: "${IPAM_MARIADB_RO}"
+
   volumeClaimTemplate:
-    storageClassName: longhorn
+    storageClassName: local-path
     resources:
       requests:
         storage: 2Gi
@@ -26,22 +77,60 @@ spec:
 
   resources:
     requests:
-      cpu: 100m
-      memory: 128Mi
-    limits:
       cpu: 300m
-      memory: 512Mi
+      memory: 256Mi
+    limits:
+      memory: 1Mi
 
+  # For Galera, Specifically
   podSecurityContext:
-    runAsUser: 568
-    runAsGroup: 568
-    fsGroup: 568
-    fsGroupChangePolicy: OnRootMismatch
+    runAsUser: 0
 
-  service:
-    type: LoadBalancer
-    annotations:
-      io.cilium/lb-ipam-ips: "${IPAM_MARIADB}"
+  securityContext:
+    allowPrivilegeEscalation: false
+
+  #podSecurityContext:
+  #  runAsUser: 568
+  #  runAsGroup: 568
+  #  fsGroup: 568
+  #  fsGroupChangePolicy: OnRootMismatch
+
+  #service:
+  #  type: LoadBalancer
+  #  annotations:
+  #    io.cilium/lb-ipam-ips: "${IPAM_MARIADB}"
+
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+            - key: node-role.kubernetes.io/control-plane
+              operator: In
+              values:
+                - "true"
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        - topologyKey: "kubernetes.io/hostname"
+
+  #tolerations:
+  #  - key: "mariadb.mmontes.io/ha"
+  #    operator: "Exists"
+  #    effect: "NoSchedule"
+
+  podDisruptionBudget:
+    maxUnavailable: 66%
+
+  updateStrategy:
+    type: RollingUpdate
+
+  myCnf: |
+    [mariadb]
+    bind-address=*
+    default_storage_engine=InnoDB
+    binlog_format=row
+    innodb_autoinc_lock_mode=2
+    max_allowed_packet=256M
 
   metrics:
     exporter:

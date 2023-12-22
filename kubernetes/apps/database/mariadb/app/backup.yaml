@@ -6,12 +6,13 @@ spec:
   mariaDbRef:
     name: mariadb
   schedule:
-    cron: "0 */1 * * *"
+    cron: "0 0 * * *"
   maxRetentionDays: 14
   storage:
-    persistentVolumeClaim:
-      resources:
-        requests:
-          storage: 100Mi
-      accessModes:
-        - ReadWriteOnce
+    existingClaim: mariabackup
+    #persistentVolumeClaim:
+    #  resources:
+    #    requests:
+    #      storage: 100Mi
+    #  accessModes:
+    #    - ReadWriteOnce
