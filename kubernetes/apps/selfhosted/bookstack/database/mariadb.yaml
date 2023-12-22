@@ -44,6 +44,8 @@ spec:
     - "DELETE"
     - "DROP"
     - "TRIGGER"
+    - "CREATE VIEW"
+    - "SHOW VIEW"
   database: "bookstack"
   table: "*"
   username: bookstack
