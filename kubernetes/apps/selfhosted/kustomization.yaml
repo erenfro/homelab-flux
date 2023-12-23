@@ -17,6 +17,7 @@ resources:
   - ./nextcloud/ks.yaml
   - ./outline/ks.yaml
   - ./paperless/ks.yaml
+  - ./privatebin/ks.yaml
   #- ./rainloop/ks.yaml
   #- ./roundcube/ks.yaml
   - ./shiori/ks.yaml
