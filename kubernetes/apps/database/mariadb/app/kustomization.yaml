@@ -6,4 +6,5 @@ resources:
   - ./external-secret.yaml
   - ./pvc.yaml
   - ./server.yaml
-  - ./backup.yaml
+  #- ./backup.yaml
+  - ./backups

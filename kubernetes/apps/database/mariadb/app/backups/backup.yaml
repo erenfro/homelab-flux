@@ -1,0 +1,36 @@
+apiVersion: mariadb.mmontes.io/v1alpha1
+kind: Backup
+metadata:
+  name: backup-all-nightly
+spec:
+  mariaDbRef:
+    name: mariadb-galera
+  schedule:
+    cron: "0 0 * * *"
+  maxRetentionDays: 14
+  storage:
+    volume:
+      nfs:
+        server: "${NAS_HOST}"
+        path: /volume1/Media/mariadb
+  args:
+    - --single-transaction
+    - --all-databases
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      memory: 512Mi
+      #mountOptions:
+      #  - nfsvers=4.0
+      #  - nconnect=3
+      #  - hard
+      #  - noatime
+    #storageClassName: mariabackup-nfs
+    #persistentVolumeClaim:
+    #  resources:
+    #    requests:
+    #      storage: 100Mi
+    #  accessModes:
+    #    - ReadWriteOnce
