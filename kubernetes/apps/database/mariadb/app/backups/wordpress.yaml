@@ -3,16 +3,17 @@ apiVersion: mariadb.mmontes.io/v1alpha1
 kind: Backup
 metadata:
   name: wordpress
-  namespace: selfhosted
 spec:
   mariaDbRef:
     name: mariadb-galera
-    namespace: database
   schedule:
-    cron: "50 * * * *"
+    cron: "15 * * * *"
   maxRetentionDays: 14
   storage:
     volume:
       nfs:
         server: "${NAS_HOST}"
-        path: /volume1/Media/mariadb
+        path: /volume1/Media/mariadb/wordpress
+  args:
+    - --single-transaction
+    - --databases wordpress
