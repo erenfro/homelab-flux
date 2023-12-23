@@ -37,3 +37,6 @@ spec:
         selector:
           dnsZones:
             - "${SECRET_DOMAIN}"
+            - "${PROD_DOMAIN}"
+            - "${FAMILY_DOMAIN}"
+            - "${PRIV_DOMAIN}"
