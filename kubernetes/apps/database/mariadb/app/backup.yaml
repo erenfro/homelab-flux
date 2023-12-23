@@ -1,12 +1,12 @@
 apiVersion: mariadb.mmontes.io/v1alpha1
 kind: Backup
 metadata:
-  name: backup
+  name: backup-scheduled
 spec:
   mariaDbRef:
     name: mariadb-galera
   schedule:
-    cron: "0 0 * * *"
+    cron: "0 * * * *"
   maxRetentionDays: 14
   storage:
     volume:

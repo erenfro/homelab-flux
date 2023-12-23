@@ -7,4 +7,4 @@ resources:
   - ./pvc.yaml
   - ./server.yaml
   #- ./backup.yaml
-  - ./backups
+  #- ./backups
