@@ -50,21 +50,21 @@ spec:
   table: "*"
   username: wordpress
   host: "%"
----
-apiVersion: mariadb.mmontes.io/v1alpha1
-kind: Backup
-metadata:
-  name: wordpress
-  namespace: selfhosted
-spec:
-  mariaDbRef:
-    name: mariadb-galera
-    namespace: database
-  schedule:
-    cron: "30 * * * *"
-  maxRetentionDays: 14
-  storage:
-    volume:
-      nfs:
-        server: "${NAS_HOST}"
-        path: /volume1/Media/mariadb
+#---
+#apiVersion: mariadb.mmontes.io/v1alpha1
+#kind: Backup
+#metadata:
+#  name: wordpress
+#  namespace: selfhosted
+#spec:
+#  mariaDbRef:
+#    name: mariadb-galera
+#    namespace: database
+#  schedule:
+#    cron: "30 * * * *"
+#  maxRetentionDays: 14
+#  storage:
+#    volume:
+#      nfs:
+#        server: "${NAS_HOST}"
+#        path: /volume1/Media/mariadb
