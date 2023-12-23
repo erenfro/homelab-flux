@@ -57,9 +57,9 @@ metadata:
   name: wordpress
 spec:
   mariaDbRef:
-    name: mariadb
+    name: mariadb-galera
   schedule:
-    cron: "0 * * * *"
+    cron: "30 * * * *"
   maxRetentionDays: 14
   storage:
     volume:
