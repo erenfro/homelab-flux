@@ -4,4 +4,4 @@ kind: Kustomization
 namespace: database
 resources:
   - ./backup.yaml
-  - ./wordpress.yaml
+  #- ./wordpress.yaml
