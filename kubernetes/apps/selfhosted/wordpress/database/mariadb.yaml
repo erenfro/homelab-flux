@@ -1,0 +1,52 @@
+---
+apiVersion: mariadb.mmontes.io/v1alpha1
+kind: User
+metadata:
+  name: wordpress
+  namespace: selfhosted
+spec:
+  mariaDbRef:
+    name: mariadb-galera
+    namespace: database
+  passwordSecretKeyRef:
+    name: wordpress-db-secret
+    key: password
+  maxUserConnections: 20
+---
+apiVersion: mariadb.mmontes.io/v1alpha1
+kind: Database
+metadata:
+  name: wordpress
+  namespace: selfhosted
+spec:
+  mariaDbRef:
+    name: mariadb-galera
+    namespace: database
+  characterSet: utf8
+  collate: utf8_general_ci
+---
+apiVersion: mariadb.mmontes.io/v1alpha1
+kind: Grant
+metadata:
+  name: wordpress
+  namespace: selfhosted
+spec:
+  mariaDbRef:
+    name: mariadb-galera
+    namespace: database
+  privileges:
+    - "SELECT"
+    - "INSERT"
+    - "UPDATE"
+    - "CREATE"
+    - "INDEX"
+    - "ALTER"
+    - "DELETE"
+    - "DROP"
+    - "TRIGGER"
+    - "CREATE VIEW"
+    - "SHOW VIEW"
+  database: "wordpress"
+  table: "*"
+  username: wordpress
+  host: "%"

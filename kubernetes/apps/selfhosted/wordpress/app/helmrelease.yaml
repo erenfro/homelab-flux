@@ -1,0 +1,100 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2beta1.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: wordpress
+  namespace: selfhosted
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 2.4.0
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+
+  values:
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+
+        #pod:
+          #enableServiceLinks: false
+          #securityContext:
+            #runAsUser: 65534
+            #runAsGroup: 82
+            #fsgroup: 82
+            #fsGroupChangePolicy: OnRootMismatch
+            #readOnlyRootFilesystem: true
+            #allowPrivilegeEscalation: false
+
+        containers:
+          main:
+            image:
+              repository: wordpress
+              tag: 6.2.1-apache
+            env:
+              TZ: "${TIMEZONE}"
+              PHP_TZ: "${TIMEZONE}"
+            envFrom:
+              - secretRef:
+                  name: wordpress-secret
+            resources:
+              requests:
+                cpu: 10m
+                memory: 256M
+              limits:
+                memory: 1Gi
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet: null
+                  tcpSocket:
+                    port: &port 80
+                  initialDelaySeconds: 120
+                  periodSeconds: 10
+                  timeoutSeconds: 5
+                  failureThreshold: 6
+                  successThreshold: 1
+              readiness: *probes
+              startup:
+                enabled: false
+    service:
+      main:
+        ports:
+          http:
+            port: *port
+
+    ingress:
+      main:
+        enabled: true
+        className: external
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
+        hosts:
+          - host: &host "blog.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                service:
+                  name: main
+                  port: http
+        tls:
+          - hosts:
+              - *host
+    persistence:
+      config:
+        enabled: true
+        existingClaim: wordpress
+      #media:
+      #  type: nfs
+      #  server: mega.home.ld
+      #  path: /volume1/Media
+      #  globalMounts:
+      #    - path: /media
