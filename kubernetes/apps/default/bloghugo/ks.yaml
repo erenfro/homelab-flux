@@ -19,10 +19,10 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 5m
-  postBuild:
-    substitute:
-      APP: *app
-      VOLSYNC_ACCESSMODES: ReadWriteMany
-      VOLSYNC_STORAGECLASS: longhorn-snapshot
-      VOLSYNC_SNAPSHOTCLASS: longhorn-snapclass
-      VOLSYNC_CAPACITY: 1Gi
+  #postBuild:
+  #  substitute:
+  #    APP: *app
+  #    VOLSYNC_ACCESSMODES: ReadWriteMany
+  #    VOLSYNC_STORAGECLASS: longhorn-snapshot
+  #    VOLSYNC_SNAPSHOTCLASS: longhorn-snapclass
+  #    VOLSYNC_CAPACITY: 1Gi

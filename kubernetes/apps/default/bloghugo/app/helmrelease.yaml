@@ -37,6 +37,7 @@ spec:
             image:
               repository: ghcr.io/erenfro/bloghugo
               tag: latest
+              imagePullPolicy: Always
             env:
               TZ: ${TIMEZONE}
             resources:
