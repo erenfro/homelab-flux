@@ -13,6 +13,7 @@ configMapGenerator:
   - name: privatebin-configmap
     files:
       - conf.php=./config/conf.php
+      - zz-docker.conf=./config/zz-docker.conf
 generatorOptions:
   disableNameSuffixHash: true
   annotations:

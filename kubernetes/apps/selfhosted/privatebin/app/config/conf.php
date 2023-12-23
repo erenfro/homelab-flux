@@ -208,8 +208,8 @@ class = Database
 [model_options]
 dsn = "pgsql:host=postgres16-rw.database.svc.cluster.local;dbname=privatebin"
 tbl = "privatebin_"     ; table prefix
-usr = "$_ENV['DB_USER']"
-pwd = "$_ENV['DB_PASS']"
+usr = ${DB_USER}
+pwd = ${DB_PASS}
 ;opt[12] = true    ; PDO::ATTR_PERSISTENT
 
 ;[model]

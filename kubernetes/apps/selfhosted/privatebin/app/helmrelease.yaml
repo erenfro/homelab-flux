@@ -146,3 +146,12 @@ spec:
           - path: /srv/cfg/conf.php
             subPath: conf.php
             readOnly: true
+      dockerconfig:
+        enabled: true
+        type: configMap
+        name: privatebin-configmap
+        defaultMode: 0664
+        globalMounts:
+          - path: /etc/php/php-fpm.d/zz-docker.conf
+            subPath: zz-docker.conf
+            readOnly: true
