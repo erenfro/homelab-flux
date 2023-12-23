@@ -54,4 +54,5 @@ spec:
       VOLSYNC_STORAGECLASS: longhorn-snapshot
       VOLSYNC_SNAPSHOTCLASS: longhorn-snapclass
       VOLSYNC_CAPACITY: 2Gi
-      #VOLSYNC_UID: "1031"
+      VOLSYNC_UID: "0"
+      VOLSYNC_GID: "0"
