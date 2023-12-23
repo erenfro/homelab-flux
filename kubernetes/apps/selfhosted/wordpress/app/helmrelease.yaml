@@ -89,9 +89,11 @@ spec:
           - hosts:
               - *host
     persistence:
-      config:
+      data:
         enabled: true
         existingClaim: wordpress
+        globalMounts:
+          - path: /var/www/html
       #media:
       #  type: nfs
       #  server: mega.home.ld
