@@ -87,14 +87,14 @@ spec:
                     key: db_host
 
               # Redis
-              REDIS_HOST: redis-lb.database.svc.cluster.local
+              REDIS_HOST: friendica-redis.selfhosted.svc.cluster.local
               REDIS_PORT: "6379"
-              REDIS_PW:
-                valueFrom:
-                  secretKeyRef:
-                    name: friendica-secret
-                    key: redis_password
-              REDIS_DB: "friendica"
+              #REDIS_PW:
+              #  valueFrom:
+              #    secretKeyRef:
+              #      name: friendica-secret
+              #      key: redis_password
+              #REDIS_DB: "friendica"
               #REDIS_HOST: ""   # in case of locking
               #REDIS_PORT: ""   # (optional) port of redis instance
               #REDIS_PW: ""     # (optional) password for redis instance
