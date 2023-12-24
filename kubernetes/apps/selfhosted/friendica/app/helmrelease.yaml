@@ -116,11 +116,11 @@ spec:
               SMTP_AUTH_PASS: ""
 
               # First Time Setup
-              FRIENDICA_ADMIN_MAIL:
-                valueFrom:
-                  secretKeyRef:
-                    name: friendica-secret
-                    key: admin_email
+              #FRIENDICA_ADMIN_MAIL:
+              #  valueFrom:
+              #    secretKeyRef:
+              #      name: friendica-secret
+              #      key: admin_email
 
             #envFrom:
             #  - secretRef:
@@ -131,6 +131,7 @@ spec:
                 memory: 256M
               limits:
                 memory: 1Gi
+            # !DISABLE FOR INSTALL/UPGRADES
             probes:
               liveness: &probes
                 enabled: false
