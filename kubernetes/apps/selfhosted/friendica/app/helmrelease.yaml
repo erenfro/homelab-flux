@@ -1,0 +1,173 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2beta1.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: friendica
+  namespace: selfhosted
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 2.4.0
+      interval: 30m
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+
+  values:
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+
+        #pod:
+          #enableServiceLinks: false
+          #securityContext:
+            #runAsUser: 65534
+            #runAsGroup: 82
+            #fsgroup: 82
+            #fsGroupChangePolicy: OnRootMismatch
+            #readOnlyRootFilesystem: true
+            #allowPrivilegeEscalation: false
+
+        containers:
+          main:
+            image:
+              repository: friendica
+              tag: 2023.05-apache
+            env:
+              TZ: "${TIMEZONE}"
+              FRIENDICA_TZ: "${TIMEZONE}"
+              FRIENDICA_URL: "https://msg.${SECRET_DOMAIN}/"
+              #FRIENDICA_SITENAME:
+              FRIENDICA_DATA: DB
+              # !USED FOR UPDATES WHEN NEEDED, FORCES UPGRADE EVEN IF SAME VERSION
+              #FRIENDICA_UPGRADE: "true"
+
+              #Logging
+              FRIENDICA_DEBUGGING: "false"
+              FRIENDICA_LOGFILE: /var/www/friendica.log
+              FRIENDICA_LOGLEVEL: notice
+              FRIENDICA_LOGGER: stream
+              #FRIENDICA_SYSLOG_FLAGS: "LOG_PID | LOG_ODELAY | LOG_CONS | LOG_PERROR"
+
+              # Database
+              MYSQL_USER:
+                valueFrom:
+                  secreyKeyRef:
+                    name: friendica-secret
+                    key: db_user
+              MYSQL_PASSWORD:
+                valueFrom:
+                  secretKeyRef:
+                    name: friendica-secret
+                    key: db_pass
+              MYSQL_DATABASE:
+                valueFrom:
+                  secretKeyRef:
+                    name: friendica-secret
+                    key: db_name
+              MYSQL_HOST:
+                valueFrom:
+                  secretKeyRef:
+                    name: friendica-secret
+                    key: db_host
+
+              # Redis
+              REDIS_HOST: redis-lb.database.svc.cluster.local
+              REDIS_PORT: "6379"
+              REDIS_PW:
+                valueFrom:
+                  secretKeyRef:
+                    name: friendica-secret
+                    key: redis_password
+              REDIS_DB: "friendica"
+              #REDIS_HOST: ""   # in case of locking
+              #REDIS_PORT: ""   # (optional) port of redis instance
+              #REDIS_PW: ""     # (optional) password for redis instance
+              #REDIS_DB: ""     # (optional) database instance of redis instance
+
+              # PHP Limits
+              PHP_MEMORY_LIMIT: 512M
+              PHP_UPLOAD_LIMIT: 512M
+
+              # Mail
+              SMTP: "${SMTP_HOST}"
+              SMTP_PORT: 25
+              SMTP_DOMAIN: "${SECRET_DOMAIN}"
+              SMTP_FROM: "no-reply@${SECRET_DOMAIN}"
+              SMTP_TLS: ""
+              SMTP_STARTTLS: ""
+              SMTP_AUTH: "Off"
+              SMTP_AUTH_USER: ""
+              SMTP_AUTH_PASS: ""
+
+              # First Time Setup
+              FRIENDICA_ADMIN_MAIL:
+                valueFrom:
+                  secretKeyRef:
+                    name: friendica-secret
+                    key: admin_email
+
+            #envFrom:
+            #  - secretRef:
+            #      name: friendica-secret
+            resources:
+              requests:
+                cpu: 10m
+                memory: 256M
+              limits:
+                memory: 1Gi
+            probes:
+              liveness: &probes
+                enabled: true
+                custom: true
+                spec:
+                  httpGet: null
+                  tcpSocket:
+                    port: &port 80
+                  initialDelaySeconds: 30
+                  periodSeconds: 10
+                  timeoutSeconds: 5
+                  failureThreshold: 6
+                  successThreshold: 1
+              readiness: *probes
+              startup:
+                enabled: false
+    service:
+      main:
+        ports:
+          http:
+            port: *port
+
+    ingress:
+      main:
+        enabled: true
+        className: external
+        annotations:
+          external-dns.alpha.kubernetes.io/target: "external.${SECRET_DOMAIN}"
+        hosts:
+          - host: &host "msg.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                service:
+                  name: main
+                  port: http
+        tls:
+          - hosts:
+              - *host
+    persistence:
+      data:
+        enabled: true
+        existingClaim: friendica
+        globalMounts:
+          - path: /var/www/html
+      #media:
+      #  type: nfs
+      #  server: mega.home.ld
+      #  path: /volume1/Media
+      #  globalMounts:
+      #    - path: /media

@@ -1,0 +1,70 @@
+---
+apiVersion: mariadb.mmontes.io/v1alpha1
+kind: User
+metadata:
+  name: friendica
+  namespace: selfhosted
+spec:
+  mariaDbRef:
+    name: mariadb-galera
+    namespace: database
+  passwordSecretKeyRef:
+    name: friendica-db-secret
+    key: password
+  maxUserConnections: 20
+---
+apiVersion: mariadb.mmontes.io/v1alpha1
+kind: Database
+metadata:
+  name: friendica
+  namespace: selfhosted
+spec:
+  mariaDbRef:
+    name: mariadb-galera
+    namespace: database
+  characterSet: utf8
+  collate: utf8_general_ci
+---
+apiVersion: mariadb.mmontes.io/v1alpha1
+kind: Grant
+metadata:
+  name: friendica
+  namespace: selfhosted
+spec:
+  mariaDbRef:
+    name: mariadb-galera
+    namespace: database
+  privileges:
+    - "SELECT"
+    - "INSERT"
+    - "UPDATE"
+    - "CREATE"
+    - "INDEX"
+    - "ALTER"
+    - "DELETE"
+    - "DROP"
+    - "TRIGGER"
+    - "CREATE VIEW"
+    - "SHOW VIEW"
+  database: "friendica"
+  table: "*"
+  username: friendica
+  host: "%"
+#---
+#apiVersion: mariadb.mmontes.io/v1alpha1
+#kind: Backup
+#metadata:
+#  name: friendica
+#  namespace: selfhosted
+#spec:
+#  mariaDbRef:
+#    name: mariadb-galera
+#    namespace: database
+#  schedule:
+#    cron: "30 * * * *"
+#  maxRetentionDays: 14
+#  storage:
+#    volume:
+#      nfs:
+#        server: "${NAS_HOST}"
+#        path: /volume1/Media/mariadb
