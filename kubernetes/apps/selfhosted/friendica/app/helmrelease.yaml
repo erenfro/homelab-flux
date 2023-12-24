@@ -111,7 +111,7 @@ spec:
               SMTP_FROM: "no-reply@${SECRET_DOMAIN}"
               SMTP_TLS: ""
               SMTP_STARTTLS: ""
-              SMTP_AUTH: ""
+              SMTP_AUTH: "none"
               SMTP_AUTH_USER: ""
               SMTP_AUTH_PASS: ""
 
