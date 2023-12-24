@@ -57,7 +57,7 @@ spec:
               # Database
               MYSQL_USER:
                 valueFrom:
-                  secreyKeyRef:
+                  secretKeyRef:
                     name: friendica-secret
                     key: db_user
               MYSQL_PASSWORD:
