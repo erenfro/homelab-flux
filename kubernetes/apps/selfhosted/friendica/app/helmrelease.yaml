@@ -53,7 +53,7 @@ spec:
               FRIENDICA_TZ: "${TIMEZONE}"
               FRIENDICA_URL: "https://msg.${SECRET_DOMAIN}/"
               #FRIENDICA_SITENAME:
-              FRIENDICA_DATA: DB
+              FRIENDICA_DATA: Filesystem
               # !USED FOR UPDATES WHEN NEEDED, FORCES UPGRADE EVEN IF SAME VERSION
               #FRIENDICA_UPGRADE: "true"
 
