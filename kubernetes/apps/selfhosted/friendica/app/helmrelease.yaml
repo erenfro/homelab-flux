@@ -111,16 +111,16 @@ spec:
               SMTP_FROM: "no-reply@${SECRET_DOMAIN}"
               SMTP_TLS: ""
               SMTP_STARTTLS: ""
-              SMTP_AUTH: "Off"
+              SMTP_AUTH: ""
               SMTP_AUTH_USER: ""
               SMTP_AUTH_PASS: ""
 
               # First Time Setup
-              #FRIENDICA_ADMIN_MAIL:
-              #  valueFrom:
-              #    secretKeyRef:
-              #      name: friendica-secret
-              #      key: admin_email
+              FRIENDICA_ADMIN_MAIL:
+                valueFrom:
+                  secretKeyRef:
+                    name: friendica-secret
+                    key: admin_email
 
             #envFrom:
             #  - secretRef:
