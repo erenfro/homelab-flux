@@ -59,7 +59,7 @@ spec:
 
               #Logging
               FRIENDICA_DEBUGGING: "false"
-              FRIENDICA_LOGFILE: /var/www/friendica.log
+              FRIENDICA_LOGFILE: /var/www/html/friendica.log
               FRIENDICA_LOGLEVEL: notice
               FRIENDICA_LOGGER: stream
               #FRIENDICA_SYSLOG_FLAGS: "LOG_PID | LOG_ODELAY | LOG_CONS | LOG_PERROR"
