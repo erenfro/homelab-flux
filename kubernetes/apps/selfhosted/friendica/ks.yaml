@@ -22,38 +22,38 @@ spec:
   interval: 30m
   retryInterval: 1m
   timeout: 5m
----
-# yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/kustomize.toolkit.fluxcd.io/kustomization_v1.json
-apiVersion: kustomize.toolkit.fluxcd.io/v1
-kind: Kustomization
-metadata:
-  name: &app friendica
-  namespace: flux-system
-spec:
-  targetNamespace: selfhosted
-  commonMetadata:
-    labels:
-      app.kubernetes.io/name: *app
-  dependsOn:
-    - name: mariadb
-    - name: external-secrets-bitwarden
-    - name: friendica-db
-    - name: redis-lb
-  path: ./kubernetes/apps/selfhosted/friendica/app
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: home-kubernetes
-  wait: true
-  interval: 30m
-  retryInterval: 1m
-  timeout: 10m
-  postBuild:
-    substitute:
-      APP: *app
-      VOLSYNC_ACCESSMODES: ReadWriteMany
-      VOLSYNC_STORAGECLASS: longhorn-snapshot
-      VOLSYNC_SNAPSHOTCLASS: longhorn-snapclass
-      VOLSYNC_CAPACITY: 2Gi
-      VOLSYNC_UID: "0"
-      VOLSYNC_GID: "0"
+#---
+## yaml-language-server: $schema=https://kubernetes-schemas.devbu.io/kustomize.toolkit.fluxcd.io/kustomization_v1.json
+#apiVersion: kustomize.toolkit.fluxcd.io/v1
+#kind: Kustomization
+#metadata:
+#  name: &app friendica
+#  namespace: flux-system
+#spec:
+#  targetNamespace: selfhosted
+#  commonMetadata:
+#    labels:
+#      app.kubernetes.io/name: *app
+#  dependsOn:
+#    - name: mariadb
+#    - name: external-secrets-bitwarden
+#    - name: friendica-db
+#    - name: redis-lb
+#  path: ./kubernetes/apps/selfhosted/friendica/app
+#  prune: true
+#  sourceRef:
+#    kind: GitRepository
+#    name: home-kubernetes
+#  wait: true
+#  interval: 30m
+#  retryInterval: 1m
+#  timeout: 10m
+#  postBuild:
+#    substitute:
+#      APP: *app
+#      VOLSYNC_ACCESSMODES: ReadWriteMany
+#      VOLSYNC_STORAGECLASS: longhorn-snapshot
+#      VOLSYNC_SNAPSHOTCLASS: longhorn-snapclass
+#      VOLSYNC_CAPACITY: 2Gi
+#      VOLSYNC_UID: "0"
+#      VOLSYNC_GID: "0"
