@@ -51,7 +51,7 @@ spec:
             env:
               TZ: "${TIMEZONE}"
               FRIENDICA_TZ: "${TIMEZONE}"
-              FRIENDICA_URL: "https://msg.${SECRET_DOMAIN}/"
+              FRIENDICA_URL: "https://msg.${SECRET_DOMAIN}"
               #FRIENDICA_SITENAME:
               FRIENDICA_DATA: Filesystem
               # !USED FOR UPDATES WHEN NEEDED, FORCES UPGRADE EVEN IF SAME VERSION
