@@ -47,7 +47,7 @@ spec:
           main:
             image:
               repository: friendica
-              tag: 2023.05-apache
+              tag: 2023.12-apache
             env:
               TZ: "${TIMEZONE}"
               FRIENDICA_TZ: "${TIMEZONE}"
@@ -87,8 +87,8 @@ spec:
                     key: db_host
 
               # Redis
-              #REDIS_HOST: friendica-redis.selfhosted.svc.cluster.local
-              #REDIS_PORT: "6379"
+              REDIS_HOST: friendica-redis.selfhosted.svc.cluster.local
+              REDIS_PORT: "6379"
               #REDIS_PW:
               #  valueFrom:
               #    secretKeyRef:
