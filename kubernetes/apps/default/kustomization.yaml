@@ -9,6 +9,6 @@ resources:
   - ./discord-template-notifier/ks.yaml
   - ./excalidraw/ks.yaml
   - ./hajimari/ks.yaml
-  #- ./thelounge/ks.yaml
+  - ./thelounge/ks.yaml
   #- ./theme-park/ks.yaml
   #- ./wallabag/ks.yaml
