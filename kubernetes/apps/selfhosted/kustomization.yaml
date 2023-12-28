@@ -11,17 +11,17 @@ resources:
   #- ./friendica/ks.yaml
   #- ./gotosocial/ks.yaml
   - ./hedgedoc/ks.yaml
-  - ./homepage/ks.yaml
-  - ./linkding/ks.yaml
+  #- ./homepage/ks.yaml
+  #- ./linkding/ks.yaml
   - ./littlelink/ks.yaml
-  - ./mealie/ks.yaml
+  #- ./mealie/ks.yaml
   #- ./nextcloud/ks.yaml
   - ./outline/ks.yaml
   - ./paperless/ks.yaml
   - ./privatebin/ks.yaml
   #- ./rainloop/ks.yaml
   #- ./roundcube/ks.yaml
-  - ./shiori/ks.yaml
+  #- ./shiori/ks.yaml
   - ./wikijs/ks.yaml
-  - ./wordpress/ks.yaml
+  #- ./wordpress/ks.yaml
   #- ./zipline/ks.yaml
