@@ -26,7 +26,9 @@ spec:
     substitute:
       APP: *app
       VOLSYNC_ACCESSMODES: ReadWriteMany
-      VOLSYNC_STORAGECLASS: longhorn-snapshot
-      VOLSYNC_SNAPSHOTCLASS: longhorn-snapclass
+      #VOLSYNC_STORAGECLASS: longhorn-snapshot
+      #VOLSYNC_SNAPSHOTCLASS: longhorn-snapclass
+      VOLSYNC_STORAGECLASS: gluster-nfs
+      VOLSYNC_SNAPSHOTCLASS: csi-nfs-snapclass
       VOLSYNC_CAPACITY: 2Gi
       VOLSYNC_UID: "1031"
