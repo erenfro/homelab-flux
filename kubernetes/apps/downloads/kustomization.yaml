@@ -15,13 +15,13 @@ resources:
   ##- ./kubernetes-schemas/ks.yaml
   - ./lidarr/ks.yaml
   ##- ./media-browser/ks.yaml
-  - ./overseerr/ks.yaml
-  - ./prowlarr/ks.yaml
+  #- ./overseerr/ks.yaml
+  #- ./prowlarr/ks.yaml
   - ./qbittorrent/ks.yaml
   - ./radarr/ks.yaml
   - ./readarr/ks.yaml
-  - ./recyclarr/ks.yaml
+  #- ./recyclarr/ks.yaml
   - ./sabnzbd/ks.yaml
   ##- ./slskd/ks.yaml
-  - ./sonarr/ks.yaml
+  #- ./sonarr/ks.yaml
   - ./unpackerr/ks.yaml
