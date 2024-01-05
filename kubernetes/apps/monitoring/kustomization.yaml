@@ -6,10 +6,10 @@ resources:
   - ./namespace.yaml
   # Flux-Kustomizations
   - ./gatus/ks.yaml
-  - ./grafana/ks.yaml
-  - ./karma/ks.yaml
-  - ./kube-prometheus-stack/ks.yaml
+  #- ./grafana/ks.yaml
+  #- ./karma/ks.yaml
+  #- ./kube-prometheus-stack/ks.yaml
   #- ./loki/ks.yaml
-  - ./thanos/ks.yaml
+  #- ./thanos/ks.yaml
   #- ./vector/ks.yaml
   #- ./node-exporter/ks.yaml
