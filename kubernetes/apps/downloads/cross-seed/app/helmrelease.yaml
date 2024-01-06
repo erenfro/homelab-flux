@@ -57,9 +57,6 @@ spec:
               limits:
                 memory: 512Mi
         pod:
-          metadata:
-            labels:
-              app: cross-seed
           #nodeSelector:
           #  app.kubernetes.io/instance: qbittorrent
           affinity:
@@ -80,7 +77,8 @@ spec:
             runAsNonRoot: true
             fsGroup: 568
             fsGroupChangePolicy: OnRootMismatch
-            supplementalGroups: [10000]
+            supplementalGroups:
+              - 10000
     service:
       main:
         ports:
