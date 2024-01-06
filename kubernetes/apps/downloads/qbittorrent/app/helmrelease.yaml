@@ -43,7 +43,7 @@ spec:
               #tag: 4.6.0
             env:
               TZ: ${TIMEZONE}
-              QBITTORRENT__PORT: &port 80
+              QBITTORRENT__PORT: &httpPort 80
               QBITTORRENT__BT_PORT: &bittorrentPort 50413
               QBT_Preferences__WebUI__AlternativeUIEnabled: false
               QBT_Preferences__WebUI__AuthSubnetWhitelistEnabled: true
@@ -67,7 +67,7 @@ spec:
             #      initialDelaySeconds: 60
             #      periodSeconds: 10
             #      timeoutSeconds: 3
-            #      failureThreshold: 3
+            #      failureThreshold: 6
             #  readiness: *probes
             #  startup:
             #    enabled: false
@@ -77,18 +77,46 @@ spec:
                 memory: 2Gi
               limits:
                 memory: 16Gi
+            securityContext: &securityContext
+              allowPrivilegeEscalation: false
+              readOnlyRootFilesystem: true
+              capabilities:
+                drop:
+                  - ALL
+          xseed:
+            image:
+              repository: ghcr.io/cross-seed/cross-seed
+              tag: 5.8.5@sha256:afdff940e1c013b41c71cd265d3eef11fa43a76fcad2857c98ca789e68a038e7
+            env:
+              TZ: "${TIMEZONE}"
+              CROSSSEED_PORT: &xseedPort 2468
+              PORT: *xseedPort
+            envFrom:
+              - secretRef:
+                  name: cross-seed-secret
+            args: ["daemon"]
+            resources:
+              requests:
+                cpu: 10m
+                memory: 128Mi
+              limits:
+                memory: 512Mi
+            securityContext: *securityContext
         pod:
           securityContext:
             runAsUser: 1031
             runAsGroup: 568
             fsGroup: 568
             fsGroupChangePolicy: OnRootMismatch
-            supplementalGroups: [10000]
+            supplementalGroups:
+              - 10000
     service:
       main:
         ports:
           http:
-            port: *port
+            port: *httpPort
+          xseed:
+            port: *xseedPort
       bittorrent:
         controller: main
         type: LoadBalancer
@@ -144,6 +172,13 @@ spec:
       config:
         enabled: true
         existingClaim: qbittorrent
+      xseed:
+        type: configMap
+        name: cross-seed-configmap
+        globalMounts:
+          - path: /config/config.js
+            subPath: config.js
+            readOnly: true
       completed-script:
         type: configMap
         name: qbittorrent-scripts

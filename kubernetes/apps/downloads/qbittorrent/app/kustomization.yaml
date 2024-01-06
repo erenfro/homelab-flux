@@ -10,5 +10,10 @@ configMapGenerator:
   - name: qbittorrent-scripts
     files:
       - ./config/completed.sh
+  - name: cross-seed-configmap
+    files:
+      - config.js=./resources/config.js
 generatorOptions:
   disableNameSuffixHash: true
+  annotations:
+    kustomize.toolkit.fluxcd.io/substitute: disabled
