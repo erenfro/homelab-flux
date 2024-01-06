@@ -14,7 +14,7 @@ spec:
         kind: HelmRepository
         name: bjw-s
         namespace: flux-system
-  maxHistory: 2
+  maxHistory: 3
   install:
     remediation:
       retries: 3
@@ -87,6 +87,8 @@ spec:
             image:
               repository: ghcr.io/cross-seed/cross-seed
               tag: 5.9.1@sha256:43362a39bb0ec825c046bbc255c41d557f98c0835dd1d6146eb93e03d36a98b9
+            args:
+              - daemon
             env:
               TZ: "${TIMEZONE}"
               CROSSSEED_PORT: &xseedPort 2468
@@ -94,7 +96,6 @@ spec:
             envFrom:
               - secretRef:
                   name: cross-seed-secret
-            args: ["daemon"]
             resources:
               requests:
                 cpu: 10m
@@ -133,7 +134,7 @@ spec:
       main:
         annotations:
           hajimari.io/enable: "true"
-          hajimari.io/icon: tabler:cloud-search
+          hajimari.io/icon: mdi:seedling
           gethomepage.dev/enabled: "true"
           gethomepage.dev/group: Downloads
           gethomepage.dev/name: qBittorrent
