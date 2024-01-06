@@ -57,18 +57,20 @@ spec:
               limits:
                 memory: 512Mi
         pod:
-          affinity:
-            podAffinity:
-              requiredDuringSchedulingIgnoredDuringExecution:
-              - labelSelector:
-                  matchExpressions:
-                  - key: instance
-                    operator: In
-                    values:
-                    - qbittorrent
-                topologyKey: "kubernetes.io/hostname"
-                #matchLabelKeys:
-                #- pod-template-hash
+          nodeSelector:
+            instance: qbittorrent
+          #affinity:
+          #  podAffinity:
+          #    requiredDuringSchedulingIgnoredDuringExecution:
+          #    - labelSelector:
+          #        matchExpressions:
+          #        - key: instance
+          #          operator: In
+          #          values:
+          #          - qbittorrent
+          #      topologyKey: "kubernetes.io/hostname"
+          #      #matchLabelKeys:
+          #      #- pod-template-hash
           securityContext:
             runAsUser: 1031
             runAsGroup: 568
