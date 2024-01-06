@@ -66,9 +66,9 @@ spec:
                     operator: In
                     values:
                     - qbittorrent
-                topologyKey: topology.kubernetes.io/zone
-                matchLabelKeys:
-                - pod-template-hash
+                topologyKey: "kubernetes.io/hostname"
+                #matchLabelKeys:
+                #- pod-template-hash
           securityContext:
             runAsUser: 1031
             runAsGroup: 568
