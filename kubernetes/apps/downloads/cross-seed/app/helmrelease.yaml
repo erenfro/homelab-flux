@@ -57,6 +57,9 @@ spec:
               limits:
                 memory: 512Mi
         pod:
+          metadata:
+            labels:
+              app: cross-seed
           #nodeSelector:
           #  app.kubernetes.io/instance: qbittorrent
           affinity:
@@ -64,7 +67,7 @@ spec:
               requiredDuringSchedulingIgnoredDuringExecution:
               - labelSelector:
                   matchExpressions:
-                  - key: app
+                  - key: app.kubernetes.io/name
                     operator: In
                     values:
                     - qbittorrent
