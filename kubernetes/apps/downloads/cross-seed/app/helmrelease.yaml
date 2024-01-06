@@ -42,11 +42,14 @@ spec:
             envFrom:
               - secretRef:
                   name: cross-seed-secret
-            args: ["daemon"]
+            args:
+              - daemon
             securityContext:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
-              capabilities: { drop: ["ALL"] }
+              capabilities:
+                drop
+                  - ALL
             resources:
               requests:
                 cpu: 10m
@@ -54,6 +57,16 @@ spec:
               limits:
                 memory: 512Mi
         pod:
+          affinity:
+            podAffinity:
+              requiredDuringSchedulingIgnoredDuringExecution:
+              - labelSelector:
+                  matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                    - qbittorrent
+                topologyKey: topology.kubernetes.io/zone
           securityContext:
             runAsUser: 1031
             runAsGroup: 568
