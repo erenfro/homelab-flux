@@ -58,7 +58,7 @@ spec:
                 memory: 512Mi
         pod:
           nodeSelector:
-            instance: qbittorrent
+            app.kubernetes.io/instance: qbittorrent
           #affinity:
           #  podAffinity:
           #    requiredDuringSchedulingIgnoredDuringExecution:
