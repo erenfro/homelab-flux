@@ -58,21 +58,21 @@ spec:
                   fieldRef:
                     fieldPath: status.podIP
               QBT_BitTorrent__Session__InterfaceName: eth0
-            probes:
-              liveness: &probes
-                enabled: true
-                custom: true
-                spec:
-                  httpGet:
-                    path: /api/v2/app/version
-                    port: *httpPort
-                  initialDelaySeconds: 60
-                  periodSeconds: 10
-                  timeoutSeconds: 5
-                  failureThreshold: 5
-              readiness: *probes
-              startup:
-                enabled: false
+            #probes:
+            #  liveness: &probes
+            #    enabled: true
+            #    custom: true
+            #    spec:
+            #      httpGet:
+            #        path: /api/v2/app/version
+            #        port: *httpPort
+            #      initialDelaySeconds: 60
+            #      periodSeconds: 10
+            #      timeoutSeconds: 5
+            #      failureThreshold: 5
+            #  readiness: *probes
+            #  startup:
+            #    enabled: false
             resources:
               requests:
                 cpu: 200m
