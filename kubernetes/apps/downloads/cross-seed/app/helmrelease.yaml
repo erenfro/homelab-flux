@@ -48,7 +48,7 @@ spec:
               allowPrivilegeEscalation: false
               readOnlyRootFilesystem: true
               capabilities:
-                drop
+                drop:
                   - ALL
             resources:
               requests:
