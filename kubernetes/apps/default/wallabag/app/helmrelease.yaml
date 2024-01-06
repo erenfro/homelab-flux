@@ -41,7 +41,7 @@ spec:
           main:
             image:
               repository: wallabag/wallabag
-              tag: 2.6.7
+              tag: 2.6.8
             env:
               TZ: "${TIMEZONE}"
               SYMFONY__ENV__DOMAIN_NAME: https://wallabag.${SECRET_DOMAIN}
