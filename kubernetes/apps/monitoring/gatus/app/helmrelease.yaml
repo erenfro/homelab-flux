@@ -24,26 +24,26 @@ spec:
       retries: 3
   uninstall:
     keepHistory: false
-  dependsOn:
-    - name: cloudnative-pg
-      namespace: database
+  #dependsOn:
+  #  - name: cloudnative-pg
+  #    namespace: database
   values:
     controllers:
       main:
         annotations:
           reloader.stakater.com/auto: "true"
         initContainers:
-          init-db:
-            order: 1
-            image:
-              repository: ghcr.io/onedr0p/postgres-init
-              tag: 16
-              pullPolicy: IfNotPresent
-            envFrom: &envFrom
-              - secretRef:
-                  name: gatus-secret
+          #init-db:
+          #  order: 1
+          #  image:
+          #    repository: ghcr.io/onedr0p/postgres-init
+          #    tag: 16
+          #    pullPolicy: IfNotPresent
+          #  envFrom: &envFrom
+          #    - secretRef:
+          #        name: gatus-secret
           init-config:
-            order: 2
+            order: 1
             image: &configSyncImage
               repository: ghcr.io/kiwigrid/k8s-sidecar
               tag: 1.25.3
