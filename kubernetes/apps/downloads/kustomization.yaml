@@ -8,7 +8,7 @@ resources:
   #- ./downloads-pvc.yaml
   # Flux-Kustomizations
   - ./autobrr/ks.yaml
-  #- ./bazarr/ks.yaml
+  - ./bazarr/ks.yaml
   - ./cross-seed/ks.yaml
   - ./flaresolverr/ks.yaml
   ##- ./frigate/ks.yaml
