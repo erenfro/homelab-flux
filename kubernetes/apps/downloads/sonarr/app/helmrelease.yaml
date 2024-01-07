@@ -34,15 +34,16 @@ spec:
       main:
         annotations:
           reloader.stakater.com/auto: "true"
-        initContainers:
-          init-db:
-            image:
-              repository: ghcr.io/onedr0p/postgres-init
-              tag: 16
-              pullPolicy: IfNotPresent
-            envFrom: &envFrom
-              - secretRef:
-                  name: sonarr-secret
+          secret.reloader.stakater.com/reload: &secret sonarr-secret
+        #initContainers:
+        #  init-db:
+        #    image:
+        #      repository: ghcr.io/onedr0p/postgres-init
+        #      tag: 16
+        #      pullPolicy: IfNotPresent
+        #    envFrom:
+        #      - secretRef:
+        #          name: *secret
         containers:
           main:
             image:
@@ -57,7 +58,9 @@ spec:
               SONARR__PORT: &port 80
               SONARR__LOG_LEVEL: info
               SONARR__THEME: dark
-            envFrom: *envFrom
+            envFrom:
+              - secretRef:
+                  name: *secret
             probes:
               liveness: &probes
                 enabled: true
