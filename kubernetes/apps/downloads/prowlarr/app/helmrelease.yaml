@@ -29,15 +29,15 @@ spec:
       main:
         annotations:
           reloader.stakater.com/auto: "true"
-        initContainers:
-          init-db:
-            image:
-              repository: ghcr.io/onedr0p/postgres-init
-              tag: 16
-              pullPolicy: IfNotPresent
-            envFrom: &envFrom
-              - secretRef:
-                  name: prowlarr-secret
+        #initContainers:
+        #  init-db:
+        #    image:
+        #      repository: ghcr.io/onedr0p/postgres-init
+        #      tag: 16
+        #      pullPolicy: IfNotPresent
+        #    envFrom: &envFrom
+        #      - secretRef:
+        #          name: prowlarr-secret
         containers:
           main:
             image:
@@ -50,7 +50,10 @@ spec:
               PROWLARR__LOG_LEVEL: info
               PROWLARR__AUTHENTICATION_METHOD: External
               PROWLARR__THEME: dark
-            envFrom: *envFrom
+            #envFrom: *envFrom
+            envFrom:
+              - secretRef:
+                  name: prowlarr-secret
             probes:
               liveness: &probes
                 enabled: true
