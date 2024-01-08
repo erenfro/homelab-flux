@@ -10,9 +10,9 @@ spec:
   commonMetadata:
     labels:
       app.kubernetes.io/name: *app
-  dependsOn:
+  #dependsOn:
     #- name: cloudnative-pg-cluster
-    - name: external-secrets-bitwarden
+    #- name: external-secrets-bitwarden
   path: ./kubernetes/apps/downloads/maintainerr/app
   prune: true
   sourceRef:
@@ -30,4 +30,4 @@ spec:
       VOLSYNC_STORAGECLASS: longhorn-snapshot
       VOLSYNC_SNAPSHOTCLASS: longhorn-snapclass
       VOLSYNC_CAPACITY: 2Gi
-      VOLSYNC_UID: "1031"
+      VOLSYNC_UID: "1000"
