@@ -98,11 +98,11 @@ spec:
       config:
         enabled: true
         existingClaim: maintainerr
-      media:
-        type: nfs
-        server: mega.home.ld
-        path: /volume1/Media
-        globalMounts:
-          - path: /opt/data
-      add-ons:
-        type: emptyDir
+      #media:
+      #  type: nfs
+      #  server: mega.home.ld
+      #  path: /volume1/Media
+      #  globalMounts:
+      #    - path: /opt/data
+      #add-ons:
+      #  type: emptyDir
