@@ -102,6 +102,6 @@ spec:
         server: mega.home.ld
         path: /volume1/Media
         globalMounts:
-          - path: /data
+          - path: /opt/data
       add-ons:
         type: emptyDir
