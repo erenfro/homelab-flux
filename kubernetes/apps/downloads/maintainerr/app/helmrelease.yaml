@@ -1,0 +1,104 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/fluxcd-community/flux2-schemas/main/helmrelease-helm-v2beta1.json
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: &app maintainerr
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: app-template
+      version: 2.4.0
+      sourceRef:
+        kind: HelmRepository
+        name: bjw-s
+        namespace: flux-system
+  maxHistory: 2
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  uninstall:
+    keepHistory: false
+  dependsOn:
+    - name: longhorn
+      namespace: storage
+    - name: volsync
+      namespace: volsync
+  values:
+    controllers:
+      main:
+        annotations:
+          reloader.stakater.com/auto: "true"
+          #secret.reloader.stakater.com/reload: &secret maintainerr-secret
+        containers:
+          main:
+            image:
+              repository: ghcr.io/jorenn92/maintainerr
+              tag: 1.7.1
+            env:
+              TZ: ${TIMEZONE}
+            #envFrom:
+            #  - secretRef:
+            #      name: *secret
+            resources:
+              requests:
+                cpu: 5m
+                memory: 128Mi
+              limits:
+                memory: 512Mi
+        pod:
+          securityContext:
+            runAsUser: 1031
+            runAsGroup: 568
+            fsGroup: 568
+            fsGroupChangePolicy: OnRootMismatch
+    service:
+      main:
+        ports:
+          http:
+            port: 80
+    ingress:
+      main:
+        enabled: true
+        className: internal
+        annotations:
+          hajimari.io/enable: "true"
+          hajimari.io/icon: tdesign:subtitle
+          #gethomepage.dev/enabled: "true"
+          #gethomepage.dev/group: Downloads
+          #gethomepage.dev/name: Maintainerr
+          #gethomepage.dev/icon: bazarr.png
+          #gethomepage.dev/widget.type: bazarr
+          #gethomepage.dev/widget.url: http://bazarr.downloads:6767
+          #gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_BAZARR_TOKEN}}"
+          #nginx.ingress.kubernetes.io/configuration-snippet: |
+          #  proxy_set_header Accept-Encoding "";
+          #  sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_DOMAIN}/css/base/bazarr/nord.css"></head>';
+          #  sub_filter_once on;
+        hosts:
+          - host: &host "{{ .Release.Name }}.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                service:
+                  name: main
+                  port: http
+        tls:
+          - hosts:
+              - *host
+    persistence:
+      config:
+        enabled: true
+        existingClaim: maintainerr
+      media:
+        type: nfs
+        server: mega.home.ld
+        path: /volume1/Media
+        globalMounts:
+          - path: /data
+      add-ons:
+        type: emptyDir
