@@ -14,7 +14,7 @@ resources:
   ##- ./frigate/ks.yaml
   ##- ./kubernetes-schemas/ks.yaml
   - ./lidarr/ks.yaml
-  #- ./maintainerr/ks.yaml
+  - ./maintainerr/ks.yaml
   ##- ./media-browser/ks.yaml
   - ./overseerr/ks.yaml
   - ./prowlarr/ks.yaml
