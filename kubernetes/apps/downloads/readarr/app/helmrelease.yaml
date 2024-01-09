@@ -81,13 +81,13 @@ spec:
         annotations:
           hajimari.io/enable: "true"
           hajimari.io/icon: ant-design:read-outlined
-          gethomepage.dev/enabled: "true"
-          gethomepage.dev/group: Downloads
-          gethomepage.dev/name: Readarr
-          gethomepage.dev/icon: readarr.png
-          gethomepage.dev/widget.type: readarr
-          gethomepage.dev/widget.url: http://readarr.downloads
-          gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_READARR_TOKEN}}"
+          #gethomepage.dev/enabled: "true"
+          #gethomepage.dev/group: Downloads
+          #gethomepage.dev/name: Readarr
+          #gethomepage.dev/icon: readarr.png
+          #gethomepage.dev/widget.type: readarr
+          #gethomepage.dev/widget.url: http://readarr.downloads
+          #gethomepage.dev/widget.key: "{{HOMEPAGE_VAR_READARR_TOKEN}}"
           nginx.ingress.kubernetes.io/configuration-snippet: |-
             proxy_set_header Accept-Encoding "";
             sub_filter '</head>' '<link rel="stylesheet" type="text/css" href="https://theme-park.${SECRET_DOMAIN}/css/base/readarr/nord.css"></head>';
@@ -105,7 +105,7 @@ spec:
     persistence:
       config:
         enabled: true
-        existingClaim: readarr
+        existingClaim: *app
       media:
         type: nfs
         server: mega.home.ld
