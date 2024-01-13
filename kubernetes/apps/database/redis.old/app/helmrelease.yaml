@@ -36,7 +36,7 @@ spec:
             nameOverride: *app
             image:
               repository: redis
-              tag: 7.2.3-alpine
+              tag: 7.2.4-alpine
             env:
               REDIS_PORT: "6379"
             envFrom:
