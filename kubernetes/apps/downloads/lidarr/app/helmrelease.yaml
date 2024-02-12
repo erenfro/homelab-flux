@@ -48,7 +48,7 @@ spec:
           main:
             image:
               repository: ghcr.io/onedr0p/lidarr-develop
-              tag: 2.1.4.3941@sha256:de7dac090ba6250853146dca5e06cc5be3638631c8b2a47843b0a2434f5f0035
+              tag: 2.1.7.4030@sha256:01d40bb9a759a3be757a9af235a14dafcef131b5014a6a2f4a32075b5fa940c5
             env:
               TZ: ${TIMEZONE}
               PUSHOVER_DEBUG: "false"
