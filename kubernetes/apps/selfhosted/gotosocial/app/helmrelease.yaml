@@ -45,7 +45,7 @@ spec:
             image:
               repository: superseriousbusiness/gotosocial
               pullPolicy: IfNotPresent
-              tag: 0.13.1
+              tag: 0.13.3
             env:
               TZ: ${TIMEZONE}
               GTS_HOST: "social.${SECRET_DOMAIN}"
