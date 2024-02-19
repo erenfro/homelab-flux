@@ -88,7 +88,7 @@ spec:
           tika:
             image:
               repository: ghcr.io/paperless-ngx/tika
-              tag: 2.9.0-full
+              tag: 2.9.1-full
           redis:
             image:
               repository: public.ecr.aws/docker/library/redis
