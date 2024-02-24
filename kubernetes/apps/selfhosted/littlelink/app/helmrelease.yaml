@@ -37,7 +37,7 @@ spec:
           main:
             image:
               repository: ghcr.io/techno-tim/littlelink-server
-              tag: latest@sha256:19852db8e320cc3ef17f22d6f5b573ccaf03b05cd5f6542d809ff37636a38e5a
+              tag: latest@sha256:15884bc70c033f06bd31b2fab6a22a774278c91f954903752c959dd50757376f
               pullPolicy: Always
             env:
               TZ: "${TIMEZONE}"
