@@ -49,7 +49,7 @@ spec:
           main:
             image:
               repository: docker.io/outlinewiki/outline
-              tag: 0.75.0
+              tag: 0.75.2
               pullPolicy: IfNotPresent
             env:
               # Core
