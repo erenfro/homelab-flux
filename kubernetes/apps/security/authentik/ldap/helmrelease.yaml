@@ -29,7 +29,7 @@ spec:
           main:
             image:
               repository: ghcr.io/goauthentik/ldap
-              tag: 2023.10.7
+              tag: 2024.2.2
             env:
               TZ: "${TIMEZONE}"
               AUTHENTIK_HOST: "https://authentik.${SECRET_DOMAIN}"
