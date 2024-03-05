@@ -33,7 +33,7 @@ spec:
       # TODO: For upgrades, be sure to disable the probes below or it could break upgrades!
       flavor: apache
       repository: nextcloud
-      tag: 27.1.5
+      tag: 28.0.3
       pullPolicy: IfNotPresent
     #image:
     #  flavor: fpm-alpine
