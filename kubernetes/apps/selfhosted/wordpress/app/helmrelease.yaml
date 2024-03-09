@@ -37,7 +37,7 @@ spec:
           main:
             image:
               repository: wordpress
-              tag: 6.4.2-apache
+              tag: 6.4.3-apache
             env:
               TZ: "${TIMEZONE}"
               PHP_TZ: "${TIMEZONE}"
