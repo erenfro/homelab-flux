@@ -36,7 +36,7 @@ spec:
           main:
             image:
               repository: ghcr.io/erenfro/bloghugo
-              tag: main@sha256:9aca2b90f0d22233cc18fecda2ae654603faafc6640b00c6dad9f09be9c6fe05
+              tag: main@sha256:da52d51f9b1b8d78e57cd8e346be664ece947c27826f573efbd353f398a1cc21
               imagePullPolicy: IfNotPresent
             env:
               TZ: ${TIMEZONE}
