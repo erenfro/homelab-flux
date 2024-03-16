@@ -47,7 +47,7 @@ spec:
           main:
             image:
               repository: ghcr.io/ajnart/homarr
-              tag: 0.15.0
+              tag: 0.15.2
             env:
               TZ: ${TIMEZONE}
               DEFAULT_COLOR_SCHEME: dark
