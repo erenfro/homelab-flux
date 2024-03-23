@@ -26,7 +26,7 @@ spec:
           main:
             image:
               repository: thecodingmachine/gotenberg
-              tag: 8.1.0
+              tag: 8.3.0
             env:
               - { name: DISABLE_GOOGLE_CHROME, value: "1" }
             resources:
